@@ -14,13 +14,13 @@ The suite is distributed as a **free app**. This repository is for customer down
 
 ## Download
 
-**Current release: 12.2.12**
+**Current release: 12.2.13**
 
 **[Download the full TaC9 suite for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V2.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V2.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 12.2.12 is approximately 163 MiB.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V2.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 12.2.13 is approximately 163 MiB.
 
 The X3D Core Tester, CoreCycler, and y-cruncher are not included in this release.
 
@@ -39,13 +39,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of version 12.2.12 without running a hosted script</summary>
+<summary>Manual download of version 12.2.13 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v12.2.12/TaC9-PC-Optimization-Suite-V2.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v12.2.13/TaC9-PC-Optimization-Suite-V2.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V2.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'DB4C71701F6A6E9B01EAAD631E5B693E913E910BBB30B54822BCBB2090E36568') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'F5461396258409DD7A87F8DF9DE8F316141CB928F23B5BB20313FBD0BE597D22') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -216,6 +216,21 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 - A matching installed game and platform for the COD configuration workflow.
 
 The interface has been checked at 800x600, 1024x768, 1366x768, 1920x1080, and 2560x1440. Smaller windows use scrolling where needed. This is layout testing, not certification of every monitor, DPI setting, Windows build, or hardware combination.
+
+### Updates on Startup
+
+Starting with 12.2.13, **every normal launch checks for suite and supported tool updates**. A recent launch no longer skips the online check for four hours.
+
+- **Suite and built-in workspaces:** the signed V2 GitHub release updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials.
+- **Supported tool packages:** the tool updater checks DDU, NVCleanstall, ISLC, and the approved compatible NVIDIA Profile Inspector release. Profile Inspector intentionally follows the approved version, not any untested upstream release. Bundled TaC9 profile changes are delivered with suite releases.
+- **Verified installation:** newer suite packages must pass the signed manifest, SHA-256, and internal package checks before the update helper replaces the running suite and restarts it. Tool packages use their existing source and integrity checks. Saved license data and settings are retained.
+- **Unavailable sources:** incomplete checks are reported honestly; the installed verified suite can still open, independent tool checks are attempted, and a fresh check runs next launch.
+
+The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
+
+Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
+
+For maintainers, each newer release must include the full-suite EXE and a matching `manifest-v2.json` signed by the existing trusted update key, and be published as the repository's latest release. A GitHub tag or an EXE uploaded without that signed manifest is not enough for the in-app updater.
 
 ### Verify a Download
 
