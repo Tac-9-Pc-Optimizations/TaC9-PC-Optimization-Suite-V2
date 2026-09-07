@@ -1,5 +1,58 @@
 # Release Notes
 
+## V3 13.0.0 - September 7, 2026
+
+[Download V3](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.0). Build **01589DA9**.
+
+### Visuals and Readability
+
+- Full-screen startup with the rotating TaC9 emblem, assembling silver chassis, improved blue/gold lighting, and a smoother outward transition into the suite.
+- Startup progress remains visible until the outward transition starts. The native window waits for its first composed frame before becoming visible.
+- Larger, clearer text, hover-driven trim animation, and content-aware scrolling. Active progress trims continue while verification is pending.
+- Corrected dashboard/sidebar clipping at 1080p and common scaled sizes; the health trend reserves space for its full time axis.
+
+### Expanded PC Health Center
+
+- Current, Min, Max, Average, Source, and State across supported sensor tables.
+- Device filters for CPU, GPU, RAM, motherboard, and storage, combined with reading-type filters.
+- Temperature, voltage, wattage, clock/effective-clock, utilization, fan/duty, electrical-current, transfer-rate, RAM-activity, and GPU-memory sections where exposed.
+- Measured motherboard CPU Vcore appears in the CPU group when available. Requested VID and memory-controller voltages retain their distinct labels.
+- Shared sensor acquisition prevents an older health snapshot from erasing a newer GPU hotspot reading.
+- CPU-support diagnostics distinguish missing driver, elevation, blocked access, limited coverage, and restart-required states. Optional **Set Up CPU Sensors** uses the original signed PawnIO 2.2.0 installer only after confirmation; reopen TaC9 afterward.
+- Missing readings remain unavailable, never estimated. Sensor support varies by hardware, firmware, and provider. No promise of every sensor on every CPU or RAM module.
+
+### GPU Error and Operation Status
+
+- Fixed the process-inventory variable collision that reproduced `Cannot find an overload for "Add" and the argument count: "1"` with GPU-Z and regex-matched HWiNFO process names.
+- Fixed the retained GPU workflow's status-callback parameter compatibility.
+- Failed operations preserve their last percentage, mark untouched stages **Not run**, and remove the active restart warning. Only accepted successful completion reaches 100%.
+- Added local GPU error diagnostics for troubleshooting without publishing customer logs.
+
+### Installing and Updating
+
+The repository URL and short PowerShell command are unchanged. The current downloader saves `TaC9-PC-Optimization-Suite-V3.exe` on the Desktop; it does not remove differently named suites, settings, keys, or backups.
+
+Existing V2 clients use the same signed `manifest-v2.json` feed to discover V3. The V2-named asset in this release contains the **identical V3 executable** for old download links and updater compatibility. An in-app upgrade keeps the installed file's name/location. Previous genuine V2 builds remain available in their original releases.
+
+Earlier local V3 test builds also used version 13.0.0. Use the current downloader to replace those with build **01589DA9**; the version-based updater does not regard the same version as newer.
+
+[Join Discord](https://discord.gg/3nrUffpVzt) and open a support ticket for your license key. Socials and COD Config Installer remain key-free. The app remains free, and X3D Core Tester, CoreCycler, and y-cruncher remain excluded.
+
+### Verification and Limits
+
+- Package integrity, authenticated extraction, and private-data/secret checks passed before publication.
+- All eight native screens, live sensors, startup/progress visibility, and layout checks passed. Native window sizes included 1920x1080, 1536x864, and 1280x720; browser layout checks also included 1366x768.
+- Eight simulated GPU-process cases passed in Windows PowerShell 5.1 and the compiled PowerShell host. Driver-package and companion-inventory fixture tests passed.
+- The exact reported GPU-script failure was reproduced and corrected. Tests did not perform a real DDU cleanup, driver installation, app removal, or Windows repair. Full maintenance results still require validation on the target PC.
+
+### Download Integrity
+
+- Preferred file: `TaC9-PC-Optimization-Suite-V3.exe`
+- Compatibility filename: `TaC9-PC-Optimization-Suite-V2.exe` (identical V3 bytes)
+- Size: 200,761,248 bytes (approximately 191.5 MiB)
+- SHA-256 for either executable: `41DDD93EE56B56B78C925F40E9A5796AB9429E2F61A9595E99693257D557F652`
+- Signed update manifest and internal package integrity; **not Windows Authenticode-signed**. Do not disable Windows security protections.
+
 ## 12.2.13 - September 6, 2026
 
 [Download the release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).

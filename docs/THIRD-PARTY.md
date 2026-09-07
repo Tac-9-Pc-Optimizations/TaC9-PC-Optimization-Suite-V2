@@ -11,6 +11,7 @@ TaC9 is a free suite that coordinates independently authored Windows tools and l
 | NVCleanstall 1.19.0 | [TechPowerUp](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) | Original TechPowerUp utility, unmodified. Copyright TechPowerUp. NVIDIA driver terms still apply to drivers downloaded by the workflow. |
 | NVIDIA Profile Inspector 3.0.2.2 | [Orbmu2k](https://github.com/Orbmu2k/nvidiaProfileInspector/tree/v3.0.2.2) | MIT. Original license included with Profile Inspector and in `ThirdPartyNotices`. TaC9's supplied profile is separate from the Profile Inspector program. |
 | 7-Zip extractor | [Igor Pavlov / 7-Zip](https://www.7-zip.org/) | Original license is included in `Update/Extractor/License.txt`; source is available from the [7-Zip download page](https://www.7-zip.org/download.html). |
+| PawnIO 2.2.0 optional sensor support | [namazso / PawnIO](https://pawnio.eu/) | Official unmodified signed installer, with provenance and hash in `SensorSupport/PROVENANCE.md`. Installation requires explicit confirmation. [Upstream redistribution guidance](https://github.com/namazso/PawnIO.Modules/wiki/Using-PawnIO-Modules). |
 
 ISLC's license requires free redistribution, an unchanged complete original distribution, and retained notices. This release is provided free of charge and includes that original distribution. It must not be repackaged as part of a charged product or service contrary to those terms.
 

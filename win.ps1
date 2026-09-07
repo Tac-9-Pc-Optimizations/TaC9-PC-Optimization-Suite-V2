@@ -21,7 +21,6 @@ param(
         if ([string]::IsNullOrWhiteSpace($Directory)) { throw 'No Desktop folder was found. Run win.ps1 with -DestinationDirectory and an existing folder.' }
         $destination = [IO.Path]::GetFullPath($Directory)
         if (-not [IO.Directory]::Exists($destination)) { throw "The download folder does not exist: $destination" }
-        $target = Join-Path $destination $assetName
         Write-Host 'TaC9: checking the signed release information...'
         $response = Invoke-WebRequest -Uri $manifestUrl -UseBasicParsing -TimeoutSec 60 -MaximumRedirection 5
         $json = $response.Content
@@ -38,7 +37,7 @@ param(
             }
         }
         if ($manifest.schema_version -ne 1 -or [string]$manifest.sha256 -notmatch '^[A-Fa-f0-9]{64}$') { throw 'The release information has an unsupported format.' }
-        [void][version]::Parse([string]$manifest.version)
+        $releaseVersion = [version]::Parse([string]$manifest.version)
         $canonical = '{0}|{1}|{2}|{3}' -f $manifest.version, $manifest.package_url, $manifest.sha256, $manifest.published_at
         $rsa = New-Object Security.Cryptography.RSACryptoServiceProvider
         try {
@@ -56,6 +55,9 @@ param(
             $packageUrl.Port -ne 443 -or $packageUrl.UserInfo -or $packageUrl.Query -or $packageUrl.Fragment -or
             $packageUrl.AbsolutePath -cnotmatch $allowedPath) { throw 'The signed download URL is not an official TaC9 suite release.' }
 
+        # The stable V2 asset/feed also serves V3 for existing clients. Save V3 under its own Desktop name.
+        if ($releaseVersion.Major -ge 13) { $assetName = 'TaC9-PC-Optimization-Suite-V3.exe' }
+        $target = Join-Path $destination $assetName
         $expected = ([string]$manifest.sha256).ToUpperInvariant()
         if ([IO.File]::Exists($target) -and (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -eq $expected) {
             Write-Host "The verified current release is already downloaded: $target"

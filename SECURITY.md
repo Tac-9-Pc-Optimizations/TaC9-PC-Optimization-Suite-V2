@@ -10,7 +10,7 @@ Do not publish access keys, customer license files, HWIDs, authorization materia
 
 Use the official release and compare the executable's SHA-256 value with the checksum for that release. Do not use reuploaded copies or disable security software to bypass an unexplained warning. A matching checksum establishes file consistency, not a security certification.
 
-The 12.2.12 release has internal package-integrity checks but is not Windows Authenticode-signed. These are different mechanisms and should not be confused.
+V3 13.0.0 has internal package-integrity checks and a signed update manifest but is not Windows Authenticode-signed. These are different mechanisms and should not be confused. The optional bundled PawnIO installer has its own upstream Authenticode signature; that signature does not sign or certify the TaC9 executable.
 
 ## Repository Scope
 

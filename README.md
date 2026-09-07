@@ -1,4 +1,4 @@
-# TaC9 PC Optimization Suite V2
+# TaC9 PC Optimization Suite V3
 
 **Windows optimization, repair, NVIDIA driver setup, game configuration, and PC health in one desktop suite.**
 
@@ -10,17 +10,30 @@ The suite is distributed as a **free app**. This repository is for customer down
 
 ![TaC9 Optimization Suite dashboard and eight-app navigation](docs/screenshots/suite.png)
 
-> Screenshots show the packaged 12.2.12 interface with example hardware and status data. They demonstrate the layout, not completed maintenance operations or performance results. Actual readings and available controls depend on your PC.
+> Screenshots show the packaged V3 13.0.0 interface. Hardware and live sensor values are from the test PC; non-sensor maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
+
+## New in V3
+
+- A full-screen animated startup with the rotating TaC9 emblem, assembling silver chassis, upgraded blue/gold lighting, and a smoother transition into the suite.
+- Larger, clearer text and content-aware scrolling throughout the suite, including the 1080p and scaled-window layout fixes.
+- Expanded PC Health Center sensor tables with **Current, Min, Max, Average, Source, and State**, plus device and reading-type filters.
+- CPU, GPU, RAM, motherboard, and storage monitoring where supported, including temperatures, voltages, wattages, clocks, utilization, cooling, current, transfer rates, and memory activity.
+- CPU-sensor diagnostics with an optional, explicitly confirmed installation of the official signed PawnIO support component when needed.
+- A GPU preflight fix for the reported GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
+
+The eight existing workspaces remain together. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
 
 ## Download
 
-**Current release: 12.2.13**
+**Current release: V3 13.0.0, build 01589DA9**
 
-**[Download the full TaC9 suite for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V2.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V2.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 12.2.13 is approximately 163 MiB.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.0 is approximately 191.5 MiB. Blender and Node.js are not required on the customer's PC.
+
+The release also supplies a byte-identical `TaC9-PC-Optimization-Suite-V2.exe` compatibility asset for existing updater clients and old direct-download links. That asset runs **V3**, despite its retained filename. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
 The X3D Core Tester, CoreCycler, and y-cruncher are not included in this release.
 
@@ -32,20 +45,20 @@ Run this short command in Windows PowerShell 5.1 or PowerShell 7:
 irm https://raw.githubusercontent.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/main/win.ps1 | iex
 ```
 
-It runs the [readable download script](win.ps1) from this official repository. The script downloads the **latest published suite to your Desktop**, verifies the signed release manifest and the executable's SHA-256, and reports the saved file location. An existing download is left intact if verification fails; a matching current download is reused.
+It runs the [readable download script](win.ps1) from this official repository. The command is unchanged from V2. The script downloads the **latest published suite to your Desktop as `TaC9-PC-Optimization-Suite-V3.exe`**, verifies the signed release manifest and the executable's SHA-256, and reports the saved file location. An existing download is left intact if verification fails; a matching current download is reused.
 
 Only the same-named Desktop executable is replaced after successful verification. Other TaC9 executables, folders, shortcuts, license keys, settings, backups, and logs are not removed or changed. This is a downloader, not an uninstaller for previous TaC9 suites.
 
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of version 12.2.13 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.0 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v12.2.13/TaC9-PC-Optimization-Suite-V2.exe'
-$file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V2.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.0/TaC9-PC-Optimization-Suite-V3.exe'
+$file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'F5461396258409DD7A87F8DF9DE8F316141CB928F23B5BB20313FBD0BE597D22') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '41DDD93EE56B56B78C925F40E9A5796AB9429E2F61A9595E99693257D557F652') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -175,15 +188,22 @@ Memory cleanup is workload-dependent and is not a substitute for enough physical
 
 **An evidence-based view of supported hardware readings and Windows reliability history.**
 
-PC Health Center groups **Overview**, **Thermals**, **Storage**, **Memory**, and **Reliability** into one monitoring workspace. It combines the sources available on the current PC, including Windows inventory, supported sensor providers, storage status, and event-log evidence.
+PC Health Center groups **Overview**, **Sensors**, **Storage**, **Memory**, and **Reliability** into one monitoring workspace. It combines the sources available on the current PC, including Windows inventory, supported sensor providers, storage status, and event-log evidence.
 
-- Review processor and graphics temperatures, available power or clock readings, memory use, and storage information.
+- Filter readings by **All, CPU, GPU, RAM, Motherboard, or Storage**, then narrow the reading type.
+- Inspect temperature, voltage, power/wattage, clock/effective-clock, utilization, cooling, electrical-current, transfer-rate, RAM-activity, and GPU-memory sections where exposed.
+- Compare **Current, Min, Max, and Average** for the monitoring session, with the original provider and availability state alongside each row.
+- See measured CPU Vcore when a provider exposes it. Requested per-core VID is kept separate, and memory-controller voltage is not mislabeled as measured DIMM voltage.
+- Review a live CPU/GPU temperature trend, memory use, drive information, and supported DIMM temperatures.
 - Inspect component findings and their supporting evidence instead of relying on one unexplained score.
 - Review recorded WHEA hardware errors, display resets, application faults, and unexpected shutdowns where available.
 - Adjust the sensor refresh interval, pause monitoring, run a health scan, and export a report.
 - Distinguish reported healthy state, review items, critical findings, and unavailable data.
+- Diagnose missing CPU support. If prompted, choose **Set Up CPU Sensors** and confirm installation of the bundled official signed PawnIO component; reopen TaC9 afterward and restart Windows only if requested. It is not installed automatically at startup or by the PowerShell downloader.
 
 Unsupported sensor channels stay unavailable rather than being invented. A healthy result means no fault was found in the supported sources and selected evidence window; it is not a stress test, a hardware certification, or a guarantee against future failure.
+
+Individual CPU, motherboard, firmware, and driver combinations determine sensor availability. Not every system exposes measured Vcore, per-DIMM voltage/power, every fan, or GPU hotspot. Keep Windows security protections enabled if driver access is blocked, and export a report for support instead of disabling them.
 
 ![PC Health Center with component evidence, findings, sensor controls, and a live trend view](docs/screenshots/health.png)
 
@@ -197,7 +217,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V2.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -215,18 +235,20 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 - A supported NVIDIA GPU for GPU Studio's automated driver workflow.
 - A matching installed game and platform for the COD configuration workflow.
 
-The interface has been checked at 800x600, 1024x768, 1366x768, 1920x1080, and 2560x1440. Smaller windows use scrolling where needed. This is layout testing, not certification of every monitor, DPI setting, Windows build, or hardware combination.
+The V3 layout has been checked at 1920x1080, 1536x864, 1366x768, and 1280x720. The packaged native host was also checked at 1920x1080, 1536x864, and 1280x720; separate readability checks cover narrower views. Smaller windows use scrolling where needed. This is not certification of every monitor, DPI setting, Windows build, or hardware combination.
 
 ### Updates on Startup
 
 Starting with 12.2.13, **every normal launch checks for suite and supported tool updates**. A recent launch no longer skips the online check for four hours.
 
-- **Suite and built-in workspaces:** the signed V2 GitHub release updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials.
+- **Suite and built-in workspaces:** the existing signed GitHub feed now delivers V3 and updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials.
 - **Supported tool packages:** the tool updater checks DDU, NVCleanstall, ISLC, and the approved compatible NVIDIA Profile Inspector release. Profile Inspector intentionally follows the approved version, not any untested upstream release. Bundled TaC9 profile changes are delivered with suite releases.
 - **Verified installation:** newer suite packages must pass the signed manifest, SHA-256, and internal package checks before the update helper replaces the running suite and restarts it. Tool packages use their existing source and integrity checks. Saved license data and settings are retained.
 - **Unavailable sources:** incomplete checks are reported honestly; the installed verified suite can still open, independent tool checks are attempted, and a fresh check runs next launch.
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
+
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Earlier local V3 test builds also reported 13.0.0; use the downloader to replace those with released build **01589DA9**, because the version-based updater does not treat the same version as newer.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 
@@ -237,7 +259,7 @@ For maintainers, each newer release must include the full-suite EXE and a matchi
 Open PowerShell in the download folder and run:
 
 ```powershell
-Get-FileHash -LiteralPath '.\TaC9-PC-Optimization-Suite-V2.exe' -Algorithm SHA256
+Get-FileHash -LiteralPath '.\TaC9-PC-Optimization-Suite-V3.exe' -Algorithm SHA256
 ```
 
 Compare the full value with the checksum supplied for that exact release. A checksum helps detect a mismatched or damaged download; it does not replace publisher verification or a security scan.
