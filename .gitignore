@@ -1,0 +1,20 @@
+# Public download repository: documentation and reviewed screenshots only.
+# Release executables are uploaded as Release assets, never committed.
+*
+!/.gitignore
+!/README.md
+!/SECURITY.md
+!/docs/
+/docs/*
+!/docs/RELEASE-NOTES.md
+!/docs/THIRD-PARTY.md
+!/docs/screenshots/
+/docs/screenshots/*
+!/docs/screenshots/suite.png
+!/docs/screenshots/repair.png
+!/docs/screenshots/gpu.png
+!/docs/screenshots/installer.png
+!/docs/screenshots/debloat.png
+!/docs/screenshots/islc.png
+!/docs/screenshots/health.png
+!/docs/screenshots/socials.png
