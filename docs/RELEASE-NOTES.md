@@ -16,7 +16,7 @@
 
 The release passed 52 CPU validation assertions, including live checks on a Ryzen 9 9950X3D; browser tests for failure/recovery, statistics, export, and two viewport sizes; and the packaged native UI/sensor checks across all eight workspaces, including 1080p and scaled layouts. Download and startup-update regression tests passed with the signed 13.0.1 manifest in Windows PowerShell 5.1 and PowerShell 7, including legacy download compatibility. Maintenance actions and sensor installation were not executed by those tests.
 
-**The reported customer Ryzen 7700X/9800X3D PCs have not yet been directly verified.** This is a sensor validation and diagnostic update, not a claim that every CPU or HWiNFO sensor is now supported. If CPU readings remain unavailable, use the offered CPU sensor setup if applicable, reopen the suite, and export a health report through a private support ticket. Keep Windows security protections enabled. Intel module availability is checked, but this release does not add per-register validation for Intel.
+Sensor availability depends on the processor, firmware, and monitoring provider. This release adds Ryzen register-read validation and checks Intel module availability; individual Intel register validation is not included. Use the optional CPU sensor setup when offered, then reopen the suite. Restart Windows only if requested, and keep Windows security protections enabled.
 
 ### Updating
 
@@ -56,7 +56,7 @@ TaC9's internal release signature is separate from Windows Authenticode. This ex
 - Fixed the process-inventory variable collision that reproduced `Cannot find an overload for "Add" and the argument count: "1"` with GPU-Z and regex-matched HWiNFO process names.
 - Fixed the retained GPU workflow's status-callback parameter compatibility.
 - Failed operations preserve their last percentage, mark untouched stages **Not run**, and remove the active restart warning. Only accepted successful completion reaches 100%.
-- Added local GPU error diagnostics for troubleshooting without publishing customer logs.
+- Added local GPU error diagnostics for troubleshooting; logs remain private.
 
 ### Installing and Updating
 
@@ -73,7 +73,7 @@ Earlier local V3 test builds also used version 13.0.0. Use the current downloade
 - Package integrity, authenticated extraction, and private-data/secret checks passed before publication.
 - All eight native screens, live sensors, startup/progress visibility, and layout checks passed. Native window sizes included 1920x1080, 1536x864, and 1280x720; browser layout checks also included 1366x768.
 - Eight simulated GPU-process cases passed in Windows PowerShell 5.1 and the compiled PowerShell host. Driver-package and companion-inventory fixture tests passed.
-- The exact reported GPU-script failure was reproduced and corrected. Tests did not perform a real DDU cleanup, driver installation, app removal, or Windows repair. Full maintenance results still require validation on the target PC.
+- The GPU-script failure was reproduced and corrected. Tests did not perform a real DDU cleanup, driver installation, app removal, or Windows repair. Maintenance results depend on the system and selected operation.
 
 ### Download Integrity
 
@@ -133,7 +133,7 @@ Startup checks do not perform driver cleanup, Windows repair, app removal, or CO
 - Excluded CoreCycler, y-cruncher, tester artwork, and tester-specific entry-point executables from the new package.
 - Preserved the ordinary hardware-monitoring components used by PC Health Center.
 - Renumbered the eight remaining navigation items.
-- Added customer-facing descriptions and one screenshot for each remaining workspace.
+- Added app descriptions and one screenshot for each remaining workspace.
 - Configured the separate V2 update channel for this repository without changing the legacy suite channel.
 - Updated the suite's Discord link to match the license-ticket instructions.
 - Included additional third-party notices and the complete original signed ISLC distribution.

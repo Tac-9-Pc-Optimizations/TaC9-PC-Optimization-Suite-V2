@@ -4,7 +4,7 @@
 
 Contact the maintainer through the [official TaC9 Discord](https://discord.gg/3nrUffpVzt) and request a private support conversation for a security-sensitive issue.
 
-Do not publish access keys, customer license files, HWIDs, authorization material, private signing keys, or unredacted logs in GitHub issues. Describe the affected version, the action taken, expected behavior, and the observed result. Share only the minimum redacted evidence needed to reproduce the problem.
+Do not publish access keys, license files, HWIDs, authorization material, private signing keys, or unredacted logs in GitHub issues. Describe the affected version, the action taken, expected behavior, and the observed result. Share only the minimum redacted evidence needed to reproduce the problem.
 
 ## Download Verification
 
@@ -14,6 +14,6 @@ V3 13.0.0 has internal package-integrity checks and a signed update manifest but
 
 ## Repository Scope
 
-This is a customer documentation and downloads repository, not a public source repository. Application executables belong in Releases. Customer data, machine reports, build environments, credentials, private keys, and runtime authorization files do not belong in Git history.
+This repository provides official documentation and downloads, not application source. Application executables belong in Releases. Private data, machine reports, build environments, credentials, private keys, and runtime authorization files do not belong in Git history.
 
 Maintenance actions can modify Windows settings, drivers, applications, or game configuration files. Back up important data, review the selected operation, and keep the suite open until the operation finishes. Available restore features do not replace a full-system backup.

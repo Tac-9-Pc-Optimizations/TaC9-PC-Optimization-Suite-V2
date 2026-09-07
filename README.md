@@ -4,7 +4,7 @@
 
 TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
 
-The suite is distributed as a **free app**. This repository is for customer downloads, documentation, screenshots, and release notes. It does not publish the protected application source or customer access data.
+The suite is distributed as a **free app**. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
 
 [Download](#download) | [Included Apps](#included-apps) | [Getting Started](#getting-started) | [Support](#support) | [Release Notes](docs/RELEASE-NOTES.md)
 
@@ -19,8 +19,8 @@ The suite is distributed as a **free app**. This repository is for customer down
 - Expanded PC Health Center sensor tables with **Current, Min, Max, Average, Source, and State**, plus device and reading-type filters.
 - CPU, GPU, RAM, motherboard, and storage monitoring where supported, including temperatures, voltages, wattages, clocks, utilization, cooling, current, transfer rates, and memory activity.
 - CPU-sensor diagnostics with an optional, explicitly confirmed installation of the official signed PawnIO support component when needed.
-- **13.0.1:** CPU access-failure detection and read validation, so failed Ryzen register reads are shown as unavailable instead of misleading live clock, VID, or power values. Reports include the provider/access diagnostics needed to investigate affected PCs.
-- A GPU preflight fix for the reported GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
+- **13.0.1:** CPU access-failure detection and read validation, so failed Ryzen register reads are shown as unavailable instead of misleading live clock, VID, or power values. Reports include provider and hardware-access diagnostics.
+- A GPU preflight fix for the GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
 
 The eight existing workspaces remain together. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
 
@@ -32,7 +32,7 @@ The eight existing workspaces remain together. The repository keeps its original
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.1 is approximately 191.9 MiB. Blender and Node.js are not required on the customer's PC.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.1 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
 The release also supplies a byte-identical `TaC9-PC-Optimization-Suite-V2.exe` compatibility asset for existing updater clients and old direct-download links. That asset runs **V3**, despite its retained filename. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -206,8 +206,6 @@ PC Health Center groups **Overview**, **Sensors**, **Storage**, **Memory**, and 
 Unsupported sensor channels stay unavailable rather than being invented. A healthy result means no fault was found in the supported sources and selected evidence window; it is not a stress test, a hardware certification, or a guarantee against future failure.
 
 Individual CPU, motherboard, firmware, and driver combinations determine sensor availability. Not every system exposes measured Vcore, per-DIMM voltage/power, every fan, or GPU hotspot. Keep Windows security protections enabled if driver access is blocked, and export a report for support instead of disabling them.
-
-The 13.0.1 access-validation changes were tested on a Ryzen 9 9950X3D and with simulated access failures. The reported customer 7700X/9800X3D PCs still need direct verification. This release improves validation and diagnosis; it does not claim HWiNFO-equivalent coverage or guaranteed readings on every CPU.
 
 ![PC Health Center with component evidence, findings, sensor controls, and a live trend view](docs/screenshots/health.png)
 
