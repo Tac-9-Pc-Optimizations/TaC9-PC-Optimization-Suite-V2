@@ -26,7 +26,20 @@ The X3D Core Tester, CoreCycler, and y-cruncher are not included in this release
 
 ### PowerShell Download
 
-This downloads **version 12.2.12 to your Desktop** and checks its SHA-256 before reporting success. It does not execute a remote script, launch the app, change execution policy, or disable Windows security protections.
+Run this short command in Windows PowerShell 5.1 or PowerShell 7:
+
+```powershell
+irm https://raw.githubusercontent.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/main/win.ps1 | iex
+```
+
+It runs the [readable download script](win.ps1) from this official repository. The script downloads the **latest published suite to your Desktop**, verifies the signed release manifest and the executable's SHA-256, and reports the saved file location. An existing download is left intact if verification fails; a matching current download is reused.
+
+Only the same-named Desktop executable is replaced after successful verification. Other TaC9 executables, folders, shortcuts, license keys, settings, backups, and logs are not removed or changed. This is a downloader, not an uninstaller for previous TaC9 suites.
+
+The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
+
+<details>
+<summary>Manual download of version 12.2.12 without running a hosted script</summary>
 
 ```powershell
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v12.2.12/TaC9-PC-Optimization-Suite-V2.exe'
@@ -35,6 +48,8 @@ Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
 if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'DB4C71701F6A6E9B01EAAD631E5B693E913E910BBB30B54822BCBB2090E36568') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
+
+</details>
 
 Open the downloaded executable when you are ready, then follow [Getting Started](#getting-started) to obtain and save your license key. Administrator permission is required for system-changing actions; downloading the file alone does not require elevation.
 

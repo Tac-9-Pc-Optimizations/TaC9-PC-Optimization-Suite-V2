@@ -1,9 +1,10 @@
-# Public download repository: documentation and reviewed screenshots only.
+# Public download repository: documentation, reviewed screenshots, and download script only.
 # Release executables are uploaded as Release assets, never committed.
 *
 !/.gitignore
 !/README.md
 !/SECURITY.md
+!/win.ps1
 !/docs/
 /docs/*
 !/docs/RELEASE-NOTES.md
