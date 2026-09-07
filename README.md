@@ -19,19 +19,20 @@ The suite is distributed as a **free app**. This repository is for customer down
 - Expanded PC Health Center sensor tables with **Current, Min, Max, Average, Source, and State**, plus device and reading-type filters.
 - CPU, GPU, RAM, motherboard, and storage monitoring where supported, including temperatures, voltages, wattages, clocks, utilization, cooling, current, transfer rates, and memory activity.
 - CPU-sensor diagnostics with an optional, explicitly confirmed installation of the official signed PawnIO support component when needed.
+- **13.0.1:** CPU access-failure detection and read validation, so failed Ryzen register reads are shown as unavailable instead of misleading live clock, VID, or power values. Reports include the provider/access diagnostics needed to investigate affected PCs.
 - A GPU preflight fix for the reported GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
 
 The eight existing workspaces remain together. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
 
 ## Download
 
-**Current release: V3 13.0.0, build 01589DA9**
+**Current release: V3 13.0.1, build 00DFEE29**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.0 is approximately 191.5 MiB. Blender and Node.js are not required on the customer's PC.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.1 is approximately 191.9 MiB. Blender and Node.js are not required on the customer's PC.
 
 The release also supplies a byte-identical `TaC9-PC-Optimization-Suite-V2.exe` compatibility asset for existing updater clients and old direct-download links. That asset runs **V3**, despite its retained filename. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -52,13 +53,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.0 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.1 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.0/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.1/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '41DDD93EE56B56B78C925F40E9A5796AB9429E2F61A9595E99693257D557F652') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '2E7B938106A762D0E902C5E82AAA17246CEC86AFE956290DDB3F4F328C1AE25A') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -200,10 +201,13 @@ PC Health Center groups **Overview**, **Sensors**, **Storage**, **Memory**, and 
 - Adjust the sensor refresh interval, pause monitoring, run a health scan, and export a report.
 - Distinguish reported healthy state, review items, critical findings, and unavailable data.
 - Diagnose missing CPU support. If prompted, choose **Set Up CPU Sensors** and confirm installation of the bundled official signed PawnIO component; reopen TaC9 afterward and restart Windows only if requested. It is not installed automatically at startup or by the PowerShell downloader.
+- Detect CPU access failures and an installed PawnIO version older than the bundled/tested 2.2.0. Invalid reads do not contaminate session statistics; legitimate zero values remain valid when the underlying read succeeds.
 
 Unsupported sensor channels stay unavailable rather than being invented. A healthy result means no fault was found in the supported sources and selected evidence window; it is not a stress test, a hardware certification, or a guarantee against future failure.
 
 Individual CPU, motherboard, firmware, and driver combinations determine sensor availability. Not every system exposes measured Vcore, per-DIMM voltage/power, every fan, or GPU hotspot. Keep Windows security protections enabled if driver access is blocked, and export a report for support instead of disabling them.
+
+The 13.0.1 access-validation changes were tested on a Ryzen 9 9950X3D and with simulated access failures. The reported customer 7700X/9800X3D PCs still need direct verification. This release improves validation and diagnosis; it does not claim HWiNFO-equivalent coverage or guaranteed readings on every CPU.
 
 ![PC Health Center with component evidence, findings, sensor controls, and a live trend view](docs/screenshots/health.png)
 
@@ -248,7 +252,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Earlier local V3 test builds also reported 13.0.0; use the downloader to replace those with released build **01589DA9**, because the version-based updater does not treat the same version as newer.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.1** is newer than both the published 13.0.0 release and earlier local 13.0.0 test builds, so those installations can detect it through the signed update feed.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

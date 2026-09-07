@@ -1,5 +1,35 @@
 # Release Notes
 
+## V3 13.0.1 - September 7, 2026
+
+[Download V3 13.0.1](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.1). Build **00DFEE29**.
+
+### CPU Sensor Validation and Diagnostics
+
+- Check whether the CPU provider's hardware-access module loaded, with read-only Ryzen register checks that preserve the actual success/failure result.
+- Show affected readings as **Unavailable** when access fails instead of accepting zero-filled clock/power values or a derived 1.550 V VID as valid live data. A genuine zero remains valid when the underlying read succeeds.
+- Keep invalid samples out of Current/Min/Max/Average statistics while retaining previously valid history and independent working sensors.
+- Show a clear CPU access-failure notice and include CPU identification, provider version, module state, and read results in exported health diagnostics.
+- Detect installed PawnIO support older than the bundled/tested 2.2.0 and offer the existing user-confirmed setup flow. Nothing installs automatically, and Windows security settings are not changed.
+
+### Verification and Scope
+
+The release passed 52 CPU validation assertions, including live checks on a Ryzen 9 9950X3D; browser tests for failure/recovery, statistics, export, and two viewport sizes; and the packaged native UI/sensor checks across all eight workspaces, including 1080p and scaled layouts. Download and startup-update regression tests passed with the signed 13.0.1 manifest in Windows PowerShell 5.1 and PowerShell 7, including legacy download compatibility. Maintenance actions and sensor installation were not executed by those tests.
+
+**The reported customer Ryzen 7700X/9800X3D PCs have not yet been directly verified.** This is a sensor validation and diagnostic update, not a claim that every CPU or HWiNFO sensor is now supported. If CPU readings remain unavailable, use the offered CPU sensor setup if applicable, reopen the suite, and export a health report through a private support ticket. Keep Windows security protections enabled. Intel module availability is checked, but this release does not add per-register validation for Intel.
+
+### Updating
+
+Use **Check for Updates**, reopen a suite version with startup update checks, or run the existing PowerShell download command. The signed feed delivers 13.0.1.0 as newer than 13.0.0.0. Both release EXE names contain the same V3 build; the V2-named asset preserves older updater compatibility. Previous public releases remain unchanged. This release does not change the V3 visual design.
+
+SHA-256 for either executable:
+
+```text
+2E7B938106A762D0E902C5E82AAA17246CEC86AFE956290DDB3F4F328C1AE25A
+```
+
+TaC9's internal release signature is separate from Windows Authenticode. This executable is not Authenticode-signed.
+
 ## V3 13.0.0 - September 7, 2026
 
 [Download V3](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.0). Build **01589DA9**.
