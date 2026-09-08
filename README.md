@@ -4,15 +4,17 @@
 
 TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
 
-The suite is distributed as a **free app**. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
+**Paid keys are required for protected Suite tools.** Get access through a ticket in the official TaC9 Discord. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
 
 [Download](#download) | [Included Apps](#included-apps) | [Getting Started](#getting-started) | [Support](#support) | [Release Notes](docs/RELEASE-NOTES.md)
 
 ![TaC9 Optimization Suite dashboard and eight-app navigation](docs/screenshots/suite.png)
 
-> Screenshots show the packaged V3 13.0.0 interface. Hardware and live sensor values are from the test PC; non-sensor maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
+> Screenshots show the packaged V3 13.0.5 interface. Hardware and live sensor values are from the test PC; non-sensor maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
 
 ## New in V3
+
+- **13.0.5:** Roll Back Driver reinstalls the saved previous NVIDIA driver through NVCleanstall and DDU. Normal installs verify a new backup before replacing the old one. [GPU installation and rollback guide](docs/GPU-ROLLBACK.md).
 
 - A full-screen animated startup with the rotating TaC9 emblem, assembling silver chassis, upgraded blue/gold lighting, and a smoother transition into the suite.
 - Larger, clearer text and content-aware scrolling throughout the suite, including the 1080p and scaled-window layout fixes.
@@ -26,13 +28,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.1, build 00DFEE29**
+**Current release: V3 13.0.5**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.1 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.5 is approximately 191.7 MiB. Blender and Node.js are not required to run the suite.
 
 The release also supplies a byte-identical `TaC9-PC-Optimization-Suite-V2.exe` compatibility asset for existing updater clients and old direct-download links. That asset runs **V3**, despite its retained filename. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -53,13 +55,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.1 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.5 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.1/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.5/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '2E7B938106A762D0E902C5E82AAA17246CEC86AFE956290DDB3F4F328C1AE25A') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '5EAD02C1C0B0CA1A4ACA396B49DCDB6DDD633B7883F05A3771A99500563AB345') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -112,31 +114,29 @@ Keep the app open during a repair. Some DISM failures require a matching Windows
 
 ### GPU Studio
 
-**A full one-click NVIDIA driver uninstall, debloat, update, and profile-setup workflow.**
+**Clean NVIDIA driver installation, version selection, and rollback from one place.**
 
-GPU Studio coordinates the clean driver process from one place: detect the NVIDIA GPU, prepare the **newest compatible WHQL Game Ready driver available to the workflow**, clean the existing NVIDIA driver installation with DDU, install the prepared clean driver package, validate NVIDIA Control Panel, and apply the supplied TaC9 NVIDIA settings through NVIDIA Profile Inspector.
+- **Auto Install:** prepare the newest compatible WHQL Game Ready driver available to the workflow.
+- **Choose Driver:** select a supported driver version for the same clean installation process.
+- **Roll Back Driver:** reinstall the version saved before your last normal Suite installation.
 
-The **One-click Automatic GPU Debloat** action handles the main sequence:
+Normal installations capture and verify the current GPU backup before cleanup. The Suite prepares the driver with NVCleanstall, runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. A restart completes verification.
 
-1. Check the detected NVIDIA hardware and required utilities, then select and validate the compatible driver package before cleanup.
-2. Prepare the clean installation and run the automated DDU cleanup stage.
-3. Install the prepared driver and check the resulting driver state.
-4. Initialize and validate NVIDIA Control Panel, then apply the supplied TaC9 profile settings through NVIDIA Profile Inspector.
-5. Verify the profile through NVAPI and report the individual workflow stages in the operation results.
+The Suite keeps one managed backup. A new normal install replaces it only after the replacement passes verification; rollback and Continue preserve the existing backup. If the required backup or driver package cannot be verified, cleanup does not start.
 
-You can also **apply the NVIDIA Profile Inspector profile without reinstalling the driver**, open NVIDIA Control Panel, or open Profile Inspector for inspection. The profile-only action backs up the current profile before applying the supplied configuration.
+Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
 
-The TaC9 profile covers its included NVIDIA settings; it is not a promise that every possible Control Panel option will be changed. Driver selection depends on hardware compatibility, upstream availability, and successful validation. The driver/profile version visible in a screenshot is an example, not a permanent claim about the newest version.
+**[Read the installation and rollback guide](docs/GPU-ROLLBACK.md)** for the steps, backup behavior, and recovery instructions.
 
-**NVIDIA only.** Save your work and close games before driver maintenance. The display may flicker or briefly go black, and a restart may be needed. Windows prompts and required third-party utility windows may still appear while the suite coordinates the operation.
+**NVIDIA only.** Save your work and close games first. The display may flicker or briefly go black, and a restart is required for final verification. Hardware compatibility, upstream package availability, and backup validation determine whether the workflow can proceed.
 
-![GPU Studio showing the one-click workflow, NVIDIA profile action, Control Panel, and per-stage results](docs/screenshots/gpu.png)
+![GPU Studio with Auto Install, Choose Driver, and Roll Back Driver](docs/screenshots/gpu.png)
 
 ### COD Config Installer
 
 **Install the supplied TaC9 Call of Duty player configuration with game-specific paths and original-file recovery.**
 
-The installer provides separate **BOPS7** and **MW4 Beta** modes with **Battle.net** and **Xbox App** platform selection. It checks the selected installation, shows the player-configuration state, preserves the original matching files, and applies only the configuration intended for that mode.
+The installer provides separate **BOPS7** and **MW4 Beta** modes with **Battle.net** and **Xbox App** platform selection, plus **Steam** support for BOPS7. It checks the selected installation, shows the player-configuration state, preserves the original matching files, and applies only the configuration intended for that mode.
 
 - Detects and validates the selected game and platform paths before making changes.
 - Preserves first-seen originals so installing again does not replace the original backup with an already-modified configuration.
@@ -250,7 +250,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.1** is newer than both the published 13.0.0 release and earlier local 13.0.0 test builds, so those installations can detect it through the signed update feed.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.5** is delivered through the existing signed update feed to older Suite builds.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

@@ -1,5 +1,30 @@
 # Release Notes
 
+## V3 13.0.5 - September 8, 2026
+
+**Roll Back Driver is now available in GPU Studio.** If you want to return to the driver you had before your last Suite install, the Suite can prepare that version with NVCleanstall, remove the current driver with DDU, and install the previous one using the normal Auto Install process.
+
+- **Automatic backup before installation.** Auto Install and Choose Driver save and verify the current GPU setup before cleanup starts. If the required backup cannot be completed, the Suite stops before DDU.
+- **One saved backup.** A new normal install replaces the old backup only after the new one passes verification. A failed backup keeps the previous one. Rollback and Continue keep the existing backup.
+- **Previous version checked before cleanup.** The saved driver version and detected GPU must match a compatible package. An unavailable or invalid package stops the process before driver removal.
+- **Suite settings after installation.** The workflow checks NVIDIA Control Panel, applies the supplied Profile Inspector profile and display settings, and verifies the result after a restart.
+- **Better recovery from interruptions.** Continue can finish the last verification step, and rollback can be retried after a restart if an installation was interrupted. Active installers block a competing rollback.
+- **Clearer restart checks.** NVIDIA's own default profile entries can return after a restart. Verification accepts those confirmed defaults while still rejecting missing or changed expected settings.
+
+The driver workflow remains NVIDIA-only and requires administrator access, internet access for preparation, and a supported driver package. Rollback installs the previous driver with the Suite's settings; it does not restore every old custom setting, every NVIDIA app, or a Windows image. It keeps one previous setup, not a history of every driver version.
+
+The existing Choose Driver control and Steam support for the BOPS7 configuration remain included. Paid keys are required for protected Suite tools.
+
+[Read the GPU installation and rollback guide](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/blob/main/docs/GPU-ROLLBACK.md).
+
+Use **Check for Updates**, reopen the Suite to run its startup update check, or download the latest V3 executable. Both EXE names in this release contain the same V3 build; the V2 filename keeps older update links working.
+
+SHA-256 for either executable:
+
+```
+5EAD02C1C0B0CA1A4ACA396B49DCDB6DDD633B7883F05A3771A99500563AB345
+```
+
 ## V3 13.0.1 - September 7, 2026
 
 [Download V3 13.0.1](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.1). Build **00DFEE29**.
