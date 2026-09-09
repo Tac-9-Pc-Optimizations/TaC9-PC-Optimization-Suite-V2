@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.7 - September 8, 2026
+
+**Fixed a final GPU checkpoint error after driver installation.**
+
+- A completed driver installation no longer requires a full monitor-recovery snapshot. A mismatch between NVIDIA display targets and Windows monitor identities could previously stop this final step after the driver and Suite settings were installed.
+- Continue can now save a missing final checkpoint without repeating an already-completed driver installation. It still requires the saved installation results to confirm that the driver, Control Panel, profile, and display-setting steps finished.
+- Restart verification checks the installed driver and NVIDIA profiles. Display settings are applied during installation; this check does not claim to reverify every monitor setting after restart.
+- The small previous-driver record and working GPU progress Close / Show GPU progress controls from 13.0.6 remain included.
+
+If an installation stopped at the final monitor-identity checkpoint, update the Suite and use **Continue**. Follow its restart prompt, then use Continue again for the driver/profile checks. If Continue is unavailable, keep the saved checkpoint and contact support rather than starting another cleanup.
+
+NVIDIA-only. Rollback requires internet access and a compatible available driver package. Protected tools require a paid key.
+
+[GPU installation and rollback guide](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/blob/main/docs/GPU-ROLLBACK.md)
+
+SHA-256 for either executable:
+
+```
+503D4F8FD75FB39F81B964F91CF0FE052B92F0926147C454C7CBD2CAF41B68B7
+```
+
 ## V3 13.0.6 - September 8, 2026
 
 **Faster previous-driver saving and a working Close button in GPU progress.**

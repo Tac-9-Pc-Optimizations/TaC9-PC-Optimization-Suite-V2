@@ -10,7 +10,7 @@ GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**.
 2. Select **Auto Install** for the newest compatible WHQL Game Ready driver available to the workflow, or **Choose Driver** to select a supported version.
 3. Let the Suite save and verify the installed NVIDIA driver version and GPU identity. It stops before cleanup if this record cannot be saved.
 4. The Suite prepares and checks the clean driver package with NVCleanstall, runs DDU, installs the prepared package, checks NVIDIA Control Panel, and applies the supplied TaC9 profile and display settings.
-5. Follow the restart prompt. Reopen the Suite and use **Continue** when offered to complete verification.
+5. Follow the restart prompt. Reopen the Suite and use **Continue** when offered to verify the installed driver and profiles.
 
 The screen can flicker or briefly go black during driver removal and installation. Keep the Suite open while it is working. Do not start a second driver installer at the same time.
 
@@ -20,7 +20,7 @@ The screen can flicker or briefly go black during driver removal and installatio
 2. Review the saved previous version and confirm the operation.
 3. The Suite verifies the saved driver record and matching GPU, then prepares that previous version with NVCleanstall before starting DDU.
 4. DDU removes the current driver. The Suite installs the prepared previous driver and applies its normal profile and display settings.
-5. Restart when requested and use **Continue** to finish the checks.
+5. Restart when requested and use **Continue** to verify the installed driver and profiles.
 
 Rollback uses the version recorded in the backup, not whichever driver is newest at the time. If the backup, GPU identity, or required driver package cannot be verified, the Suite stops before cleanup.
 
@@ -45,6 +45,8 @@ It reinstalls the saved previous NVIDIA driver through the normal clean installa
 The automated workflow supports compatible NVIDIA driver packages. Hardware, component, or package combinations that cannot pass the driver-record and package preparation checks stop before DDU. A driver record belongs to the PC and Windows user that created it. Protected tools require a paid key; contact the [TaC9 Discord](https://discord.gg/3nrUffpVzt) through a support ticket for access.
 
 ## If the process stops
+
+Version 13.0.7 fixes a final checkpoint failure reporting that an NVIDIA target has no monitor identity. If the installation steps already finished, update the Suite and use **Continue** to save its checkpoint without repeating installation. Follow the restart prompt, then use Continue again. The restart check verifies the driver and profiles; display settings are applied during installation and are not separately reverified after restart.
 
 Read the stage and error shown in GPU Studio. Keep the saved backup. Use Continue when offered after the requested restart. An active DDU, NVCleanstall, or driver setup process must finish before another rollback can start. If it still cannot continue, share the Suite version and exact error in a support ticket, keeping keys and personal details out of screenshots.
 
