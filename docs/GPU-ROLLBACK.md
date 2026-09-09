@@ -2,7 +2,7 @@
 
 GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**. All three use the Suite's clean NVIDIA installation process. Roll Back Driver selects the version saved before your last normal Suite installation.
 
-![GPU Studio in V3 13.0.6](screenshots/gpu.png)
+![GPU Studio](screenshots/gpu.png)
 
 ## Install or update a driver
 
@@ -10,7 +10,7 @@ GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**.
 2. Select **Auto Install** for the newest compatible WHQL Game Ready driver available to the workflow, or **Choose Driver** to select a supported version.
 3. Let the Suite save and verify the installed NVIDIA driver version and GPU identity. It stops before cleanup if this record cannot be saved.
 4. The Suite prepares and checks the clean driver package with NVCleanstall, runs DDU, installs the prepared package, checks NVIDIA Control Panel, and applies the supplied TaC9 profile and display settings.
-5. Follow the restart prompt. Reopen the Suite and use **Continue** when offered to verify the installed driver and profiles.
+5. Let the installation finish, then restart Windows normally when convenient. Driver and profile checks run during installation.
 
 The screen can flicker or briefly go black during driver removal and installation. Keep the Suite open while it is working. Do not start a second driver installer at the same time.
 
@@ -20,7 +20,7 @@ The screen can flicker or briefly go black during driver removal and installatio
 2. Review the saved previous version and confirm the operation.
 3. The Suite verifies the saved driver record and matching GPU, then prepares that previous version with NVCleanstall before starting DDU.
 4. DDU removes the current driver. The Suite installs the prepared previous driver and applies its normal profile and display settings.
-5. Restart when requested and use **Continue** to verify the installed driver and profiles.
+5. Let the installation finish, then restart Windows normally when convenient.
 
 Rollback uses the version recorded in the backup, not whichever driver is newest at the time. If the backup, GPU identity, or required driver package cannot be verified, the Suite stops before cleanup.
 
@@ -28,7 +28,7 @@ Rollback uses the version recorded in the backup, not whichever driver is newest
 
 The Suite keeps one small record containing the previous NVIDIA driver version, GPU identity, and Windows ownership information. It does not copy driver files, NVIDIA applications, old profiles, or monitor settings for this record. The matching driver package is prepared when rollback is requested, so internet access and an available supported package are required.
 
-A new normal install saves the currently installed version, verifies the new record, and then deletes the old managed backup. A failed save keeps the previous record. Rollback and Continue preserve it. Older full backups are retired when a new normal install successfully saves its replacement; an unfinished operation keeps its original checkpoint.
+A new normal install saves the currently installed version, verifies the new record, and then deletes the old managed backup. A failed save keeps the previous record. Rollback preserves it. Older full backups are retired when a new normal install successfully saves its replacement.
 
 For example, installing B while A is installed saves A. Roll Back then selects A. Starting a later normal install while B is installed replaces the record with B. Only one previous version is retained.
 
@@ -46,9 +46,9 @@ The automated workflow supports compatible NVIDIA driver packages. Hardware, com
 
 ## If the process stops
 
-Version 13.0.7 fixes a final checkpoint failure reporting that an NVIDIA target has no monitor identity. If the installation steps already finished, update the Suite and use **Continue** to save its checkpoint without repeating installation. Follow the restart prompt, then use Continue again. The restart check verifies the driver and profiles; display settings are applied during installation and are not separately reverified after restart.
+GPU installation no longer saves a resumable install checkpoint or requires a Continue step after restarting. Each installation runs from start to finish in the current session. Old saved installation status cannot block a new run.
 
-Read the stage and error shown in GPU Studio. Keep the saved backup. Use Continue when offered after the requested restart. An active DDU, NVCleanstall, or driver setup process must finish before another rollback can start. If it still cannot continue, share the Suite version and exact error in a support ticket, keeping keys and personal details out of screenshots.
+Read the stage and error shown in GPU Studio. Finish or close any active DDU, NVCleanstall, or driver installer before starting another run. Auto Install and Choose Driver start a fresh installation; Roll Back Driver uses the saved previous version. The Suite still verifies the driver package, cleanup, installed driver, and profile, and stops if those required checks fail.
 
 The screenshot shows the packaged interface in a UI smoke run; maintenance actions were intercepted for that screenshot. Driver installation was tested separately.
 
@@ -60,7 +60,7 @@ The scaling override is saved last and checked in the NVIDIA display database. R
 
 If a display setting cannot be confirmed, a successful driver installation finishes at 100% with **Display warnings**. The Suite keeps the warning details and does not mark that setting as verified. Driver, package, and profile failures still stop the workflow.
 
-If an older build stopped at 95% with the driver already installed and a color-settings warning, update the Suite and use **Continue**. It uses the saved installation progress to finish the remaining steps without repeating completed driver installation or DDU cleanup.
+An old unfinished-install message does not require clearing a checkpoint. Update the Suite, close any driver tools still running, then choose the installation you want to run.
 
 ## Control Panel opening
 

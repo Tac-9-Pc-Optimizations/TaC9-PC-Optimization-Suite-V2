@@ -10,7 +10,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ![TaC9 Optimization Suite dashboard and eight-app navigation](docs/screenshots/suite.png)
 
-> Screenshots show the packaged V3 13.0.6 interface. Hardware and live sensor values are from the test PC; non-sensor maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
+> Screenshots show the packaged V3 interface; GPU Studio reflects the current 13.0.9 build. Hardware and live sensor values are from the test PC; non-sensor maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
 
 ## New in V3
 
@@ -18,7 +18,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 - **13.0.8:** Removed the automatic NVIDIA Control Panel preview-page step. GPU setup no longer opens Control Panel for it.
 
-- **13.0.7:** Fixed the final monitor-identity checkpoint error, added duplicated-display targets and color read-back checks, and moved scaling-override persistence after the other display changes. Continue retries the unfinished step.
+- **13.0.7:** Fixed the final monitor-identity checkpoint error, added duplicated-display targets and color read-back checks, and moved scaling-override persistence after the other display changes.
 
 - **13.0.6:** Roll Back Driver reinstalls the saved previous NVIDIA driver through NVCleanstall and DDU. Installs save a small previous-driver record, and the GPU progress window can be closed and reopened. [GPU installation and rollback guide](docs/GPU-ROLLBACK.md).
 
@@ -36,9 +36,9 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **Current release: V3 13.0.9**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r2.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r3.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r2.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r3.txt)
 
 One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.9 is approximately 191.7 MiB. Blender and Node.js are not required to run the suite.
 
@@ -64,10 +64,10 @@ The script does **not** launch the app, request administrator access, change exe
 <summary>Manual download of V3 13.0.9 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r2.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D7B52633041F273FF68BFADB46C19115C9969336198FB3C59026F43581C89EAC') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'DE1AADB4FB8C88D207A0C0A777DE8015AA30AA62244369BC5174C41F24D4574E') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -126,15 +126,15 @@ Keep the app open during a repair. Some DISM failures require a matching Windows
 - **Choose Driver:** select a supported driver version for the same clean installation process.
 - **Roll Back Driver:** reinstall the version saved before your last normal Suite installation.
 
-Normal installations save and verify the installed driver version and GPU identity before cleanup. The Suite prepares the driver with NVCleanstall, runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. After a restart, Continue checks the installed driver and profiles. Monitor settings are applied during installation.
+Normal installations save and verify the installed driver version and GPU identity before cleanup. The Suite prepares the driver with NVCleanstall, runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. Required driver and profile checks run during installation. Restart Windows normally when the installation finishes; there is no saved install checkpoint or Continue step.
 
-The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback and Continue preserve the existing backup. If the driver record or required package cannot be verified, cleanup does not start.
+The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. If the driver record or required package cannot be verified, cleanup does not start.
 
 Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
 
 **[Read the installation and rollback guide](docs/GPU-ROLLBACK.md)** for the steps, backup behavior, and recovery instructions.
 
-**NVIDIA only.** Save your work and close games first. The display may flicker or briefly go black, and a restart is required for final verification. Hardware compatibility, upstream package availability, and backup validation determine whether the workflow can proceed.
+**NVIDIA only.** Save your work and close games first. The display may flicker or briefly go black. Restart Windows after installation to load the driver and saved display settings. Hardware compatibility, upstream package availability, and backup validation determine whether the workflow can proceed.
 
 ![GPU Studio with Auto Install, Choose Driver, and Roll Back Driver](docs/screenshots/gpu.png)
 
@@ -225,7 +225,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r2.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -276,7 +276,7 @@ This release is **not Authenticode-signed**. TaC9's internal package-integrity c
 
 ## Backups, Results, and Limits
 
-TaC9 keeps operation logs and uses the backup, checkpoint, or restore behavior supported by each workflow. COD original-file backups, NVIDIA profile backups, and supported Windows-setting restore actions are not a full-system backup and cannot reverse every possible change.
+TaC9 keeps operation logs and uses the backup or restore behavior supported by each workflow. COD original-file backups, the previous NVIDIA driver-version record, and supported Windows-setting restore actions are not a full-system backup and cannot reverse every possible change.
 
 No fixed FPS increase, latency reduction, stability result, or successful repair is guaranteed. Choose changes for your actual hardware and workload. Keep games closed during configuration changes, do not interrupt driver installation or Windows repair, and review any requested restart.
 
