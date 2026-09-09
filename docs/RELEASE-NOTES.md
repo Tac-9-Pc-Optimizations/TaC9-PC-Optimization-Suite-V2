@@ -1,5 +1,24 @@
 # Release Notes
 
+## V3 13.0.9 - September 9, 2026
+
+**Clearer DISM and SFC repair results.**
+
+- SFC now reads Windows output correctly when it contains Unicode padding or line breaks, so repaired files and clean scans are recognized in the live result.
+- The final summary uses the current run's verdict. An older log cannot turn an unreadable result into “no repairs needed.”
+- DISM runs ScanHealth before RestoreHealth to establish whether corruption was present. This adds scan time and allows a clean scan to be distinguished from a completed repair.
+- Corruption that remains, failed scans, and unverified results finish with a warning. A successful process exit alone is not treated as proof that no repair was needed.
+
+The combined repair still runs DISM and SFC automatically from one selection. Protected tools require a paid key.
+
+Update with **Check for Updates** or download the latest V3 executable.
+
+SHA-256 for either executable:
+
+```
+9F26E2F950E964519A3E880E261454C1459096BCF210DE1A5411A3C93B8D07CD
+```
+
 ## V3 13.0.8 - September 8, 2026
 
 **Removed the automatic NVIDIA Control Panel preview step.**
