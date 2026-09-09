@@ -51,3 +51,9 @@ Version 13.0.7 fixes a final checkpoint failure reporting that an NVIDIA target 
 Read the stage and error shown in GPU Studio. Keep the saved backup. Use Continue when offered after the requested restart. An active DDU, NVCleanstall, or driver setup process must finish before another rollback can start. If it still cannot continue, share the Suite version and exact error in a support ticket, keeping keys and personal details out of screenshots.
 
 The screenshot shows the packaged interface in a UI smoke run; maintenance actions were intercepted for that screenshot. Driver installation was tested separately.
+
+## NVIDIA color settings and scaling override
+
+The Suite applies output color to each NVIDIA target, including targets sharing a duplicated Windows display. It reads back RGB, Full dynamic range, the supported bit depth, and the NVIDIA/user color policy. A request that leaves the default policy active is not marked as applied.
+
+The scaling override is saved last and checked in the NVIDIA display database. Restart Windows to load that persisted setting, then check **Override the scaling mode set by games and programs** in Control Panel. The save check alone does not prove the current checkbox state. If either setting cannot be verified or saved, the display step remains incomplete and Continue can retry it.

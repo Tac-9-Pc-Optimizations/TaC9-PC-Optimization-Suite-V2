@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.7:** Fixed the final monitor-identity checkpoint error. Continue can save a missing checkpoint without repeating an already-completed driver installation.
+- **13.0.7:** Fixed the final monitor-identity checkpoint error, added duplicated-display targets and color read-back checks, and moved scaling-override persistence after the other display changes. Continue retries the unfinished step.
 
 - **13.0.6:** Roll Back Driver reinstalls the saved previous NVIDIA driver through NVCleanstall and DDU. Installs save a small previous-driver record, and the GPU progress window can be closed and reopened. [GPU installation and rollback guide](docs/GPU-ROLLBACK.md).
 
@@ -63,7 +63,7 @@ The script does **not** launch the app, request administrator access, change exe
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.7/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '503D4F8FD75FB39F81B964F91CF0FE052B92F0926147C454C7CBD2CAF41B68B7') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '4A11726BEA66944ED294087241B3739E4B2315EEF30FDFEBD87D78664F0253A4') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
