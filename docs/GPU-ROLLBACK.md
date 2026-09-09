@@ -57,3 +57,7 @@ The screenshot shows the packaged interface in a UI smoke run; maintenance actio
 The Suite applies output color to each NVIDIA target, including targets sharing a duplicated Windows display. It reads back RGB, Full dynamic range, the supported bit depth, and the NVIDIA/user color policy. A request that leaves the default policy active is not marked as applied.
 
 The scaling override is saved last and checked in the NVIDIA display database. Restart Windows to load that persisted setting, then check **Override the scaling mode set by games and programs** in Control Panel. The save check alone does not prove the current checkbox state. If either setting cannot be verified or saved, the display step remains incomplete and Continue can retry it.
+
+## Control Panel opening
+
+Version 13.0.8 removes the legacy preview-page automation from GPU setup. The Suite no longer opens NVIDIA Control Panel for that step. Use the separate Control Panel button whenever you want to open it manually.

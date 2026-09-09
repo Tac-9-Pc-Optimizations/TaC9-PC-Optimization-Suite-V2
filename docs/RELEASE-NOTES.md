@@ -1,5 +1,23 @@
 # Release Notes
 
+## V3 13.0.8 - September 8, 2026
+
+**Removed the automatic NVIDIA Control Panel preview step.**
+
+GPU setup no longer launches NVIDIA Control Panel to change its legacy image-preview option. That automation and its preview-status fields have been removed completely.
+
+Driver installation, the NVIDIA profile, OpenGL GPU selection, output-color checks, and scaling-override persistence remain included. The separate NVIDIA Control Panel button still opens it when selected manually.
+
+The checkpoint and display fixes from 13.0.7 are included. Restart and use Continue when prompted. Protected tools require a paid key.
+
+Update with **Check for Updates** or download the latest V3 executable.
+
+SHA-256 for either executable:
+
+```
+C6FCF0FE8380F1970D425EC5ECBB32BA71DA8E5A87DAF33D0C8DE3129A13603E
+```
+
 ## V3 13.0.7 - September 8, 2026
 
 **GPU checkpoint, display-target, and color-verification fixes.**
