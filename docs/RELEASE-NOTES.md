@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.6 - September 8, 2026
+
+**Faster previous-driver saving and a working Close button in GPU progress.**
+
+- Auto Install and Choose Driver now save a small record of the installed NVIDIA driver version and GPU identity before cleanup. This step no longer exports driver files, downloads a recovery installer, or copies NVIDIA apps, profiles, and display settings.
+- Only one previous driver record is kept. A replacement is verified before the old managed backup is deleted. Failed saves keep the previous record, and Continue or Roll Back never overwrite it.
+- Roll Back Driver still prepares the saved previous version with NVCleanstall, verifies the package before DDU, and installs it with the Suite settings. If the driver record or package cannot be verified, cleanup stops.
+- **Close** now hides the GPU progress window while the operation continues. Use **Show GPU progress** to bring it back. Keep the Suite itself open until the operation finishes.
+
+The small record is a version reference, not an offline driver package. Rollback requires internet access and an available compatible NVIDIA driver package. Downloading, preparing, cleaning, and installing the driver still take time. The Suite continues checking the installed driver and its applied settings after installation and restart.
+
+Protected tools require a paid key. Update through **Check for Updates** or download the latest executable. Both EXE names contain the same V3 build.
+
+[GPU installation and rollback guide](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/blob/main/docs/GPU-ROLLBACK.md)
+
+SHA-256 for either executable:
+
+```
+FFF23BCB9A63C9DFCA719FEDA518AFB16D5ABE50184C10AC49BC0E3BBD9A4ABD
+```
+
 ## V3 13.0.5 - September 8, 2026
 
 **Roll Back Driver is now available in GPU Studio.** If you want to return to the driver you had before your last Suite install, the Suite can prepare that version with NVCleanstall, remove the current driver with DDU, and install the previous one using the normal Auto Install process.
