@@ -36,9 +36,9 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **Current release: V3 13.0.9**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r1.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r2.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r1.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r2.txt)
 
 One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.9 is approximately 191.7 MiB. Blender and Node.js are not required to run the suite.
 
@@ -64,10 +64,10 @@ The script does **not** launch the app, request administrator access, change exe
 <summary>Manual download of V3 13.0.9 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r1.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r2.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '66AA0412F398ADDEAC7241487C94DEA9C50242DD465428BBB7CB0D1830E4D4FE') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D7B52633041F273FF68BFADB46C19115C9969336198FB3C59026F43581C89EAC') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -225,7 +225,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r1.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r2.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.

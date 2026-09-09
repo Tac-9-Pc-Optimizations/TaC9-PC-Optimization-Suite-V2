@@ -56,7 +56,11 @@ The screenshot shows the packaged interface in a UI smoke run; maintenance actio
 
 The Suite applies output color to each NVIDIA target, including targets sharing a duplicated Windows display. It reads back RGB, Full dynamic range, the supported bit depth, and the NVIDIA/user color policy. A request that leaves the default policy active is not marked as applied.
 
-The scaling override is saved last and checked in the NVIDIA display database. Restart Windows to load that persisted setting, then check **Override the scaling mode set by games and programs** in Control Panel. The save check alone does not prove the current checkbox state. If either setting cannot be verified or saved, the display step remains incomplete and Continue can retry it.
+The scaling override is saved last and checked in the NVIDIA display database. Restart Windows to load that persisted setting. The save check alone does not prove the current Control Panel checkbox state.
+
+If a display setting cannot be confirmed, a successful driver installation finishes at 100% with **Display warnings**. The Suite keeps the warning details and does not mark that setting as verified. Driver, package, and profile failures still stop the workflow.
+
+If an older build stopped at 95% with the driver already installed and a color-settings warning, update the Suite and use **Continue**. It uses the saved installation progress to finish the remaining steps without repeating completed driver installation or DDU cleanup.
 
 ## Control Panel opening
 
