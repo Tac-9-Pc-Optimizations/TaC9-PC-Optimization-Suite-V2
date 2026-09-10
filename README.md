@@ -36,9 +36,9 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **Current release: V3 13.0.9**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r5.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r7.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r5.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r7.txt)
 
 One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.9 is approximately 191.8 MiB. Blender and Node.js are not required to run the suite.
 
@@ -64,10 +64,10 @@ The script does **not** launch the app, request administrator access, change exe
 <summary>Manual download of V3 13.0.9 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r5.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r7.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '759E2D1893B57EF9AA6CB13349BB377FD33AE01DAA9DC9F5135C0522B18F78FA') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D842CF48F652A73231A68F35683303987A1A090B0890C6E19282F515B45CBFA6') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -94,10 +94,11 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 
 The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and operating-system details together with the suite's Windows tools. It provides access to personal settings, optimization cards, service profiles, selected registry controls, repair utilities, and optional changes that require extra care.
 
-- **TaC9 Personal Settings:** apply the supplied settings profile, review the operation, and use its available restore workflow.
+- **TaC9 Personal Settings:** apply the supplied settings profile, including the Original TaC9 power plan, review the operation, and use its available restore workflow.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
+- **TaC-_-9 Power Plan (Original):** keeps the original supplied settings, including AC idle promotion and demotion thresholds of 100%. It appears as its own Windows power plan alongside V2. Use its separate **Apply** button to activate it. **TaC9 Personal Settings also applies Original.**
 - **Services Profile:** inspect startup and running state, choose individual services, and apply supported Enable, Manual, Disable, or profile actions.
 - **Advanced Registry:** explicit controls for the supported advanced settings rather than unrestricted registry editing.
 - **Repair and runtime tools:** access the included Windows repair, reset, and runtime-maintenance workflows.
@@ -229,7 +230,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r5.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r7.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
