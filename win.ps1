@@ -50,7 +50,7 @@ param(
             $rsa.Dispose()
         }
         $packageUrl = [uri]([string]$manifest.package_url)
-        $allowedPath = '^/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/(?:v\d+(?:\.\d+){2,3}/TaC9-PC-Optimization-Suite-V2\.exe|v13\.0\.9/TaC9-PC-Optimization-Suite-V3-r[1234567]\.exe)$'
+        $allowedPath = '^/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/(?:v\d+(?:\.\d+){2,3}/TaC9-PC-Optimization-Suite-V2\.exe|v13\.0\.9/TaC9-PC-Optimization-Suite-V3-r[12345678]\.exe)$'
         if (-not $packageUrl.IsAbsoluteUri -or $packageUrl.Scheme -ne 'https' -or $packageUrl.Host -ne 'github.com' -or
             $packageUrl.Port -ne 443 -or $packageUrl.UserInfo -or $packageUrl.Query -or $packageUrl.Fragment -or
             $packageUrl.AbsolutePath -cnotmatch $allowedPath) { throw 'The signed download URL is not an official TaC9 suite release.' }
