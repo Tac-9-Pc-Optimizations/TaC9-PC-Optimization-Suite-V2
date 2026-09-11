@@ -32,15 +32,27 @@ Custom display information is held only for the current installation. Unsupporte
 
 ### Get the update
 
-Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3.exe** from this release. Existing V2-named update links continue to work.
+Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3-r1.exe** from this release. Existing V2-named update links continue to work.
 
 Protected tools require a paid key. COD Config Installer and Socials do not require a key.
 
 ### Validation
 
-The release includes automated checks for custom display preservation, GPU workflow decisions, COD file installation, CPU detection, individual settings and the updater. Display capture was also checked against the test PC's live custom mode using a read-only preview. A fresh DDU and driver installation was not run for this release's validation.
+The original release included automated checks for custom display preservation, GPU workflow decisions, COD file installation, CPU detection, individual settings and the updater. Its display validation used a read-only capture; the custom-resolution correction below adds results from a fresh driver installation.
 
-SHA-256 for either executable:
+The current package also fixes a blank refresh-rate list after restoring a custom resolution. It saves the original NVIDIA timing, restores any monitor positions moved by NVIDIA's timing test, and checks that the custom resolution is saved and selectable. Custom resolutions keep Full-screen scaling with Override unchecked.
+
+This correction was tested on a fresh driver installation with a 2306 × 1440 custom mode at 540 Hz. NVIDIA Control Panel showed the custom mode and a selectable 540 Hz entry. The correction passed 294 display checks, 23 installer-flow checks, and the packaged app's eight-screen startup check. Other monitor and driver combinations still depend on supported timings and successful verification.
+
+The visible version remains 13.0.10. Internal revision 13.0.10.1 lets existing installations receive this package through the signed update feed under the same release.
+
+SHA-256 for the current `TaC9-PC-Optimization-Suite-V3-r1.exe`:
+
+```
+B15612895789479FF6BB2780DD67AEF3A959D19015C662E6970AD08171DE9390
+```
+
+SHA-256 for the original V2/V3 compatibility executables retained in this release:
 
 ```
 490863F57E854DB9424B6D91A51CE4E05F29442F436997FBD51FB3A0F14E7B04
