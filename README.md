@@ -36,11 +36,11 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **Current release: V3 13.0.9**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r8.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r9.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r8.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/SHA256SUMS-r9.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.9 is approximately 191.8 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.9 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
 Existing V2-named download links remain available and run **V3**. Use the download above or **Check for Updates** in the Suite to get the current package. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -64,10 +64,10 @@ The script does **not** launch the app, request administrator access, change exe
 <summary>Manual download of V3 13.0.9 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r8.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.9/TaC9-PC-Optimization-Suite-V3-r9.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'B061DD999AC88BBCD333177FAB0A05C588AE88935818DA42130BAD86D35110EA') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'C165278044E96C91EA9DEBFA3A32B97C296B0EA9A739C854410D92541BD63111') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -135,6 +135,8 @@ Normal installations save and verify the installed driver version and GPU identi
 
 The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. If the driver record or required package cannot be verified, cleanup does not start.
 
+Before DDU starts, the current install also reads each monitor's resolution and refresh rate. Custom modes keep their selected resolution and Hz, use Full-screen scaling, and leave the scaling override unchecked. Exact NVIDIA custom timings can be recreated if cleanup removes them. This small display record stays in memory for the current run; it does not add a saved install checkpoint. Unsupported or ambiguous display settings leave a note while the completed driver installation finishes.
+
 Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
 
 **[Read the installation and rollback guide](docs/GPU-ROLLBACK.md)** for the steps, backup behavior, and recovery instructions.
@@ -150,6 +152,8 @@ Rollback installs the previous driver with the Suite's settings. It does not res
 The installer provides separate **BOPS7** and **MW4 Beta** modes with **Battle.net** and **Xbox App** platform selection, plus **Steam** support for BOPS7. It checks the selected installation, shows the player-configuration state, preserves the original matching files, and applies only the configuration intended for that mode.
 
 - Detects and validates the selected game and platform paths before making changes.
+- **Open Config Folder** opens the selected game's player folder.
+- Sets `RendererWorkerCount` from physical CPU cores. Hybrid Intel processors use performance cores minus one. Supported AMD dual-CCD processors use 7 for 16 cores, 5 for 12 cores, or 4 for 10 cores. Other supported processors use physical cores minus one, within the config's supported range. Logical threads are not counted as extra cores.
 - Preserves first-seen originals so installing again does not replace the original backup with an already-modified configuration.
 - Supports **Restore Original** for the files managed by the installer.
 - Limits shader-cache cleanup to recognized files in the validated selected installation.
@@ -230,7 +234,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r8.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/latest/download/TaC9-PC-Optimization-Suite-V3-r9.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.

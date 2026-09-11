@@ -56,7 +56,11 @@ The screenshot shows the packaged interface in a UI smoke run; it does not exerc
 
 ## NVIDIA color settings and scaling override
 
-The Suite keeps the current resolution and selects a supported refresh rate at that resolution, trying a lower rate if the first choice is rejected. Duplicated Windows displays share one refresh-rate change, while each NVIDIA display target receives its own color settings.
+Before DDU starts, the Suite reads the current resolution, refresh rate, and monitor identity. It keeps this small display record in memory for that installation. It does not create a saved checkpoint or expand the previous-driver backup.
+
+Custom resolutions retain their selected resolution and refresh rate. If cleanup removes an NVIDIA custom timing, the Suite can recreate the exact timing it read before cleanup, then check the active result. It does not invent a new timing from width, height, and Hz. Normal native-resolution displays use supported refresh rates at their original resolution. Duplicated Windows displays share a source; ambiguous monitor identities or unsupported custom timings leave a setup note instead of changing a guessed display.
+
+For confirmed custom resolutions, scaling is set to **Full-screen** and **Override the scaling mode set by games and programs** is left unchecked. Normal displays use the existing No scaling and enabled override policy. The Suite matches each saved scaling record to its current monitor, so a custom main display does not change the policy on a normal second display. It checks the final resolution and refresh again after color and scaling changes.
 
 Output color requests RGB, Full dynamic range, and NVIDIA/user color settings. It tries 10-bit color, then 8-bit when needed. The Suite distinguishes a setting accepted by the driver from one also confirmed by read-back. If the driver accepts the setting but cannot report it back, the setting stays applied without being marked as verified. Rejected settings produce a warning.
 
