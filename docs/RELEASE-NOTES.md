@@ -1,5 +1,51 @@
 # Release Notes
 
+## V3 13.0.10 - September 11, 2026
+
+This release brings the recent 13.0.9 maintenance updates together in one download: custom-resolution support, GPU setup fixes, the COD folder button and CPU worker selection, Windows tweak controls, and Power Plan V2.
+
+### GPU installation and display settings
+
+- **Keep your custom resolution and refresh rate.** Before DDU starts, the Suite reads each monitor's current mode and available custom timing. After the driver installation, it restores supported custom modes at the same refresh rate instead of replacing them with the monitor's native resolution or highest refresh rate.
+- **Correct scaling for custom resolutions.** Custom modes use Full-screen scaling with **Override the scaling mode set by games and programs** unchecked. Each monitor is handled separately.
+- **More compatible display setup.** Improved refresh-rate fallback, duplicated-display handling, and NVIDIA color-setting support. Optional settings that cannot be applied or confirmed appear as notes, without stopping a completed driver installation.
+- **Optional NVIDIA leftovers no longer block installation.** Remaining companion registrations, such as NVIDIA Video Effects, are reported while the clean-driver install continues. Required driver, package, DDU, Control Panel and profile checks still run.
+- **Fixed background NVIDIA setup.** Corrected Control Panel first-launch initialization and Profile Inspector's Apply step. The Black Ops 7 profile gets an explicit ReBAR enable/apply/disable/apply refresh, ending disabled for BO7 while leaving global ReBAR unchanged.
+- **Removed saved installation checkpoints.** An old unfinished run no longer blocks a fresh installation. The Suite still prevents two driver installs from running at once.
+- **Fixed previous-driver record replacement.** Installs keep one small record of the previous driver version and GPU identity. Roll Back Driver uses that version through the usual NVCleanstall and DDU process. This fixes failures caused by older full-backup files.
+
+Custom display information is held only for the current installation. Unsupported timings or uncertain monitor matches are reported; the Suite does not claim an unconfirmed display change succeeded. Keep the Suite open while installation is running.
+
+### COD Config Installer
+
+- **Open Config Folder** takes you straight to the selected game's existing configuration folder. If it does not exist yet, the Suite asks you to launch the game once.
+- **CPU worker selection is automatic.** The installer reads physical cores, not logical threads. Regular supported CPUs use physical cores minus one; supported Intel hybrid CPUs use performance cores minus one.
+- **AMD dual-CCD rules:** supported 16-core configurations use 7 workers, 12-core configurations use 5, and 10-core configurations use 4. The value stays within the game's 1–16 range.
+- The detected worker count appears in the installer. BO7's two config files get the same value, and the written files are verified. MW4 uses the same CPU policy.
+
+### Windows settings and power plans
+
+- **View settings is back.** See each tweak's current value, target and status, with individual Apply and Restore controls.
+- **Faster individual tweaks.** Applying one setting avoids repeated engine startup and unnecessary refreshes of every settings card.
+- **TaC-_-9 Power Plan V2** includes the AC idle-threshold correction that restored C6 residency on the test PC. Personal Settings applies V2. The Original power plan remains a separate option, and repeated application reuses the existing plans.
+- The earlier DISM/SFC reporting fixes are included: clean scans, repaired corruption, remaining corruption and unverified results are kept distinct, and the live result agrees with the final summary.
+
+### Get the update
+
+Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3.exe** from this release. Existing V2-named update links continue to work.
+
+Protected tools require a paid key. COD Config Installer and Socials do not require a key.
+
+### Validation
+
+The release includes automated checks for custom display preservation, GPU workflow decisions, COD file installation, CPU detection, individual settings and the updater. Display capture was also checked against the test PC's live custom mode using a read-only preview. A fresh DDU and driver installation was not run for this release's validation.
+
+SHA-256 for either executable:
+
+```
+490863F57E854DB9424B6D91A51CE4E05F29442F436997FBD51FB3A0F14E7B04
+```
+
 ## V3 13.0.9 - September 9, 2026
 
 **Clearer DISM and SFC repair results.**
