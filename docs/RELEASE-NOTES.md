@@ -32,7 +32,7 @@ Custom display information is held only for the current installation. Unsupporte
 
 ### Get the update
 
-Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3-r1.exe** from this release. Existing V2-named update links continue to work.
+Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3-r2.exe** from this release. Existing V2-named update links continue to work.
 
 Protected tools require a paid key. COD Config Installer and Socials do not require a key.
 
@@ -44,12 +44,14 @@ The current package also fixes a blank refresh-rate list after restoring a custo
 
 This correction was tested on a fresh driver installation with a 2306 × 1440 custom mode at 540 Hz. NVIDIA Control Panel showed the custom mode and a selectable 540 Hz entry. The correction passed 294 display checks, 23 installer-flow checks, and the packaged app's eight-screen startup check. Other monitor and driver combinations still depend on supported timings and successful verification.
 
-The visible version remains 13.0.10. Internal revision 13.0.10.1 lets existing installations receive this package through the signed update feed under the same release.
+The Windows command-center icons are now centered inside their boxes. Their animated borders keep working without pushing the symbols upward. The layout was checked at three window sizes, and the local packaged build passed all eight startup screens.
 
-SHA-256 for the current `TaC9-PC-Optimization-Suite-V3-r1.exe`:
+The visible version remains 13.0.10. Internal revision 13.0.10.2 lets existing installations receive these corrections through the signed update feed under the same release.
+
+SHA-256 for the current `TaC9-PC-Optimization-Suite-V3-r2.exe`:
 
 ```
-B15612895789479FF6BB2780DD67AEF3A959D19015C662E6970AD08171DE9390
+2591FC86A26866761C0F4E509AD7BD280F22DB52F011399B0E8D1FE807ACF5D2
 ```
 
 SHA-256 for the original V2/V3 compatibility executables retained in this release:
