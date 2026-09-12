@@ -8,7 +8,7 @@ GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**.
 
 1. Save your work, close games, and open **GPU Studio** with administrator access.
 2. Select **Auto Install** for the newest compatible WHQL Game Ready driver available to the workflow, or **Choose Driver** to select a supported version.
-3. Let the Suite save and verify the installed NVIDIA driver version and GPU identity. It stops before cleanup if this record cannot be saved.
+3. If an NVIDIA driver is already installed, the Suite saves and verifies its version and GPU identity before cleanup. If the NVIDIA GPU is using Microsoft Basic Display Adapter or has no driver installed, the Suite verifies the hardware and continues without creating a previous-driver record.
 4. The Suite prepares and checks the clean driver package with NVCleanstall, runs DDU, installs the prepared package, initializes NVIDIA Control Panel in the background, and applies the supplied TaC9 profile and display settings.
 5. Let the installation finish, then restart Windows normally when convenient. Driver and profile checks run during installation.
 
@@ -29,6 +29,8 @@ Rollback uses the version recorded in the backup, not whichever driver is newest
 The Suite keeps one small record containing the previous NVIDIA driver version, GPU identity, and Windows ownership information. It does not copy driver files, NVIDIA applications, old profiles, or monitor settings for this record. The matching driver package is prepared when rollback is requested, so internet access and an available supported package are required.
 
 A new normal install saves the currently installed version, verifies the new record, and then deletes the old managed backup. A failed save keeps the previous record. Rollback preserves it. Older full backups are retired when a new normal install successfully saves its replacement.
+
+When no NVIDIA driver is installed, there is no new previous version to save. Auto Install and Choose Driver can still run. A valid existing record is kept, and unusable old records are left untouched. Roll Back remains unavailable without a verified previous NVIDIA version; Microsoft Basic Display is never used as the rollback driver.
 
 For example, installing B while A is installed saves A. Roll Back then selects A. Starting a later normal install while B is installed replaces the record with B. Only one previous version is retained.
 
@@ -56,7 +58,7 @@ The screenshot shows the packaged interface in a UI smoke run; it does not exerc
 
 ## NVIDIA color settings and scaling override
 
-Before DDU starts, the Suite reads the current resolution, refresh rate, and monitor identity. It keeps this small display record in memory for that installation. It does not create a saved checkpoint or expand the previous-driver backup.
+When an NVIDIA driver is installed, the Suite reads the current resolution, refresh rate, and monitor identity before DDU starts. It keeps this small display record in memory for that installation. It does not create a saved checkpoint or expand the previous-driver backup. If the run starts with Microsoft Basic Display or no NVIDIA driver, it skips this capture and detects monitor settings after installation instead of treating the basic display’s fallback mode as a custom resolution.
 
 Custom resolutions retain their selected resolution and refresh rate. If cleanup removes an NVIDIA custom timing, the Suite can recreate the exact timing it read before cleanup, then check the active result. It does not invent a new timing from width, height, and Hz. Normal native-resolution displays use supported refresh rates at their original resolution. Duplicated Windows displays share a source; ambiguous monitor identities or unsupported custom timings leave a setup note instead of changing a guessed display.
 

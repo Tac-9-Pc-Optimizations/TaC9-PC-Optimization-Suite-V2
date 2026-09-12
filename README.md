@@ -38,9 +38,9 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **Current release: V3 13.0.10**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r2.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r3.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/SHA256SUMS-r2.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/SHA256SUMS-r3.txt)
 
 One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.10 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
@@ -66,10 +66,10 @@ The script does **not** launch the app, request administrator access, change exe
 <summary>Manual download of V3 13.0.10 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r2.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '2591FC86A26866761C0F4E509AD7BD280F22DB52F011399B0E8D1FE807ACF5D2') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '7685A3CA22928729DB4B73FB96B375356C650DEAAE73D9057072A0B8AF7E6C9E') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -135,9 +135,11 @@ Keep the app open during a repair. Some DISM failures require a matching Windows
 
 Normal installations save and verify the installed driver version and GPU identity before cleanup. The Suite prepares the driver with NVCleanstall, runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. Required driver and profile checks run during installation. Restart Windows normally when the installation finishes; there is no saved install checkpoint or Continue step.
 
-The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. If the driver record or required package cannot be verified, cleanup does not start.
+The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. When an NVIDIA driver is already installed, its record must verify before cleanup starts. Required package checks apply to every installation.
 
-Before DDU starts, the current install also reads each monitor's resolution and refresh rate. Custom modes keep their selected resolution and Hz, use Full-screen scaling, and leave the scaling override unchecked. Exact NVIDIA custom timings can be recreated if cleanup removes them. This small display record stays in memory for the current run; it does not add a saved install checkpoint. Unsupported or ambiguous display settings leave a note while the completed driver installation finishes.
+**Installing on a fresh Windows setup:** Auto Install and Choose Driver also work when an NVIDIA GPU is using Microsoft Basic Display Adapter or has no driver installed. The Suite checks the NVIDIA hardware and continues without creating a previous-driver record. Microsoft’s driver version is never saved for rollback. Monitor settings are detected after NVIDIA installs, so the basic display’s fallback mode is not saved as a custom resolution.
+
+When an NVIDIA driver is already installed, the Suite also reads each monitor's resolution and refresh rate before DDU starts. Custom modes keep their selected resolution and Hz, use Full-screen scaling, and leave the scaling override unchecked. Exact NVIDIA custom timings can be recreated if cleanup removes them. This small display record stays in memory for the current run; it does not add a saved install checkpoint. Unsupported or ambiguous display settings leave a note while the completed driver installation finishes.
 
 Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
 

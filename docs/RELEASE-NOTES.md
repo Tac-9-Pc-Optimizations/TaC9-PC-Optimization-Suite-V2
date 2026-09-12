@@ -6,6 +6,7 @@ This release brings the recent 13.0.9 maintenance updates together in one downlo
 
 ### GPU installation and display settings
 
+- **Fresh NVIDIA installs no longer require an old driver.** Auto Install and Choose Driver can run when verified NVIDIA hardware is using Microsoft Basic Display Adapter or has no driver installed. Microsoft’s driver version is never saved for rollback. The normal package, DDU, driver, Control Panel, profile and display steps still run.
 - **Keep your custom resolution and refresh rate.** Before DDU starts, the Suite reads each monitor's current mode and available custom timing. After the driver installation, it restores supported custom modes at the same refresh rate instead of replacing them with the monitor's native resolution or highest refresh rate.
 - **Correct scaling for custom resolutions.** Custom modes use Full-screen scaling with **Override the scaling mode set by games and programs** unchecked. Each monitor is handled separately.
 - **More compatible display setup.** Improved refresh-rate fallback, duplicated-display handling, and NVIDIA color-setting support. Optional settings that cannot be applied or confirmed appear as notes, without stopping a completed driver installation.
@@ -32,7 +33,7 @@ Custom display information is held only for the current installation. Unsupporte
 
 ### Get the update
 
-Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3-r2.exe** from this release. Existing V2-named update links continue to work.
+Use **Check for Updates** inside the Suite, or download **TaC9-PC-Optimization-Suite-V3-r3.exe** from this release. Existing V2-named update links continue to work.
 
 Protected tools require a paid key. COD Config Installer and Socials do not require a key.
 
@@ -46,12 +47,14 @@ This correction was tested on a fresh driver installation with a 2306 × 1440 cu
 
 The Windows command-center icons are now centered inside their boxes. Their animated borders keep working without pushing the symbols upward. The layout was checked at three window sizes, and the local packaged build passed all eight startup screens.
 
-The visible version remains 13.0.10. Internal revision 13.0.10.2 lets existing installations receive these corrections through the signed update feed under the same release.
+The first-install correction passed 304 staged workflow checks and 96 driver-record checks, including successful starts without an NVIDIA driver and rejection of invalid packages or failed cleanup. These checks used mocked driver and display operations; they do not represent a physical driver reinstall on every supported PC. The published package passed integrity, extraction and all eight startup-screen checks.
 
-SHA-256 for the current `TaC9-PC-Optimization-Suite-V3-r2.exe`:
+The visible version remains 13.0.10. Internal revision 13.0.10.3 lets existing installations receive these corrections through the signed update feed under the same release.
+
+SHA-256 for the current `TaC9-PC-Optimization-Suite-V3-r3.exe`:
 
 ```
-2591FC86A26866761C0F4E509AD7BD280F22DB52F011399B0E8D1FE807ACF5D2
+7685A3CA22928729DB4B73FB96B375356C650DEAAE73D9057072A0B8AF7E6C9E
 ```
 
 SHA-256 for the original V2/V3 compatibility executables retained in this release:
