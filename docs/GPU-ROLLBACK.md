@@ -14,6 +14,8 @@ GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**.
 
 The screen can flicker or briefly go black during driver removal and installation. Keep the Suite open while it is working. Do not start a second driver installer at the same time.
 
+Version **13.0.11** fixes the false **“The detected GPU changed during driver selection”** stop at 11%. The Suite now matches the NVIDIA hardware identity instead of relying on its display name, which can differ while Windows is using Microsoft Basic Display Adapter. It also waits for NVCleanstall's compatible driver list to finish loading before making the selection. A real hardware mismatch or incompatible package still stops the workflow before DDU.
+
 ## Return to the previous driver
 
 1. Open **GPU Studio** and select **Roll Back Driver**.

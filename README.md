@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.10:** Combines the recent maintenance updates: custom-resolution support, GPU setup fixes, automatic COD CPU worker selection and Open Config Folder, individual Windows tweak controls, and Power Plan V2. [Read the combined update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.9:** Fixed DISM/SFC repair reporting, added a ScanHealth baseline, and made live and final verdicts agree. Unverified or incomplete repairs show a warning.
@@ -36,13 +38,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.10**
+**Current release: V3 13.0.11**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/SHA256SUMS-r3.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/SHA256SUMS.txt)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.10 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.11 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
 Existing V2-named download links remain available and run **V3**. Use the download above or **Check for Updates** in the Suite to get the current package. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -63,13 +65,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.10 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.11 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.10/TaC9-PC-Optimization-Suite-V3-r3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '7685A3CA22928729DB4B73FB96B375356C650DEAAE73D9057072A0B8AF7E6C9E') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '75C8CE696146EA164545FDC1A3454E9388011E175003ADF6B1F96EE7F9F69308') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -138,6 +140,8 @@ Normal installations save and verify the installed driver version and GPU identi
 The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. When an NVIDIA driver is already installed, its record must verify before cleanup starts. Required package checks apply to every installation.
 
 **Installing on a fresh Windows setup:** Auto Install and Choose Driver also work when an NVIDIA GPU is using Microsoft Basic Display Adapter or has no driver installed. The Suite checks the NVIDIA hardware and continues without creating a previous-driver record. Microsoft’s driver version is never saved for rollback. Monitor settings are detected after NVIDIA installs, so the basic display’s fallback mode is not saved as a custom resolution.
+
+Version 13.0.11 fixes the false “GPU changed” stop during driver selection. It compares the hardware identity rather than the displayed GPU name and waits for NVCleanstall's driver list to be ready. A real hardware mismatch or incompatible driver package still stops installation before cleanup.
 
 When an NVIDIA driver is already installed, the Suite also reads each monitor's resolution and refresh rate before DDU starts. Custom modes keep their selected resolution and Hz, use Full-screen scaling, and leave the scaling override unchecked. Exact NVIDIA custom timings can be recreated if cleanup removes them. This small display record stays in memory for the current run; it does not add a saved install checkpoint. Unsupported or ambiguous display settings leave a note while the completed driver installation finishes.
 
@@ -269,7 +273,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.10** is delivered through the existing signed update feed to older Suite builds.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.11** is delivered through the existing signed update feed to older Suite builds.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

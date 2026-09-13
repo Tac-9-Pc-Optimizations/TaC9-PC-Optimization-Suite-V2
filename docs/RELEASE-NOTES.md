@@ -1,5 +1,42 @@
 # Release Notes
 
+## V3 13.0.11 - September 13, 2026
+
+Fixed GPU setup stopping at 11% with **“The detected GPU changed during driver selection”** on PCs using Microsoft Basic Display Adapter or starting without an NVIDIA driver.
+
+- Driver selection now checks the NVIDIA hardware identity rather than relying on the displayed GPU name.
+- The Suite waits for NVCleanstall's compatible driver list to finish loading before selecting a driver.
+- Fresh installations can continue without an old NVIDIA driver record. Microsoft's display driver is never saved as the rollback version. A valid existing previous-driver record is kept.
+- Hardware and driver-package compatibility checks remain in place. A real mismatch still stops installation before cleanup.
+
+The custom resolution and refresh-rate fixes, per-monitor scaling, GPU profile setup, COD installer improvements, individual Windows tweak controls, and Power Plan V2 from 13.0.10 are included.
+
+### Get the update
+
+Use **Check for Updates** in the Suite, or [download TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe). The version is **13.0.11**, with file version **13.0.11.0**. The V2-named compatibility download contains the same build, and previous releases remain available.
+
+### Validation
+
+The GPU identity and driver-list regression fixture passed 540 assertions in Windows PowerShell 5.1. The existing driver-choice checks passed 86 assertions, first-install workflow checks passed 304, and driver-record checks passed 96. These tests use simulated hardware and driver operations; they do not represent a fresh driver installation on an affected customer PC. Package integrity, extraction, and private-data checks passed.
+
+All eight screens passed the packaged app's startup check. The signed update feed passed the app's updater checks, including an upgrade from 13.0.10.3. No maintenance actions were run during these checks.
+
+The repository screenshots retain their existing disclosures. The release's GPU Studio screenshot shows the packaged 13.0.11 interface in its test harness; it does not show a completed driver installation.
+
+### Download integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Compatibility filename: `TaC9-PC-Optimization-Suite-V2.exe` (identical bytes)
+- Size: 201,267,568 bytes (approximately 191.9 MiB)
+- Signed update manifest and internal package integrity; the executable is not Windows Authenticode-signed.
+- [Published checksum list](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/SHA256SUMS.txt)
+
+SHA-256 for either executable:
+
+```text
+75C8CE696146EA164545FDC1A3454E9388011E175003ADF6B1F96EE7F9F69308
+```
+
 ## V3 13.0.10 - September 11, 2026
 
 This release brings the recent 13.0.9 maintenance updates together in one download: custom-resolution support, GPU setup fixes, the COD folder button and CPU worker selection, Windows tweak controls, and Power Plan V2.
