@@ -42,11 +42,11 @@ The eight existing workspaces remain together. The repository keeps its original
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe)**
 
-[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/SHA256SUMS.txt)
+[All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
 One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.11 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
-Existing V2-named download links remain available and run **V3**. Use the download above or **Check for Updates** in the Suite to get the current package. The genuine previous V2 remains available in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
+**V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
 The X3D Core Tester, CoreCycler, and y-cruncher are not included in this release.
 
@@ -277,7 +277,7 @@ An in-app upgrade replaces the executable at its existing location, so an older 
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 
-For maintainers, each newer release must include the full-suite EXE and a matching `manifest-v2.json` signed by the existing trusted update key, and be published as the repository's latest release. A GitHub tag or an EXE uploaded without that signed manifest is not enough for the in-app updater.
+For maintainers, publish only `TaC9-PC-Optimization-Suite-V3.exe` and a matching `manifest-v2.json` as uploaded release assets. The manifest must point directly to the V3 executable, be signed by the existing trusted update key, and belong to the repository's latest release. Put the checksum in the release notes. Keep screenshots in the repository or the Discord post; they do not need separate release assets. A GitHub tag or an EXE uploaded without the signed manifest is not enough for the in-app updater.
 
 ### Verify a Download
 

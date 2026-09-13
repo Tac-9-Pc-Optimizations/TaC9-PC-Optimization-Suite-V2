@@ -13,7 +13,7 @@ The custom resolution and refresh-rate fixes, per-monitor scaling, GPU profile s
 
 ### Get the update
 
-Use **Check for Updates** in the Suite, or [download TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe). The version is **13.0.11**, with file version **13.0.11.0**. The V2-named compatibility download contains the same build, and previous releases remain available.
+Use **Check for Updates** in the Suite, or [download TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe). The version is **13.0.11**, with file version **13.0.11.0**. V3 is the only app download in this release. The accompanying `manifest-v2.json` is used automatically by the updater and points directly to the V3 executable. Previous releases remain available.
 
 ### Validation
 
@@ -21,17 +21,15 @@ The GPU identity and driver-list regression fixture passed 540 assertions in Win
 
 All eight screens passed the packaged app's startup check. The signed update feed passed the app's updater checks, including an upgrade from 13.0.10.3. No maintenance actions were run during these checks.
 
-The repository screenshots retain their existing disclosures. The release's GPU Studio screenshot shows the packaged 13.0.11 interface in its test harness; it does not show a completed driver installation.
+The repository screenshots retain their existing disclosures. The GPU Studio screenshot posted in Discord shows the packaged 13.0.11 interface in its test harness; it does not show a completed driver installation.
 
 ### Download integrity
 
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Compatibility filename: `TaC9-PC-Optimization-Suite-V2.exe` (identical bytes)
 - Size: 201,267,568 bytes (approximately 191.9 MiB)
 - Signed update manifest and internal package integrity; the executable is not Windows Authenticode-signed.
-- [Published checksum list](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/SHA256SUMS.txt)
 
-SHA-256 for either executable:
+SHA-256 for the executable:
 
 ```text
 75C8CE696146EA164545FDC1A3454E9388011E175003ADF6B1F96EE7F9F69308
