@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.12:** Personal Settings now asks **Do you play VALORANT?** Yes selects a separate, conservative profile and adds a readiness report; No keeps the standard profile. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.10:** Combines the recent maintenance updates: custom-resolution support, GPU setup fixes, automatic COD CPU worker selection and Open Config Folder, individual Windows tweak controls, and Power Plan V2. [Read the combined update notes](docs/RELEASE-NOTES.md).
@@ -38,13 +40,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.11**
+**Current release: V3 13.0.12**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.11 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.12 is approximately 192.0 MiB. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -65,13 +67,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.11 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.12 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.11/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '75C8CE696146EA164545FDC1A3454E9388011E175003ADF6B1F96EE7F9F69308') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'EB5ECE8795F1547DB27DBACFDB2D477B9E012094249F91907425DCF0E33532F1') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -98,7 +100,7 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 
 The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and operating-system details together with the suite's Windows tools. It provides access to personal settings, optimization cards, service profiles, selected registry controls, repair utilities, and optional changes that require extra care.
 
-- **TaC9 Personal Settings:** apply the supplied settings profile, including TaC-_-9 Power Plan V2, review the operation, and use its available restore workflow.
+- **TaC9 Personal Settings:** choose Yes or No to **Do you play VALORANT?** before applying. Yes uses a separate, conservative profile with TaC-_-9 Power Plan V2, preserves Windows security and Riot/Vanguard startup, and reports readiness issues after applying. No keeps the standard profile. The choice is saved after a successful application, and the existing backup and restore workflow remains available.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
@@ -109,6 +111,8 @@ The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and
 - **System scan:** shows how much of the expected inventory was detected. A 100% scan means complete inventory, not a benchmark score or a guarantee of perfect hardware.
 
 Individual setting changes start faster and refresh only the selected card when finished. Supported settings still use the first-seen backup and are checked against Windows after the change. Whole-profile workflows keep their own backup and restore-point steps.
+
+The VALORANT readiness report checks security prerequisites, Vanguard state, and Windows dependencies. It reports items needing attention; a successful settings operation does not guarantee that VALORANT will launch. Live VALORANT and fresh-Windows testing remain outstanding for this profile. [Read the 13.0.12 release notes](docs/RELEASE-NOTES.md#v3-13012---september-15-2026).
 
 Optional or caution-marked settings should be reviewed individually. More disabled services or more changes do not automatically mean better performance.
 
@@ -273,7 +277,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.11** is delivered through the existing signed update feed to older Suite builds.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.12** is delivered through the existing signed update feed to older Suite builds.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 
