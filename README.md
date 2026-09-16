@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.12:** Personal Settings now asks **Do you play VALORANT?** Yes selects a separate, conservative profile and adds a readiness report; No keeps the standard profile. [Read the update notes](docs/RELEASE-NOTES.md).
+- **13.0.12, corrected build:** Personal Settings asks **Do you play VALORANT?** Yes applies normal TaC9 optimizations with reviewed VALORANT exceptions, followed by Windows repair and a readiness report. Service settings, five advanced settings, and eleven settings steps run before DISM/SFC, with ordered progress that keeps fast steps visible. No keeps the standard profile. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -40,7 +40,7 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.12**
+**Current release: V3 13.0.12 — corrected build, file version 13.0.12.1**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe)**
 
@@ -73,7 +73,7 @@ The script does **not** launch the app, request administrator access, change exe
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'EB5ECE8795F1547DB27DBACFDB2D477B9E012094249F91907425DCF0E33532F1') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '6315FA2B76424813FCC120E0319645D36F63F87062B50DB687D931CDF51CA38A') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -100,7 +100,7 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 
 The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and operating-system details together with the suite's Windows tools. It provides access to personal settings, optimization cards, service profiles, selected registry controls, repair utilities, and optional changes that require extra care.
 
-- **TaC9 Personal Settings:** choose Yes or No to **Do you play VALORANT?** before applying. Yes uses a separate, conservative profile with TaC-_-9 Power Plan V2, preserves Windows security and Riot/Vanguard startup, and reports readiness issues after applying. No keeps the standard profile. The choice is saved after a successful application, and the existing backup and restore workflow remains available.
+- **TaC9 Personal Settings:** choose Yes or No to **Do you play VALORANT?** before applying. Yes applies the selected service profile within a reviewed Windows service list, five advanced settings, and eleven settings steps including TaC-_-9 Power Plan V2 before DISM/SFC. It preserves Windows security and Riot/Vanguard startup and reports readiness issues after applying. No keeps the standard profile. The choice is saved after a successful application, and a validated backup is required before changes.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
@@ -111,6 +111,8 @@ The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and
 - **System scan:** shows how much of the expected inventory was detected. A 100% scan means complete inventory, not a benchmark score or a guarantee of perfect hardware.
 
 Individual setting changes start faster and refresh only the selected card when finished. Supported settings still use the first-seen backup and are checked against Windows after the change. Whole-profile workflows keep their own backup and restore-point steps.
+
+Personal Settings shows planned work and a completed-step summary before Windows repair. Missing or incomplete settings profiles stop with an explicit error before changes begin. Personal Settings and Restore keep progress messages in order, including fast steps; a percentage or a new activity line does not mark an earlier phase as verified.
 
 The VALORANT readiness report checks security prerequisites, Vanguard state, and Windows dependencies. It reports items needing attention; a successful settings operation does not guarantee that VALORANT will launch. Live VALORANT and fresh-Windows testing remain outstanding for this profile. [Read the 13.0.12 release notes](docs/RELEASE-NOTES.md#v3-13012---september-15-2026).
 

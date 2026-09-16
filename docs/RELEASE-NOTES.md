@@ -2,31 +2,40 @@
 
 ## V3 13.0.12 - September 15, 2026
 
-**Personal Settings now asks “Do you play VALORANT?”** Choose Yes or No before applying; the answer is saved after a successful application.
+**The corrected 13.0.12 build applies normal TaC9 optimizations with reviewed VALORANT exceptions.** Personal Settings asks **Do you play VALORANT?** before applying; the answer is saved after a successful application.
 
-- **Yes selects a separate, conservative profile.** It keeps TaC9 Power Plan V2 and reviewed visual and input settings, with a validated rollback snapshot required before settings or services change.
-- **Windows dependencies are recovered carefully.** Installed dependencies that were disabled receive reviewed Automatic or Manual settings. Existing non-disabled service settings are preserved, and running services are not stopped. The profile preserves Windows security, update access, Riot/Vanguard startup, audio, device installation, and AppX/MSIX dependencies.
-- **The Yes profile skips broad changes.** It omits legacy update-blocking steps, broad startup disabling, advanced kernel tweaks, and the automatic network reset. Managed Windows update policies are preserved.
+- **Yes applies the selected service profile within reviewed limits.** The profile uses a list of 63 reviewed Windows service names; installed services and your selections determine the actual changes. Manual targets keep their current running state. Vendor, anti-cheat, security, virtualization, update, networking, and device dependencies are excluded from these optimization targets. Your Windows Search choice still applies.
+- **Five advanced settings are included again:** interrupt steering, threaded DPC, I/O latency cap, IOPageLockLimit, and queued presentation limit. CSRSS realtime priority and TSC boot overrides remain excluded.
+- **Eleven settings steps run before DISM/SFC:** Power Plan V2, fullscreen/latency, telemetry preferences, visual effects, Game Bar, Widgets/Copilot/AI, Edge preferences, Explorer layout, MSIX framework compatibility, Start/Search suggestions, and input safety. Selecting optional Microsoft runtime repair adds a twelfth step before Windows repair.
+- **Required settings are checked before changes begin.** A validated rollback snapshot is required before settings or services change. Missing, malformed, or incomplete service, advanced-setting, or script profiles stop with an explicit error. Planned counts and a completed-step summary appear before DISM/SFC.
+- **Personal Settings and Restore keep progress in order.** Fast running, completed, skipped, and warning messages stay visible. Tool percentages do not mark workflow phases as verified, and a new activity line does not mark the preceding step successful.
+- **Windows dependencies are recovered carefully.** Installed dependencies that were disabled receive reviewed Automatic or Manual settings. Existing non-disabled dependency settings and running states are preserved. The profile preserves Windows security, update access, Riot/Vanguard startup, audio, device installation, and AppX/MSIX dependencies. Managed Windows update policies are preserved.
+- **VALORANT exceptions remain in place.** The Yes profile omits legacy update-blocking steps, broad startup disabling, IPv6/Teredo tuning, the automatic network reset, and combined privacy changes that affect security or device-management policies.
 - **A readiness report follows the operation.** It checks Secure Boot, TPM 2.0, Memory Integrity/VBS, Vanguard state, Windows dependencies, and boot-security overrides. Items needing attention appear in the results and progress log, with a saved report beside the activity file.
 - **No keeps the standard Personal Settings profile.** The VALORANT choice applies to Personal Settings; it does not automatically run other Suite tools.
 
-This profile does not guarantee VALORANT or Vanguard compatibility on every PC. Firmware, drivers, and Riot's requirements still apply. The Suite does not bypass Vanguard, add Defender exclusions, or force-enable Memory Integrity on hardware with unknown driver compatibility. A completed settings operation is not a successful game test.
+This profile does not guarantee VALORANT or Vanguard compatibility on every PC. Firmware, drivers, and Riot's requirements still apply. The Suite does not bypass Vanguard, change its boot modes, add Defender exclusions, or force-enable Memory Integrity on hardware with unknown driver compatibility. A completed settings operation is not a successful game test.
 
 ### Get the update
 
-Use **Check for Updates** in the Suite, or [download TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). The version is **13.0.12**, with file version **13.0.12.0**. V3 is the only app download in this release. The accompanying `manifest-v2.json` is used automatically by the updater and points directly to the V3 executable. Previous releases remain available.
+Use **Check for Updates** in the Suite, including if you already have the original 13.0.12 build, or [download the corrected TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). The release and displayed version remain **13.0.12**; the corrected executable has file version **13.0.12.1**. You can check **Properties > Details > File version** on the downloaded executable.
 
-Protected tools require a paid key. COD Config Installer and Socials do not require a key.
+V3 is the only app download in this release. The accompanying `manifest-v2.json` is used automatically by the updater and points directly to the V3 executable. Previous releases remain available. Protected tools require a paid key. COD Config Installer and Socials do not require a key.
 
 ### Validation
 
-Automated Windows PowerShell 5.1 policy and generation checks, mocked native UI actions, release-container and extraction verification, and package integrity checks passed. These checks did not apply Personal Settings to the build PC. Live VALORANT and fresh-Windows testing remain outstanding. This Suite release includes no ISO or USB changes.
+Automated checks passed for Windows PowerShell 5.1 policy and generation (47 checks), generated-worker orchestration with mocked system operations (60 checks), ordered progress transport (21 checks), packaged Personal Settings UI (12 checks), and packaged progress UI (26 checks). The orchestration checks confirm that the snapshot comes first, all selected settings steps precede DISM, and invalid profiles stop before changes or repair. Existing Windows repair-result checks, build checks, package integrity, complete-container verification, and authenticated extraction verification also passed.
+
+The signed update feed passed 19 updater regression cases in Windows PowerShell 5.1 using the packaged signature verifier, including detection of the 13.0.12.0 to 13.0.12.1 revision update. Update-helper launches were mocked.
+
+These checks did not apply Personal Settings, change live services, run DISM/SFC, or launch VALORANT on the test PC. Live VALORANT and fresh-Windows testing remain outstanding. This Suite release includes no ISO or USB changes.
 
 ### Download integrity
 
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: 201,284,496 bytes (approximately 192.0 MiB)
-- SHA-256: `EB5ECE8795F1547DB27DBACFDB2D477B9E012094249F91907425DCF0E33532F1`
+- File version: `13.0.12.1`
+- Size: 201,301,760 bytes (approximately 192.0 MiB)
+- SHA-256: `6315FA2B76424813FCC120E0319645D36F63F87062B50DB687D931CDF51CA38A`
 - Signed update manifest and internal package integrity; the executable is not Windows Authenticode-signed.
 
 ## V3 13.0.11 - September 13, 2026
