@@ -2,41 +2,45 @@
 
 ## V3 13.0.12 - September 15, 2026
 
-**The corrected 13.0.12 build applies normal TaC9 optimizations with reviewed VALORANT exceptions.** Personal Settings asks **Do you play VALORANT?** before applying; the answer is saved after a successful application.
+Updated September 19, 2026.
 
-- **Yes applies the selected service profile within reviewed limits.** The profile uses a list of 63 reviewed Windows service names; installed services and your selections determine the actual changes. Manual targets keep their current running state. Vendor, anti-cheat, security, virtualization, update, networking, and device dependencies are excluded from these optimization targets. Your Windows Search choice still applies.
-- **Five advanced settings are included again:** interrupt steering, threaded DPC, I/O latency cap, IOPageLockLimit, and queued presentation limit. CSRSS realtime priority and TSC boot overrides remain excluded.
-- **Eleven settings steps run before DISM/SFC:** Power Plan V2, fullscreen/latency, telemetry preferences, visual effects, Game Bar, Widgets/Copilot/AI, Edge preferences, Explorer layout, MSIX framework compatibility, Start/Search suggestions, and input safety. Selecting optional Microsoft runtime repair adds a twelfth step before Windows repair.
-- **Required settings are checked before changes begin.** A validated rollback snapshot is required before settings or services change. Missing, malformed, or incomplete service, advanced-setting, or script profiles stop with an explicit error. Planned counts and a completed-step summary appear before DISM/SFC.
-- **Personal Settings and Restore keep progress in order.** Fast running, completed, skipped, and warning messages stay visible. Tool percentages do not mark workflow phases as verified, and a new activity line does not mark the preceding step successful.
-- **Windows dependencies are recovered carefully.** Installed dependencies that were disabled receive reviewed Automatic or Manual settings. Existing non-disabled dependency settings and running states are preserved. The profile preserves Windows security, update access, Riot/Vanguard startup, audio, device installation, and AppX/MSIX dependencies. Managed Windows update policies are preserved.
-- **VALORANT exceptions remain in place.** The Yes profile omits legacy update-blocking steps, broad startup disabling, IPv6/Teredo tuning, the automatic network reset, and combined privacy changes that affect security or device-management policies.
-- **A readiness report follows the operation.** It checks Secure Boot, TPM 2.0, Memory Integrity/VBS, Vanguard state, Windows dependencies, and boot-security overrides. Items needing attention appear in the results and progress log, with a saved report beside the activity file.
-- **No keeps the standard Personal Settings profile.** The VALORANT choice applies to Personal Settings; it does not automatically run other Suite tools.
+**This update fixes Black Ops 7 shader-cache cleanup on Battle.net and improves Personal Settings verification and the Advanced settings display.** It includes the changes from internal builds 13.0.12.2 and 13.0.12.3. The displayed version stays **13.0.12**; the executable's file version is **13.0.12.3**.
 
-This profile does not guarantee VALORANT or Vanguard compatibility on every PC. Firmware, drivers, and Riot's requirements still apply. The Suite does not bypass Vanguard, change its boot modes, add Defender exclusions, or force-enable Memory Integrity on hardware with unknown driver compatibility. A completed settings operation is not a successful game test.
+### Black Ops 7 / Battle.net
+
+- Fixed shader-cache detection for the Battle.net installation layout: `Call of Duty\_retail_\cod25\shadercache`. The confirmed affected installation uses `C:\Program Files (x86)\Call of Duty\_retail_\cod25\shadercache`.
+- An outdated saved path can now resolve to an existing supported BO7 shader cache within the same Call of Duty installation. An existing cache you selected explicitly keeps priority.
+- Cleanup now reports **Folder not found** when the cache is absent, instead of claiming it was cleared. Empty caches, successful removal and cleanup failures have distinct results.
+- Cleanup stays limited to the validated shader-cache folder. Locked files report a failure, and linked folders are rejected.
+
+Close Call of Duty, then choose **COD Config Installer > BOPS7 > Battle.net**. Check the displayed shader-cache path before applying. Shaders may rebuild when you next launch the game.
+
+### Personal Settings and Advanced settings
+
+- Fixed false fullscreen/latency warnings caused by Windows reading the same 32-bit registry value in a different numeric format. Genuine write failures still produce warnings.
+- Personal Settings now reads advanced changes back before saving their applied state. Failed advanced, priority and service changes contribute to the final warning, with clearer progress details.
+- Advanced dropdowns show current Windows values instead of relying on an old saved selection. They preserve pending edits, refresh when reopened and recheck the state after a failed individual apply.
+- Improved verification of the reviewed settings steps, visual-effects changes and Power Plan V2. Already-default boot settings no longer trigger unnecessary removal errors.
+
+The earlier 13.0.12 Personal Settings workflow is included: **Do you play VALORANT?** selects the reviewed profile, with selected service changes, five advanced settings and eleven settings steps before Windows repair. Optional Microsoft runtime repair adds one step. The VALORANT choice applies to that Personal Settings profile; other Advanced cards remain separate choices. Existing VALORANT exclusions and Windows security preservation remain in place.
 
 ### Get the update
 
-Use **Check for Updates** in the Suite, including if you already have the original 13.0.12 build, or [download the corrected TaC9-PC-Optimization-Suite-V3.exe](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). The release and displayed version remain **13.0.12**; the corrected executable has file version **13.0.12.1**. You can check **Properties > Details > File version** on the downloaded executable.
-
-V3 is the only app download in this release. The accompanying `manifest-v2.json` is used automatically by the updater and points directly to the V3 executable. Previous releases remain available. Protected tools require a paid key. COD Config Installer and Socials do not require a key.
+Use **Check for Updates** in the Suite, even if it already displays 13.0.12, or [download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). To identify this update, check **Properties > Details > File version** for **13.0.12.3**.
 
 ### Validation
 
-Automated checks passed for Windows PowerShell 5.1 policy and generation (47 checks), generated-worker orchestration with mocked system operations (60 checks), ordered progress transport (21 checks), packaged Personal Settings UI (12 checks), and packaged progress UI (26 checks). The orchestration checks confirm that the snapshot comes first, all selected settings steps precede DISM, and invalid profiles stop before changes or repair. Existing Windows repair-result checks, build checks, package integrity, complete-container verification, and authenticated extraction verification also passed.
+The COD checks passed 500 assertions, including 65 new shader-cleanup assertions. The packaged COD interface passed 26 checks. Additional checks covered Windows registry value handling, generated Personal Settings actions, individual Advanced actions and live-value display. Package integrity and authenticated extraction also passed. The signed updater passed 19 regression cases, including recognition of the 13.0.12.1 to 13.0.12.3 update with the helper launch mocked.
 
-The signed update feed passed 19 updater regression cases in Windows PowerShell 5.1 using the packaged signature verifier, including detection of the 13.0.12.0 to 13.0.12.1 revision update. Update-helper launches were mocked.
-
-These checks did not apply Personal Settings, change live services, run DISM/SFC, or launch VALORANT on the test PC. Live VALORANT and fresh-Windows testing remain outstanding. This Suite release includes no ISO or USB changes.
+Testing used isolated folders, temporary registry keys, read-only engine queries and mocked system actions. The confirmed customer path passed read-only validation; cleanup on that customer's PC has not yet been verified. No full live Personal Settings application or VALORANT game session was performed for these revisions. These checks do not establish a performance gain or guarantee game compatibility.
 
 ### Download integrity
 
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- File version: `13.0.12.1`
-- Size: 201,301,760 bytes (approximately 192.0 MiB)
-- SHA-256: `6315FA2B76424813FCC120E0319645D36F63F87062B50DB687D931CDF51CA38A`
-- Signed update manifest and internal package integrity; the executable is not Windows Authenticode-signed.
+- File version: **13.0.12.3**
+- Size: **201,308,096 bytes** (approximately 192.0 MiB)
+- SHA-256: `D9B3077E8C61CEA9A70553B2F44B65F688B0EA360F4CB2F14DA098F014BABB7D`
+- Internal package integrity verified. The executable is not Windows Authenticode-signed.
 
 ## V3 13.0.11 - September 13, 2026
 

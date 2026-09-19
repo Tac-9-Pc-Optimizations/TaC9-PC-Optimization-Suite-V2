@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.12, corrected build:** Personal Settings asks **Do you play VALORANT?** Yes applies normal TaC9 optimizations with reviewed VALORANT exceptions, followed by Windows repair and a readiness report. Service settings, five advanced settings, and eleven settings steps run before DISM/SFC, with ordered progress that keeps fast steps visible. No keeps the standard profile. [Read the update notes](docs/RELEASE-NOTES.md).
+- **13.0.12, September 19 update:** Fixed BO7 Battle.net shader-cache detection, false fullscreen/latency warnings, verification of Personal Settings changes, and Advanced dropdowns showing old saved values. Includes the VALORANT Personal Settings profile with reviewed exceptions, five advanced settings and eleven settings steps before Windows repair. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -40,7 +40,7 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.12 — corrected build, file version 13.0.12.1**
+**Current release: V3 13.0.12 — September 19 update, file version 13.0.12.3**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe)**
 
@@ -73,7 +73,7 @@ The script does **not** launch the app, request administrator access, change exe
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '6315FA2B76424813FCC120E0319645D36F63F87062B50DB687D931CDF51CA38A') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D9B3077E8C61CEA9A70553B2F44B65F688B0EA360F4CB2F14DA098F014BABB7D') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -170,7 +170,7 @@ The installer provides separate **BOPS7** and **MW4 Beta** modes with **Battle.n
 - Sets `RendererWorkerCount` from physical CPU cores. Hybrid Intel processors use performance cores minus one. Supported AMD dual-CCD processors use 7 for 16 cores, 5 for 12 cores, or 4 for 10 cores. Other supported processors use physical cores minus one, within the config's supported range. Logical threads are not counted as extra cores.
 - Preserves first-seen originals so installing again does not replace the original backup with an already-modified configuration.
 - Supports **Restore Original** for the files managed by the installer.
-- Limits shader-cache cleanup to recognized files in the validated selected installation.
+- Removes only the validated shader-cache folder for the selected installation. BO7 Battle.net recognizes `Call of Duty\_retail_\cod25\shadercache` and corrects missing older paths within the same game installation. Missing folders and deletion failures are reported separately from successful removal.
 - Leaves unrelated player files alone and refuses paths that do not match the selected mode.
 
 Close the game before installing or restoring its configuration. Clearing shader cache may cause shaders to rebuild on the next launch. The tool manages configuration and cache files; it does not provide an anti-cheat bypass, unlock paid content, or modify the game executable. Game updates can change file formats and supported paths.
