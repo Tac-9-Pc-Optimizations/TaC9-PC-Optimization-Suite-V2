@@ -1,45 +1,48 @@
 # Release Notes
 
-## V3 13.0.12 - September 15, 2026
+## V3 13.0.12 - September 19, 2026
 
-Updated September 19, 2026.
+**The Suite now uses the new TaC9 NVIDIA profile for automatic GPU setup and Apply NVIDIA Profile Inspector in GPU Studio.** This update also fixes the old-driver backup error when applying a profile and improves per-monitor scaling override.
 
-**This update fixes Black Ops 7 shader-cache cleanup on Battle.net and improves Personal Settings verification and the Advanced settings display.** It includes the changes from internal builds 13.0.12.2 and 13.0.12.3. The displayed version stays **13.0.12**; the executable's file version is **13.0.12.3**.
+The displayed version stays **13.0.12**. This download has file version **13.0.12.4** and includes the earlier 13.0.12 fixes.
 
-### Black Ops 7 / Battle.net
+### NVIDIA profile
 
-- Fixed shader-cache detection for the Battle.net installation layout: `Call of Duty\_retail_\cod25\shadercache`. The confirmed affected installation uses `C:\Program Files (x86)\Call of Duty\_retail_\cod25\shadercache`.
-- An outdated saved path can now resolve to an existing supported BO7 shader cache within the same Call of Duty installation. An existing cache you selected explicitly keeps priority.
-- Cleanup now reports **Folder not found** when the cache is absent, instead of claiming it was cleared. Empty caches, successful removal and cleanup failures have distinct results.
-- Cleanup stays limited to the validated shader-cache folder. Locked files report a failure, and linked folders are rejected.
+- Replaced the old bundled profile with `best.txt`. Automatic GPU setup, driver reinstallation and GPU Studio's profile-apply button use the same new file.
+- Existing installations refresh their saved Suite profile, so an older cached copy cannot keep taking priority. Updating the Inspector tool also cannot bring back the old default profile.
+- Fixed **“GPU hardware differs from the saved backup”** blocking a standalone profile apply. That action checks the currently installed NVIDIA hardware and driver; it no longer needs a matching previous-driver record. Driver installation and rollback keep their separate checks.
+- Kept the Black Ops 7 ReBAR refresh, ending with an explicitly saved Disabled setting for BO7. The refresh leaves global ReBAR unchanged and now handles a profile where that BO7 setting was not already present.
+- The OpenGL GPU choice still adjusts to the GPU in each PC.
 
-Close Call of Duty, then choose **COD Config Installer > BOPS7 > Battle.net**. Check the displayed shader-cache path before applying. Shaders may rebuild when you next launch the game.
+### Display scaling
 
-### Personal Settings and Advanced settings
+- Fixed missing scaling-override targets after installing from Microsoft Basic Display Adapter.
+- Improved monitor matching for displays without a text serial number and applied the override after the final resolution and color changes.
+- Native-resolution displays use the normal Override setting. Custom resolutions keep Full-screen scaling with **Override the scaling mode set by games and programs** unchecked.
+- Restart Windows normally after GPU setup so NVIDIA loads the saved scaling override.
+- Unconfirmed monitor changes remain visible in the operation log instead of being reported as verified.
 
-- Fixed false fullscreen/latency warnings caused by Windows reading the same 32-bit registry value in a different numeric format. Genuine write failures still produce warnings.
-- Personal Settings now reads advanced changes back before saving their applied state. Failed advanced, priority and service changes contribute to the final warning, with clearer progress details.
-- Advanced dropdowns show current Windows values instead of relying on an old saved selection. They preserve pending edits, refresh when reopened and recheck the state after a failed individual apply.
-- Improved verification of the reviewed settings steps, visual-effects changes and Power Plan V2. Already-default boot settings no longer trigger unnecessary removal errors.
+### Earlier fixes included
 
-The earlier 13.0.12 Personal Settings workflow is included: **Do you play VALORANT?** selects the reviewed profile, with selected service changes, five advanced settings and eleven settings steps before Windows repair. Optional Microsoft runtime repair adds one step. The VALORANT choice applies to that Personal Settings profile; other Advanced cards remain separate choices. Existing VALORANT exclusions and Windows security preservation remain in place.
+- BO7 Battle.net shader cleanup recognizes `Call of Duty\_retail_\cod25\shadercache` and corrects an outdated saved path within the same game installation. Missing folders and failed cleanup have separate results.
+- Fixed false fullscreen/latency warnings and improved verification of Personal Settings changes.
+- Advanced dropdowns show current Windows values and refresh after individual changes.
+- VALORANT Personal Settings applies the reviewed optimizations and selected service changes while retaining its security and service exceptions.
 
 ### Get the update
 
-Use **Check for Updates** in the Suite, even if it already displays 13.0.12, or [download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). To identify this update, check **Properties > Details > File version** for **13.0.12.3**.
+Use **Check for Updates** in the Suite, even if it already displays 13.0.12, or [download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe). Check **Properties > Details > File version** for **13.0.12.4**.
 
 ### Validation
 
-The COD checks passed 500 assertions, including 65 new shader-cleanup assertions. The packaged COD interface passed 26 checks. Additional checks covered Windows registry value handling, generated Personal Settings actions, individual Advanced actions and live-value display. Package integrity and authenticated extraction also passed. The signed updater passed 19 regression cases, including recognition of the 13.0.12.1 to 13.0.12.3 update with the helper launch mocked.
-
-Testing used isolated folders, temporary registry keys, read-only engine queries and mocked system actions. The confirmed customer path passed read-only validation; cleanup on that customer's PC has not yet been verified. No full live Personal Settings application or VALORANT game session was performed for these revisions. These checks do not establish a performance gain or guarantee game compatibility.
+Profile selection, stale-cache replacement, standalone profile checks, BO7 refresh and scaling policy were tested with isolated files and simulated Windows/NVIDIA calls. Package integrity, extraction and the signed in-app update path were verified. These checks do not replace testing the applied scaling setting on an affected customer PC; no live driver reinstall or display change was performed for this build.
 
 ### Download integrity
 
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- File version: **13.0.12.3**
-- Size: **201,308,096 bytes** (approximately 192.0 MiB)
-- SHA-256: `D9B3077E8C61CEA9A70553B2F44B65F688B0EA360F4CB2F14DA098F014BABB7D`
+- File version: **13.0.12.4**
+- Size: **201,202,176 bytes**
+- SHA-256: `A1D39B644DD510AE620F2B4B7D320BFD0B471D6B9F157197034FE19C3C38BD22`
 - Internal package integrity verified. The executable is not Windows Authenticode-signed.
 
 ## V3 13.0.11 - September 13, 2026

@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.12, September 19 update:** Fixed BO7 Battle.net shader-cache detection, false fullscreen/latency warnings, verification of Personal Settings changes, and Advanced dropdowns showing old saved values. Includes the VALORANT Personal Settings profile with reviewed exceptions, five advanced settings and eleven settings steps before Windows repair. [Read the update notes](docs/RELEASE-NOTES.md).
+- **13.0.12, September 19 update:** Added the new default NVIDIA profile across automatic GPU setup and GPU Studio. Fixed standalone profile apply being blocked by an old driver backup, and improved per-monitor scaling override. Includes the BO7 shader-cache and Personal Settings fixes. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -40,13 +40,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.12 — September 19 update, file version 13.0.12.3**
+**Current release: V3 13.0.12 — September 19 update, file version 13.0.12.4**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.12 is approximately 192.0 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.12 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -73,7 +73,7 @@ The script does **not** launch the app, request administrator access, change exe
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D9B3077E8C61CEA9A70553B2F44B65F688B0EA360F4CB2F14DA098F014BABB7D') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'A1D39B644DD510AE620F2B4B7D320BFD0B471D6B9F157197034FE19C3C38BD22') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
