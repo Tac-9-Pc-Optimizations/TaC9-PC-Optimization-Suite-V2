@@ -4,6 +4,17 @@
 
 This release adds **VALORANT Checker & Repair**, introduces the new reviewed **TaC9 Personal Settings** flow, and brings **Full System Cleanup** into the Windows command center. The original profile remains available as **Old TaC Settings**. This is the complete eight-workspace Suite.
 
+### VALORANT checklist update - file 13.0.13.1
+
+- Adds a clear checklist for all 19 checks, with **Current state** and **What to do** for each result.
+- Shows **Ready**, **Needs attention**, **Unconfirmed**, and **Information** counts, with items needing attention first and passing checks still visible.
+- Separates protections running now from disabled, missing, unknown, or restart-pending settings. Green checkmarks appear only for verified passing results.
+- Adds searchable results and expandable check details, plus a compact layout for smaller windows.
+- Marks previous results as out of date while rechecking and waits for fresh results before repair or restore can be used.
+- Preserves the existing repair eligibility checks, separate backup, and complete eight-workspace Suite.
+
+This updates the existing **13.0.13** release. The app and release continue to display **13.0.13**, while Windows file properties and the signed updater use **13.0.13.1** so the earlier build detects the update. Personal Settings does not need to be run again for this checklist update.
+
 ### VALORANT Checker & Repair
 
 - Open the checker from the Windows command center or Windows Repair. Checking the PC reads its current state without applying Personal Settings.
@@ -44,16 +55,16 @@ The prior default NVIDIA profile, GPU Studio profile-apply fix, per-monitor scal
 
 ### Install and verification
 
-Close the previous Suite, download the V3 executable below, or use **Check for Updates**. The app and release display **13.0.13**; Windows file properties and the signed updater use **13.0.13.0**. Protected tools still require a paid key.
+Close the previous Suite, download the V3 executable below, or use **Check for Updates**. The app and release display **13.0.13**; Windows file properties and the signed updater use **13.0.13.1**. Protected tools still require a paid key.
 
 Verification covers simulated Windows check/repair/restore cases, UI and routing tests, existing-profile preservation, complete-package integrity/extraction, native startup, and navigation. Tests do not apply maintenance settings to the development PC and do not constitute a VALORANT launch test on every supported system.
 
 ### Download integrity
 
 - Application: `TaC9-PC-Optimization-Suite-V3.exe`
-- File version: `13.0.13.0`
-- Size: `201389536` bytes
-- SHA-256: `00C26F41C9672F6A9200BD0BB967F141260620FEC68DBF0AAB581270C8641435`
+- File version: `13.0.13.1`
+- Size: `201409776` bytes
+- SHA-256: `5B4195EE90E119AEB494FE38DE090244CF8FB1A84FC7210C628B7284502E493C`
 
 V3 is the only application download. `manifest-v2.json` is the signed update feed used by the Suite and the official download script.
 
