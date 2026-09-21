@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.13:** Added VALORANT Checker & Repair, the rebuilt Personal Settings profile with Old TaC Settings preserved, an editable VALORANT selector, Windows Search choice, and standalone Full System Cleanup. [Read the full update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.12, September 19 update:** Added the new default NVIDIA profile across automatic GPU setup and GPU Studio. Fixed standalone profile apply being blocked by an old driver backup, and improved per-monitor scaling override. Includes the BO7 shader-cache and Personal Settings fixes. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.11:** Fixed GPU setup stopping at 11% with “The detected GPU changed during driver selection” on fresh NVIDIA installations. Driver selection checks the actual NVIDIA hardware and waits for the compatible driver list to finish loading. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -40,13 +42,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.12 — September 19 update, file version 13.0.12.4**
+**Current release: V3 13.0.13 - file version 13.0.13.0**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.13/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.12 is approximately 191.9 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.13 is approximately 192.1 MiB. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -67,13 +69,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.12 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.13 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.12/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.13/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'A1D39B644DD510AE620F2B4B7D320BFD0B471D6B9F157197034FE19C3C38BD22') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '00C26F41C9672F6A9200BD0BB967F141260620FEC68DBF0AAB581270C8641435') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -100,7 +102,9 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 
 The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and operating-system details together with the suite's Windows tools. It provides access to personal settings, optimization cards, service profiles, selected registry controls, repair utilities, and optional changes that require extra care.
 
-- **TaC9 Personal Settings:** choose Yes or No to **Do you play VALORANT?** before applying. Yes applies the selected service profile within a reviewed Windows service list, five advanced settings, and eleven settings steps including TaC-_-9 Power Plan V2 before DISM/SFC. It preserves Windows security and Riot/Vanguard startup and reports readiness issues after applying. No keeps the standard profile. The choice is saved after a successful application, and a validated backup is required before changes.
+- **TaC9 Personal Settings:** the new reviewed profile includes Power Plan V2, selected input, privacy and service settings, supported RSS/TRIM/HAGS, and explicit Windows Search and VALORANT choices. Its apply and restore are separate from **Old TaC Settings**, which retains the original profile. The selected printing services disable printing. Disabling Recall can delete its saved snapshots.
+- **VALORANT Checker & Repair:** check the current PC without applying Personal Settings, repair eligible Windows settings with a separate backup, and identify restart, BIOS, driver, or installation requirements. Recheck after restarting; only launching VALORANT verifies game access.
+- **Full System Cleanup:** a separate review-and-run tool for supported caches and temporary files, Store cache reset, Recycle Bin and Disk Cleanup. It replaces the old cleanup card and is not part of the new Personal Settings profile. Old TaC Settings retains its legacy behavior. Deleted files cannot be restored by the Suite.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
@@ -112,9 +116,9 @@ The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and
 
 Individual setting changes start faster and refresh only the selected card when finished. Supported settings still use the first-seen backup and are checked against Windows after the change. Whole-profile workflows keep their own backup and restore-point steps.
 
-Personal Settings shows planned work and a completed-step summary before Windows repair. Missing or incomplete settings profiles stop with an explicit error before changes begin. Personal Settings and Restore keep progress messages in order, including fast steps; a percentage or a new activity line does not mark an earlier phase as verified.
+Personal Settings verifies eligible changes and keeps progress messages in order, including fast steps. The new profile does not automatically run Windows repair, runtime installers, or cleanup. Unsupported settings are reported as skipped. New and old profiles have separate preferences and backups; applying the new profile does not undo unrelated earlier changes.
 
-The VALORANT readiness report checks security prerequisites, Vanguard state, and Windows dependencies. It reports items needing attention; a successful settings operation does not guarantee that VALORANT will launch. Live VALORANT and fresh-Windows testing remain outstanding for this profile. [Read the 13.0.12 release notes](docs/RELEASE-NOTES.md#v3-13012---september-15-2026).
+VALORANT Checker & Repair checks actual protection state separately from saved settings. It preserves managed security restrictions, skips firmware changes and unsupported repairs, and requires a restart and recheck where appropriate. Verification includes simulated repair/restore and native UI tests; a completed settings operation is not a verified game launch. [Read the full 13.0.13 release notes](docs/RELEASE-NOTES.md).
 
 Optional or caution-marked settings should be reviewed individually. More disabled services or more changes do not automatically mean better performance.
 
@@ -128,6 +132,7 @@ Choose **DISM + SFC Full Repair** to repair the Windows component image first, t
 - Displays repair progress, elapsed time, session status, and an activity log inside the suite.
 - Reports whether Windows found corruption, repaired it, encountered an error, or still needs attention.
 - Saves a session log for troubleshooting and keeps the restart decision explicit.
+- Opens the separate **VALORANT Checker & Repair** for game prerequisite checks and supported Windows fixes.
 
 Keep the app open during a repair. Some DISM failures require a matching Windows repair source or further investigation; a repair tool cannot resolve every hardware or Windows problem.
 

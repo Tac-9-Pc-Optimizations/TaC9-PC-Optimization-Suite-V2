@@ -1,5 +1,62 @@
 # Release Notes
 
+## V3 13.0.13 - September 21, 2026
+
+This release adds **VALORANT Checker & Repair**, introduces the new reviewed **TaC9 Personal Settings** flow, and brings **Full System Cleanup** into the Windows command center. The original profile remains available as **Old TaC Settings**. This is the complete eight-workspace Suite.
+
+### VALORANT Checker & Repair
+
+- Open the checker from the Windows command center or Windows Repair. Checking the PC reads its current state without applying Personal Settings.
+- Inspect Windows version, UEFI, Secure Boot, TPM 2.0, CPU virtualization, VBS, Memory Integrity, available DMA protection evidence, boot settings, Windows security components, and installed Vanguard services.
+- Distinguish protections running now from settings awaiting a restart, firmware changes, missing components, and checks Windows could not confirm.
+- Use **Fix Windows Settings** for eligible Windows changes. It can enable supported VBS/Memory Integrity settings, repair supported boot options, and make already-installed disabled HV Host and Vanguard user services available to start when needed.
+- Repairs save a separate backup and verify the changes. **Restore Repair Backup** restores the settings changed by that repair, subject to current security and system checks.
+- A stopped Vanguard service is not automatically treated as broken: optional Vanguard on-demand mode is accounted for.
+- The result identifies manual follow-up. Firmware settings, incompatible drivers, missing Vanguard, managed security policies, and stripped Windows components may require separate action. Boot changes are skipped if drive encryption protection is active or cannot be confirmed.
+- Restart when requested, recheck, and launch VALORANT to verify the result. A completed check is not a verified game launch; Vanguard can impose additional requirements.
+
+### New TaC9 Personal Settings
+
+- The new profile replaces the default Personal Settings apply flow. **Old TaC Settings** keeps the original profile with separate choices, backups, and restore controls. Individual cards, services, and advanced controls remain available.
+- Keeps the complete **TaC-_-9 Power Plan V2**, Game Mode, supported hardware GPU scheduling, input/menu/accessibility-shortcut preferences, supported RSS and TRIM, and the selected service settings.
+- Adds an explicit **Windows Search: Enable / Disable** choice, with saved preference and restoration of its previous startup and running state.
+- Adds reviewed activity-history, advertising, tailored-experience, diagnostic, typing/inking, contact-dictionary, feedback, and device-name privacy settings.
+- Disables peer-to-peer update sharing while preserving ordinary Windows Update downloads. Sets installed Maps Broker to Manual.
+- Adds supported Widgets, Notepad AI, and Recall controls; supported Brave analytics opt-outs; PowerShell telemetry opt-out; and reduced window/taskbar animations. Availability depends on the installed Windows edition, build, and applications.
+- The **Do you play VALORANT?** selector remains editable in both profiles. Saved choices and edits survive background refreshes.
+- The normal profile disables the selected Hyper-V services; the VALORANT choice preserves enabled startup modes and makes disabled targets available without forcing every guest service to run.
+- Corrects handling of the per-user print workflow service: configure its persistent template, handle current instances where permitted, and report when sign-out or restart is needed.
+- Reports unsupported or absent settings as skipped, preserves ordered progress, and verifies applicable changes. The new profile does not automatically run DISM/SFC, runtime installers, network resets, or cleanup.
+
+The selected printing services disable printing in both profile choices. Turning off Recall can delete its saved snapshots; restoring settings cannot recover that history. Applying the new profile does not automatically undo unrelated settings previously applied with Old TaC Settings or other tools.
+
+### Standalone Full System Cleanup
+
+- Adds a dedicated review-and-run tool in the Windows command center and removes the old cleanup card from the Windows card list.
+- Covers temporary files, Prefetch, update/download caches, error reports, DirectX/NVIDIA/AMD shader caches, supported browser caches, Store cache reset, Recycle Bin, and Windows Disk Cleanup.
+- Preserves recent temporary files, locked files, links/junctions, and active Suite files. Running browsers and active or unconfirmed update work are skipped.
+- Restores update services it temporarily stopped, without changing their startup modes. Reports completed, skipped, retained, and failed categories separately.
+- This new cleanup tool runs only when selected and confirmed. It is separate from the new Personal Settings profile; Old TaC Settings retains its legacy behavior. Deleted files and emptied Recycle Bin contents cannot be restored by the Suite; games may rebuild shader caches afterward.
+
+### Included previous fixes
+
+The prior default NVIDIA profile, GPU Studio profile-apply fix, per-monitor scaling improvements, custom-resolution handling, BO7 Battle.net shader-cache cleanup, and existing Suite tools remain included.
+
+### Install and verification
+
+Close the previous Suite, download the V3 executable below, or use **Check for Updates**. The app and release display **13.0.13**; Windows file properties and the signed updater use **13.0.13.0**. Protected tools still require a paid key.
+
+Verification covers simulated Windows check/repair/restore cases, UI and routing tests, existing-profile preservation, complete-package integrity/extraction, native startup, and navigation. Tests do not apply maintenance settings to the development PC and do not constitute a VALORANT launch test on every supported system.
+
+### Download integrity
+
+- Application: `TaC9-PC-Optimization-Suite-V3.exe`
+- File version: `13.0.13.0`
+- Size: `201389536` bytes
+- SHA-256: `00C26F41C9672F6A9200BD0BB967F141260620FEC68DBF0AAB581270C8641435`
+
+V3 is the only application download. `manifest-v2.json` is the signed update feed used by the Suite and the official download script.
+
 ## V3 13.0.12 - September 19, 2026
 
 **The Suite now uses the new TaC9 NVIDIA profile for automatic GPU setup and Apply NVIDIA Profile Inspector in GPU Studio.** This update also fixes the old-driver backup error when applying a profile and improves per-monitor scaling override.
