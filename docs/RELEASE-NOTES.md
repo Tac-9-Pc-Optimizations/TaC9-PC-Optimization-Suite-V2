@@ -1,8 +1,17 @@
 # Release Notes
 
-## V3 13.0.14 - September 22, 2026
+## V3 13.0.14 - September 22, 2026; updated September 23, 2026
 
 This update replaces the Suite's default NVIDIA Profile Inspector configuration with the new **617.14 profile** for the NVIDIA driver update. It is the complete eight-workspace Suite.
+
+### OpenGL selection fix - file 13.0.14.1
+
+- Handles a missing OpenGL rendering GPU setting during NVIDIA profile setup. When the installed GPU can be identified reliably, the Suite creates the setting, saves it, and verifies it through a newly loaded NVIDIA profile session.
+- If the driver cannot provide a usable GPU selection, the Suite leaves NVIDIA's existing/default selection unchanged, records a setup note, and continues the remaining profile and monitor steps.
+- Applies to automatic driver setup, reinstall workflows, and **Apply NVIDIA Profile Inspector** in GPU Studio. Profile write/save failures still report an error.
+- Keeps the approved `617.14_.txt` profile unchanged. The complete eight-workspace Suite is included.
+
+This updates the existing **13.0.14** release. The signed updater uses **13.0.14.1** so the previous build detects the update.
 
 ### NVIDIA profile update
 
@@ -16,7 +25,7 @@ The profile contains **7,978 profile entries**. The approved Inspector engine, G
 
 ### Install and apply
 
-Use **Check for Updates** in the Suite or download the V3 executable below. The app and GitHub release display **13.0.14**; Windows file properties and the signed updater use **13.0.14.0**.
+Use **Check for Updates** in the Suite or download the V3 executable below. The app and GitHub release display **13.0.14**; Windows file properties and the signed updater use **13.0.14.1**.
 
 After updating, open **GPU Studio > Apply NVIDIA Profile Inspector** to apply the new profile to an existing NVIDIA installation. Automatic driver setup also uses the new profile. Updating the Suite by itself does not apply GPU settings. **Personal Settings does not need to be run again for this update.**
 
@@ -24,14 +33,14 @@ The VALORANT checklist, Personal Settings choices, Full System Cleanup, COD inst
 
 ### Verification
 
-Verified the supplied file's exact bytes and complete profile structure, profile selection and cached-default migration, tool refresh and preservation of user exports, BO7 mappings/refresh fixtures, the signed updater, protected package integrity, and full-Suite native startup/navigation. No live driver reinstall or profile import was performed for this release verification; this is not a benchmark or certification of every driver/GPU combination.
+Verified missing-setting creation, unavailable/ambiguous GPU fallback, persisted-setting readback, continuation and warning reporting with simulated NVIDIA responses, the supplied file's exact bytes and complete profile structure, profile selection and cached-default migration, tool refresh and preservation of user exports, BO7 mappings/refresh fixtures, the signed updater, protected package integrity, and full-Suite native startup/navigation. No live driver reinstall or profile import was performed for this release verification; this is not a benchmark or certification of every driver/GPU combination.
 
 ### Download integrity
 
 - Application: `TaC9-PC-Optimization-Suite-V3.exe`
-- File version: `13.0.14.0`
-- Size: `201410064` bytes
-- SHA-256: `94D4D8423504A277EC606657B1227E544294EAA09023168AA3FEBD600773C18A`
+- File version: `13.0.14.1`
+- Size: `201416192` bytes
+- SHA-256: `03447AD216914BB395A3709A7297AED2C30D67FE98F91A9980763C40DB7718E3`
 - Bundled profile SHA-256: `A104E72E6D21AE7EC5391AAEDB4868471B1510B29C6E6CBC9D37FC5E369F8F3E`
 
 V3 is the only application download. `manifest-v2.json` is the signed update feed used by the Suite and the official download script.
