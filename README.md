@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.14:** Updated the NVIDIA profile for the 617.14 driver update across GPU setup, GPU Studio apply, desktop Inspector, and cached defaults. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.13, checklist update (file 13.0.13.1):** Added a 19-item VALORANT checklist with current state, next steps, attention counts, search, and expandable details. The complete Suite also includes VALORANT Checker & Repair, the rebuilt Personal Settings profile with Old TaC Settings preserved, an editable VALORANT selector, Windows Search choice, and standalone Full System Cleanup. [Read the full update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.12, September 19 update:** Added the new default NVIDIA profile across automatic GPU setup and GPU Studio. Fixed standalone profile apply being blocked by an old driver backup, and improved per-monitor scaling override. Includes the BO7 shader-cache and Personal Settings fixes. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -42,13 +44,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.13 - file version 13.0.13.1**
+**Current release: V3 13.0.14 - file version 13.0.14.0**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.13/TaC9-PC-Optimization-Suite-V3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.14/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.13 is approximately 192.1 MiB. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.14 is approximately 192.1 MiB. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -69,13 +71,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.13 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.14 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.13/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.14/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '5B4195EE90E119AEB494FE38DE090244CF8FB1A84FC7210C628B7284502E493C') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '94D4D8423504A277EC606657B1227E544294EAA09023168AA3FEBD600773C18A') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -284,7 +286,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. File version **13.0.13.1** is delivered through the existing signed update feed to older Suite builds.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. File version **13.0.14.0** is delivered through the existing signed update feed to older Suite builds.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

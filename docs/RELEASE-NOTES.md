@@ -1,5 +1,41 @@
 # Release Notes
 
+## V3 13.0.14 - September 22, 2026
+
+This update replaces the Suite's default NVIDIA Profile Inspector configuration with the new **617.14 profile** for the NVIDIA driver update. It is the complete eight-workspace Suite.
+
+### NVIDIA profile update
+
+- Uses the new `617.14_.txt` profile for automatic GPU driver setup, reinstall workflows, and **Apply NVIDIA Profile Inspector** in GPU Studio.
+- Uses the same bundled profile when preparing the desktop Inspector package and refreshing the Suite's saved profile cache.
+- Replaces older cached Suite defaults even when their tracking record is missing or outdated. A separately updated Inspector tool cannot substitute its own older profile.
+- Removes the previous bundled default. Desktop refresh removes only exact copies of retired Suite exports, preserving modified files and users' other profile exports.
+- Retains the installed-GPU OpenGL selection and BO7 ReBAR handling. The new export enables global ReBAR and disables it for the BO7 profile; the BO7 refresh verifies its final value without changing the global value.
+
+The profile contains **7,978 profile entries**. The approved Inspector engine, GPU compatibility checks, driver rollback protections, and display/custom-resolution handling remain in place. The driver installer continues to select a compatible driver; this profile update does not force a driver version onto unsupported hardware.
+
+### Install and apply
+
+Use **Check for Updates** in the Suite or download the V3 executable below. The app and GitHub release display **13.0.14**; Windows file properties and the signed updater use **13.0.14.0**.
+
+After updating, open **GPU Studio > Apply NVIDIA Profile Inspector** to apply the new profile to an existing NVIDIA installation. Automatic driver setup also uses the new profile. Updating the Suite by itself does not apply GPU settings. **Personal Settings does not need to be run again for this update.**
+
+The VALORANT checklist, Personal Settings choices, Full System Cleanup, COD installer, and all other Suite workspaces are included.
+
+### Verification
+
+Verified the supplied file's exact bytes and complete profile structure, profile selection and cached-default migration, tool refresh and preservation of user exports, BO7 mappings/refresh fixtures, the signed updater, protected package integrity, and full-Suite native startup/navigation. No live driver reinstall or profile import was performed for this release verification; this is not a benchmark or certification of every driver/GPU combination.
+
+### Download integrity
+
+- Application: `TaC9-PC-Optimization-Suite-V3.exe`
+- File version: `13.0.14.0`
+- Size: `201410064` bytes
+- SHA-256: `94D4D8423504A277EC606657B1227E544294EAA09023168AA3FEBD600773C18A`
+- Bundled profile SHA-256: `A104E72E6D21AE7EC5391AAEDB4868471B1510B29C6E6CBC9D37FC5E369F8F3E`
+
+V3 is the only application download. `manifest-v2.json` is the signed update feed used by the Suite and the official download script.
+
 ## V3 13.0.13 - September 21, 2026
 
 This release adds **VALORANT Checker & Repair**, introduces the new reviewed **TaC9 Personal Settings** flow, and brings **Full System Cleanup** into the Windows command center. The original profile remains available as **Old TaC Settings**. This is the complete eight-workspace Suite.
