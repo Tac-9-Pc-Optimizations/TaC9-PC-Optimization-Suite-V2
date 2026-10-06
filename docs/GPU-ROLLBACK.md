@@ -16,6 +16,16 @@ The screen can flicker or briefly go black during driver removal and installatio
 
 Version **13.0.11** fixes the false **“The detected GPU changed during driver selection”** stop at 11%. The Suite now matches the NVIDIA hardware identity instead of relying on its display name, which can differ while Windows is using Microsoft Basic Display Adapter. It also waits for NVCleanstall's compatible driver list to finish loading before making the selection. A real hardware mismatch or incompatible package still stops the workflow before DDU.
 
+## Current NVIDIA defaults - 13.0.15
+
+The approved `617.42.txt` profile is used throughout driver setup and GPU Studio's **Apply NVIDIA Profile Inspector** action. The desktop Inspector package and cached default use the same file. Modified user exports are preserved when exact old Suite exports are replaced.
+
+NVCleanstall's **Disable Multiplane Overlay (MPO)** option is unchecked when preparing a new driver package. Updating the Suite or applying the profile alone does not remove a previous MPO override.
+
+**Preferred refresh rate** in Manage 3D settings is explicitly saved as **Application-controlled** after Inspector finishes applying. The Suite verifies the base and active global settings through a fresh NVIDIA session and checks again after monitor setup, including resumed installs. A failed save or readback reports an error. Desktop monitor Hz and custom-resolution preservation are separate from this setting.
+
+For an existing driver, use **GPU Studio > Apply NVIDIA Profile Inspector** to apply the profile and refresh preference without reinstalling. Updating alone does not apply GPU settings, and Personal Settings does not need to be run again. [All profile changes and release details](RELEASE-NOTES.md).
+
 ## Return to the previous driver
 
 1. Open **GPU Studio** and select **Roll Back Driver**.

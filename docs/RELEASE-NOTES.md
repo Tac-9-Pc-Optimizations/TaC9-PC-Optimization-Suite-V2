@@ -1,5 +1,85 @@
 # Release Notes
 
+## V3 13.0.15 - October 6, 2026
+
+This release brings the **617.42 NVIDIA Profile Inspector profile**, **MPO enabled during new driver-package setup**, and a **verified Application-controlled Preferred refresh rate** into the complete eight-workspace Suite.
+
+### NVIDIA profile 617.42 across the Suite
+
+- Replaces the previous bundled `617.14_.txt` default with the supplied `617.42.txt` export.
+- Uses the same profile for automatic GPU driver setup, driver selection/reinstall workflows, GPU Studio's **Apply NVIDIA Profile Inspector**, the desktop Inspector package, and the Suite's cached default.
+- A separately updated Inspector executable still uses the approved bundled profile. Exact retired Suite profile copies are replaced after the new copy is verified; modified user exports are preserved.
+- The profile's Preferred refresh rate entries now use Application-controlled for the global Base Profile, Black Ops 7, Marvel Rivals, and 3DMark Steel Nomad.
+- Keeps global ReBAR enabled and Black Ops 7 ReBAR disabled. The existing BO7 enable/save, disable/save, and final readback sequence remains in place.
+- The driver installer continues to select a compatible driver. The profile filename does not force driver 617.42 onto unsupported hardware.
+
+#### Other settings changed in the supplied export
+
+All 7,978 profile blocks and their executable mappings are retained. In addition to the four Preferred refresh rate changes above, the supplied export adds these explicit profile settings:
+
+| Profile | Added settings |
+| --- | --- |
+| Fortnite | Prefer maximum performance; DLSS Performance-to-Ultra Performance override On; latest available Frame Generation preset; fixed 6x and dynamic up-to-6x count values. Frame Generation forced mode and fullscreen-menu detection remain N/A; these entries alone do not mean Frame Generation is enabled. |
+| VALORANT | Prefer maximum performance; CUDA Force P2 State Off; ReBAR options value 1 and size limit 16 GiB. |
+| Call of Duty: Modern Warfare 4 | CUDA Force P2 State Off. |
+| GOG | RTX HDR Allow value 0 and G-SYNC application mode Force Off. |
+
+Exact additions in the export, for review:
+
+- Fortnite: `0x10308298=0`, `0x104596a1=0`, `0x104d6667=5`, `0x10562d0f=5`, `0x1057eb71=1`, `0x10afb76c=1`, `0x10e41df1=0x00ffffff`.
+- VALORANT: `0x000f00bb=1`, `0x000f00ff=0x0000000400000000` (64-bit), `0x1057eb71=1`, `0x50166c5e=0`.
+- Call of Duty: Modern Warfare 4: `0x50166c5e=0`.
+- GOG: `0x1077a11a=0`, `0x10a879cf=1`.
+
+These are the supplied profile values; support and behavior depend on the driver, GPU, and game. No other profile setting values or executable mappings changed between the old and new exports.
+
+### MPO stays enabled in new driver packages
+
+- NVCleanstall's **Disable Multiplane Overlay (MPO)** option is now explicitly unchecked and its checkbox state is verified.
+- The GPU setup instructions and bundled checklist now match that choice.
+- This changes how the Suite prepares a new driver package. Updating the Suite or applying the Inspector profile alone does not reverse an MPO registry override left by an earlier installation or another tool. Separate Windows MPO controls are unchanged.
+
+### NVIDIA Control Panel Preferred refresh rate
+
+- Explicitly saves **Preferred refresh rate = Application-controlled** through NVIDIA's settings API instead of relying only on the imported text profile.
+- Applies the final value after Profile Inspector finishes its background Apply step and closes. Existing Control Panel windows are closed before the settings commit so reopening shows the saved settings.
+- Updates both the base profile and active global profile, without changing the selected global profile or unrelated settings.
+- Reloads NVIDIA settings in a fresh session and verifies the saved value. A failed write/save or a readback of Highest available prevents a false success result.
+- Applies through automatic driver setup, reinstall/rollback setup, GPU Studio's standalone profile Apply, and the manual profile-apply step.
+- Driver installation checks the value again after monitor setup, including resumed runs whose profile was already marked applied by an older build.
+- A skipped OpenGL GPU selection does not skip this refresh-rate correction. The result and progress log show the verified setting.
+- This is the **Manage 3D settings** preference. Existing desktop resolution, monitor Hz, and custom-resolution preservation behavior are unchanged.
+
+### Included fixes and complete Suite
+
+Includes the OpenGL GPU-selection fix already delivered in file 13.0.14.1: when the installed GPU cannot be identified reliably, its existing/default OpenGL choice is kept, a setup note is recorded, and the remaining profile steps continue. Genuine profile write/save failures still report an error.
+
+The full Suite remains included: Windows optimization controls and Personal Settings, Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials. The VALORANT checklist, Power Plan V2, Full System Cleanup, custom-resolution handling, and previous COD fixes are retained.
+
+### Update and apply
+
+Use **Check for Updates** in the Suite or download `TaC9-PC-Optimization-Suite-V3.exe` below. The app and release display **13.0.15**; Windows file properties and the signed updater use **13.0.15.0**. Older public builds and the 13.0.14 local test revisions detect this as a newer version.
+
+To apply the new NVIDIA profile and Preferred refresh rate to an existing driver, close games and open **GPU Studio > Apply NVIDIA Profile Inspector**. A driver reinstall is not needed for those two changes. Automatic driver setup also applies them; the unchecked MPO option takes effect when preparing a new driver package.
+
+Updating the Suite by itself does not apply GPU settings. **You do not need to rerun TaC9 Personal Settings for this update.**
+
+### Verification
+
+Validated the supplied profile's exact bytes, cached/default replacement, preservation of user exports, and BO7 settings. Mocked NVIDIA tests cover existing/missing settings, separate base/global profiles, fresh-session persistence, failed saves/readbacks, OpenGL fallback, background-Apply ordering, and resumed driver runs. The full package passed integrity/extraction checks and native startup/navigation across all eight workspaces.
+
+No live driver reinstall or live profile application was performed during release verification. These checks do not certify every GPU/driver combination.
+
+### Download integrity
+
+- Application: `TaC9-PC-Optimization-Suite-V3.exe`
+- File version: `13.0.15.0`
+- Size: `201424224` bytes
+- SHA-256: `9810075E9B183778A2AA9311857274964DF56E86D71F12B871C8629DC43A7864`
+- Bundled profile SHA-256: `58B8859112FBA87B5923133B19F9A707D3C0E5C3649CA0387662D76BADF97D97`
+
+V3 is the only application download. `manifest-v2.json` is the signed update feed required by the Suite and official downloader.
+
 ## V3 13.0.14 - September 22, 2026; updated September 23, 2026
 
 This update replaces the Suite's default NVIDIA Profile Inspector configuration with the new **617.14 profile** for the NVIDIA driver update. It is the complete eight-workspace Suite.
