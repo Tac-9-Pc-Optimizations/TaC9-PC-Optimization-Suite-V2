@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.15:** New 617.42 NVIDIA profile throughout GPU setup and GPU Studio, Disable MPO unchecked in new NVCleanstall packages, and Preferred refresh rate explicitly saved and verified as Application-controlled. Includes Fortnite, VALORANT, COD Modern Warfare 4, and GOG profile changes. [Read all changes](docs/RELEASE-NOTES.md).
+- **13.0.15, file 13.0.15.1:** Every Apply of the newer Personal Settings now removes older MPO/fullscreen-disable overrides in both normal and VALORANT profiles, with backup and verification. Run that profile to apply the reset; updating alone does not change settings. Includes the new 617.42 NVIDIA profile throughout GPU setup and GPU Studio, Disable MPO unchecked in new NVCleanstall packages, and Preferred refresh rate explicitly saved and verified as Application-controlled. Includes Fortnite, VALORANT, COD Modern Warfare 4, and GOG profile changes. [Read all changes](docs/RELEASE-NOTES.md).
 
 - **13.0.14, file 13.0.14.1:** Updated the NVIDIA profile for the 617.14 driver update across GPU setup, GPU Studio apply, desktop Inspector, and cached defaults. Fixes missing OpenGL GPU selections and continues with the existing/default choice when the GPU selection cannot be read reliably. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -46,7 +46,7 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.15 - file version 13.0.15.0**
+**Current release: V3 13.0.15 - file version 13.0.15.1**
 
 **[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.15/TaC9-PC-Optimization-Suite-V3.exe)**
 
@@ -79,7 +79,7 @@ The script does **not** launch the app, request administrator access, change exe
 $url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.15/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '9810075E9B183778A2AA9311857274964DF56E86D71F12B871C8629DC43A7864') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'C84EAF17AD52E6708B7FC0C4312B4EE82052F6E7CC15FB3F5CB76B81D12E5BC8') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -288,7 +288,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. File version **13.0.15.0** is delivered through the existing signed update feed to older Suite builds.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. File version **13.0.15.1** is delivered through the existing signed update feed to older Suite builds.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

@@ -1,8 +1,23 @@
 # Release Notes
 
-## V3 13.0.15 - October 6, 2026
+## V3 13.0.15 - October 6, 2026; updated October 7, 2026
 
 This release brings the **617.42 NVIDIA Profile Inspector profile**, **MPO enabled during new driver-package setup**, and a **verified Application-controlled Preferred refresh rate** into the complete eight-workspace Suite.
+
+### October 7 maintenance update - file 13.0.15.1
+
+The existing **13.0.15** release now includes an automatic **MPO and fullscreen-optimization override reset on every Apply of the newer TaC9 Personal Settings**, for both normal and VALORANT-compatible profiles.
+
+- Removes `OverlayTestMode` from `HKLM\SOFTWARE\Microsoft\Windows\Dwm` to restore Windows' default MPO behavior.
+- Removes the older overrides `GameDVR_FSEBehaviorMode`, `GameDVR_FSEBehavior`, `GameDVR_HonorUserFSEBehaviorMode`, `GameDVR_DXGIHonorFSEWindowsCompatible`, and `GameDVR_EFSEFeatureFlags` from `HKCU\System\GameConfigStore`.
+- Removes only the `DISABLEDXMAXIMIZEDWINDOWEDMODE` flag from executable entries in the current-user and machine `Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers` keys. Other compatibility flags, including Run as administrator and DPI settings, are preserved. An executable's entry is removed only when no meaningful flags remain.
+- Captures a fresh backup on each run, verifies each registry change, treats already-default values as successful no-ops, and reports failures. If another tool reintroduces an override, the next Personal Settings Apply checks and removes it again.
+- Restore recovers the saved values, registry types, and compatibility strings. Existing backups remain usable. Windows restart is requested when overrides were present.
+- **Old TaC Settings and the separate optimization cards retain their existing behavior.** This reset is automatic in the newer Personal Settings flow, not an additional optional checkbox.
+
+**To apply this reset, run the newer TaC9 Personal Settings and restart Windows afterward when requested.** This runs the selected Personal Settings profile, not only the reset. Updating or opening the Suite alone does not apply settings. Windows and the driver still determine when supported workloads use MPO and fullscreen optimizations.
+
+The complete tested Suite is supplied as file/updater version **13.0.15.1**. Release title, tag, and displayed app version stay **13.0.15**. The signed update feed allows the previous public **13.0.15.0** build to detect this maintenance update.
 
 ### NVIDIA profile 617.42 across the Suite
 
@@ -58,24 +73,24 @@ The full Suite remains included: Windows optimization controls and Personal Sett
 
 ### Update and apply
 
-Use **Check for Updates** in the Suite or download `TaC9-PC-Optimization-Suite-V3.exe` below. The app and release display **13.0.15**; Windows file properties and the signed updater use **13.0.15.0**. Older public builds and the 13.0.14 local test revisions detect this as a newer version.
+Use **Check for Updates** in the Suite or download `TaC9-PC-Optimization-Suite-V3.exe` below. The app and release display **13.0.15**; Windows file properties and the signed updater use **13.0.15.1**. Earlier public builds, including file 13.0.15.0, detect this as a newer version.
 
 To apply the new NVIDIA profile and Preferred refresh rate to an existing driver, close games and open **GPU Studio > Apply NVIDIA Profile Inspector**. A driver reinstall is not needed for those two changes. Automatic driver setup also applies them; the unchecked MPO option takes effect when preparing a new driver package.
 
-Updating the Suite by itself does not apply GPU settings. **You do not need to rerun TaC9 Personal Settings for this update.**
+Updating the Suite by itself does not apply settings. GPU Studio applies the NVIDIA profile and refresh preference. To remove the older MPO/fullscreen-disable overrides, run the newer **TaC9 Personal Settings**; the reset runs automatically with that profile, then restart Windows when requested.
 
 ### Verification
 
 Validated the supplied profile's exact bytes, cached/default replacement, preservation of user exports, and BO7 settings. Mocked NVIDIA tests cover existing/missing settings, separate base/global profiles, fresh-session persistence, failed saves/readbacks, OpenGL fallback, background-Apply ordering, and resumed driver runs. The full package passed integrity/extraction checks and native startup/navigation across all eight workspaces.
 
-No live driver reinstall or live profile application was performed during release verification. These checks do not certify every GPU/driver combination.
+The maintenance update also passed isolated Personal Settings tests covering normal/VALORANT profiles, repeated Apply runs, reintroduced overrides, exact restoration, old backups, and access/write/readback failures. The packaged helpers matched the tested source, and the full executable passed native startup across all eight workspaces. No live Personal Settings Apply, driver reinstall, or live NVIDIA profile application was performed during release verification. These checks do not certify every GPU/driver combination.
 
 ### Download integrity
 
 - Application: `TaC9-PC-Optimization-Suite-V3.exe`
-- File version: `13.0.15.0`
-- Size: `201424224` bytes
-- SHA-256: `9810075E9B183778A2AA9311857274964DF56E86D71F12B871C8629DC43A7864`
+- File version: `13.0.15.1`
+- Size: `201431008` bytes
+- SHA-256: `C84EAF17AD52E6708B7FC0C4312B4EE82052F6E7CC15FB3F5CB76B81D12E5BC8`
 - Bundled profile SHA-256: `58B8859112FBA87B5923133B19F9A707D3C0E5C3649CA0387662D76BADF97D97`
 
 V3 is the only application download. `manifest-v2.json` is the signed update feed required by the Suite and official downloader.

@@ -24,7 +24,7 @@ NVCleanstall's **Disable Multiplane Overlay (MPO)** option is unchecked when pre
 
 **Preferred refresh rate** in Manage 3D settings is explicitly saved as **Application-controlled** after Inspector finishes applying. The Suite verifies the base and active global settings through a fresh NVIDIA session and checks again after monitor setup, including resumed installs. A failed save or readback reports an error. Desktop monitor Hz and custom-resolution preservation are separate from this setting.
 
-For an existing driver, use **GPU Studio > Apply NVIDIA Profile Inspector** to apply the profile and refresh preference without reinstalling. Updating alone does not apply GPU settings, and Personal Settings does not need to be run again. [All profile changes and release details](RELEASE-NOTES.md).
+For an existing driver, use **GPU Studio > Apply NVIDIA Profile Inspector** to apply the profile and refresh preference without reinstalling. Updating alone does not apply settings. File 13.0.15.1 adds an automatic MPO/fullscreen-disable override reset whenever the newer Personal Settings profile is applied. Run that profile and restart Windows when requested to use the reset; GPU Studio profile Apply does not perform it. [All profile changes and release details](RELEASE-NOTES.md).
 
 ## Return to the previous driver
 
