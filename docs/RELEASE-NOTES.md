@@ -1,5 +1,40 @@
 # Release Notes
 
+## V3 13.0.16 - October 9, 2026
+
+This release adds a saved language selector to the complete TaC9 Suite while preserving the original navigation and card layout.
+
+### What changed
+
+- **Six interface languages:** English, Spanish, Brazilian Portuguese, French, German, and Arabic. Choose a language from the top bar; the interface updates immediately and remembers the selection when the Suite is reopened.
+- **Translations throughout the Suite:** navigation, buttons, setting descriptions, confirmations, status text, and PC Health Center share the selected language. Translated card text is searchable alongside the original English text.
+- **Original layout retained:** the sidebar stays on the left and cards and window controls keep their familiar positions in every language. Arabic text receives its own font and text direction without mirroring the whole application.
+- **Better fit for longer text:** adjusted header controls, card spacing, and compact-window wrapping prevent translated content from overlapping neighboring controls.
+- **Readable fallback:** text without a matching translation remains in English. Hardware names, paths, commands, registry identifiers, and original technical output are preserved. Selecting a language changes interface text; it does not apply PC settings.
+- **Aligned release and update versions:** the app and release display **13.0.16**, with Windows file/runtime and signed updater version **13.0.16.0**. Both the previous public build and the local language test build can detect this update.
+
+### Complete Suite included
+
+The V3 download includes all eight workspaces: Optimization Suite, Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials. It retains the existing NVIDIA 617.42 profile, Application-controlled Preferred refresh rate, MPO defaults, VALORANT Checker & Repair, Personal Settings, Power Plan V2, Full System Cleanup, and prior fixes.
+
+**You do not need to rerun TaC9 Personal Settings for this language update.** Close an older Suite before opening the new download, or use **Check for Updates** in the app. Choose your preferred language in the top bar after updating.
+
+### Validation
+
+- Validated the real packaged language catalogs and interface behavior, including saved selection, Arabic layout, translated confirmations, and PC Health Center.
+- Checked the full production executable through all eight native screens without executing maintenance actions.
+- Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public and local test versions.
+
+### Download integrity
+
+- App/release: **13.0.16**
+- File/runtime/updater: **13.0.16.0**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **202128096 bytes** (approximately **192.8 MiB**)
+- SHA-256: `A48CB26F0D13526EAD1EC4BCD003D37E02750F2DA3334A3E8A9FA6FEED997B4A`
+
+Download the V3 executable to use the Suite. `manifest-v2.json` is the signed metadata used by the app updater.
+
 ## V3 13.0.15 - October 6, 2026; updated October 7, 2026
 
 This release brings the **617.42 NVIDIA Profile Inspector profile**, **MPO enabled during new driver-package setup**, and a **verified Application-controlled Preferred refresh rate** into the complete eight-workspace Suite.
