@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.19.1:** Publishes the newer Personal Settings profile with System Responsiveness, queued-present, I/O latency, and physical-adapter TCP settings. The normal profile also disables Windows Hypervisor/VBS/Memory Integrity on eligible systems; the VALORANT profile skips those disable changes. Includes the full header version, repaired startup updater, DDU repair, and resolved GPU log cleanup. [Review profile behavior and all changes](docs/RELEASE-NOTES.md).
+
 - **13.0.16, file 13.0.16.4:** Fixes an updater failure that could find and download the update but stop while checking the file. SHA-256 checks now run directly inside the app and replacement helper, preserving download verification. Includes the full build number next to **PC OPTIMIZATIONS | V3**, fresh update requests, DDU repair, and cleanup of resolved GPU logs. An affected older updater may need a one-time fresh download. No need to rerun Personal Settings. [Read the maintenance update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.16 language update:** Saved language selection in English, Spanish, Brazilian Portuguese, French, German, and Arabic. Translated controls, confirmations, and PC Health Center retain the original left navigation and card layout, with improved compact-window text fitting. No need to rerun Personal Settings for this update. [Read all changes](docs/RELEASE-NOTES.md).
@@ -50,13 +52,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.16 - file version 13.0.16.4**
+**Current release: V3 13.0.19.1 - app and file version 13.0.19.1**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.16/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.16.4)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.16, file 13.0.16.4, is 202157744 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.19.1 is 202127728 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -79,13 +81,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.16 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.19.1 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.16/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.16.4'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '564B6D5C6DD73EA7E5662D9E2B3A6CE62D3E20006A4D5E08C870813F45A478A5') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'B1AF836A3C4DE829207A25F954A7507C429E577B68E978C25E45D8E748C64662') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -112,9 +114,9 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 
 The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and operating-system details together with the suite's Windows tools. It provides access to personal settings, optimization cards, service profiles, selected registry controls, repair utilities, and optional changes that require extra care.
 
-- **TaC9 Personal Settings:** the new reviewed profile includes Power Plan V2, selected input, privacy and service settings, supported RSS/TRIM/HAGS, and explicit Windows Search and VALORANT choices. Its apply and restore are separate from **Old TaC Settings**, which retains the original profile. The selected printing services disable printing. Disabling Recall can delete its saved snapshots.
+- **TaC9 Personal Settings:** the current profile includes Power Plan V2, selected input, privacy and service settings, supported RSS/TRIM/HAGS, explicit Windows Search and VALORANT choices, and the added System Responsiveness, queued-present, I/O latency, and physical-adapter TCP settings. The normal profile also disables Windows Hypervisor/VBS/Memory Integrity on eligible systems; VALORANT mode skips those disable changes. Review the [profile differences](docs/RELEASE-NOTES.md) before applying. The selected printing services disable printing. Disabling Recall can delete its saved snapshots.
 - **VALORANT Checker & Repair:** review a 19-item checklist showing each current state and next step without applying Personal Settings, repair eligible Windows settings with a separate backup, and identify restart, BIOS, driver, or installation requirements. Recheck after restarting; only launching VALORANT verifies game access.
-- **Full System Cleanup:** a separate review-and-run tool for supported caches and temporary files, Store cache reset, Recycle Bin and Disk Cleanup. It replaces the old cleanup card and is not part of the new Personal Settings profile. Old TaC Settings retains its legacy behavior. Deleted files cannot be restored by the Suite.
+- **Full System Cleanup:** a separate review-and-run tool for supported caches and temporary files, Store cache reset, Recycle Bin and Disk Cleanup. It replaces the old cleanup card and is not part of the Personal Settings profile. Deleted files cannot be restored by the Suite.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
@@ -126,7 +128,7 @@ The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and
 
 Individual setting changes start faster and refresh only the selected card when finished. Supported settings still use the first-seen backup and are checked against Windows after the change. Whole-profile workflows keep their own backup and restore-point steps.
 
-Personal Settings verifies eligible changes and keeps progress messages in order, including fast steps. The new profile does not automatically run Windows repair, runtime installers, or cleanup. Unsupported settings are reported as skipped. New and old profiles have separate preferences and backups; applying the new profile does not undo unrelated earlier changes.
+Personal Settings verifies eligible changes and keeps progress messages in order, including fast steps. The new profile does not automatically run Windows repair, runtime installers, or cleanup. Unsupported settings are reported as skipped. The old Personal Settings entry is archived and no longer appears in the active Suite; the current flow retains its backup and restore behavior. Applying it does not undo unrelated earlier changes. Selecting VALORANT does not automatically re-enable VBS/HVCI or boot settings previously disabled by the normal profile; use saved Restore or the explicit repair/enable controls, then restart and recheck.
 
 VALORANT Checker & Repair checks actual protection state separately from saved settings. It preserves managed security restrictions, skips firmware changes and unsupported repairs, and requires a restart and recheck where appropriate. Verification includes simulated repair/restore and native UI tests; a completed settings operation is not a verified game launch. [Read the full 13.0.13 release notes](docs/RELEASE-NOTES.md).
 
@@ -263,7 +265,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.16/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.16.4), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -294,7 +296,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. File version **13.0.16.4** is delivered through the existing signed update feed. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.19.1** is delivered through the existing signed update feed and is newer than the prior public 13.0.16.4 and local 13.0.19.0 builds. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

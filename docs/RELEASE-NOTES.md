@@ -1,5 +1,76 @@
 # Release Notes
 
+## V3 13.0.19.1 - October 11, 2026
+
+This release brings the newer TaC9 Personal Settings profile together with the full build number in the header, the repaired startup updater, DDU configuration repair, and cleanup of resolved GPU logs. The complete eight-workspace Suite is included. The app, file, runtime, signed update feed, and release all use **13.0.19.1**.
+
+### Personal Settings changes
+
+The newer Personal Settings flow now applies these additional registry targets in both the normal and VALORANT profiles, with backup and verification:
+
+| Setting | Applied value |
+| --- | --- |
+| System Responsiveness | `SystemResponsiveness = 10` |
+| Queued Present Limit | `QueuedPresentLimit = 1` |
+| I/O Latency Cap | `IoLatencyCap = 0` |
+| TCP small-packet buffering | `TcpAckFrequency = 1` and `TCPNoDelay = 1` for detected physical network adapters |
+
+The TCP changes target only confirmed physical, non-virtual adapters. The Suite rechecks each adapter's identity before changing its interface settings, saves the previous values and registry types, and reports a skipped item when no eligible adapter is found. Restart Windows when requested. These settings do not guarantee an FPS increase or lower latency on every PC.
+
+**The normal profile now also turns off Windows Hypervisor launch, Virtual Secure Mode, virtualization-based security (VBS), and Memory Integrity (HVCI) on eligible systems.** These are Windows security and virtualization settings, so this profile changes the protection state and can affect features that depend on the Windows hypervisor. It records the existing state before writing, requires a restart, and skips the virtualization and related Hyper-V service changes when security state is managed, locked, encrypted, or cannot be established safely.
+
+**The VALORANT profile skips that virtualization-disable operation.** Listed Hyper-V services that are disabled are returned to Manual; existing non-disabled startup modes are preserved. Selecting VALORANT does not automatically undo VBS/HVCI or boot settings previously disabled by the normal profile. Use the saved **Restore** or the explicit enable/repair controls, then restart and use **VALORANT Checker & Repair** to recheck the actual running state. The checker still reports any firmware, TPM, Secure Boot, restart, or installation steps separately; selecting a profile does not prove that the game will launch.
+
+The newer **TaC9 Personal Settings** is now the sole active Personal Settings entry. **Old TaC Settings** has been removed from the active interface and action routes; its original implementation is retained in the development archive. The separate Windows optimization cards, Services Profile, Advanced Registry, repair tools, and other workspaces remain available.
+
+Power Plan V2, the Windows Search choice, supported device checks, and the reviewed privacy, input, and service settings remain included. Every Apply still removes the older MPO and fullscreen-disable overrides, with backup and verification.
+
+### App version and automatic updates
+
+- **Full running build in the header:** the top-left label shows **13.0.19.1** beside **PC OPTIMIZATIONS | V3**, including the final build digit.
+- **Fixed update installation:** the updater and file-replacement helper calculate SHA-256 directly, fixing the failure where an update downloaded but `Get-FileHash` was unavailable inside the app. Supported tool-update hash checks use the same approach.
+- **Fresh release checks:** startup and manual checks preserve fresh metadata requests through GitHub release redirects, retry one temporary fetch failure, and use a version-specific installer link.
+- **Clear version results:** a copy newer than the published build now shows both version numbers instead of claiming it is the current public build. Equal versions stay installed, and older versions are eligible for the newer signed release.
+- **One small support record:** each check replaces `LastUpdateCheck.json` with its latest result. It does not accumulate a separate file for every check.
+- **Verification remains required:** signed release metadata, file checksums, protected-package verification, and replacement safeguards remain in place.
+
+**13.0.19.1 is newer than both the previous public 13.0.16.4 build and the earlier local 13.0.19.0 build.** Use **Check for Updates**, reopen the Suite for its startup check, or download the current V3 executable.
+
+**Some older copies with the file-checking bug may find or download the update without installing it.** Close that copy and download the current V3 executable once. After the fixed copy is installed, future launches use the repaired startup updater.
+
+### GPU setup and diagnostic cleanup
+
+- Repairs missing or stale required DDU options, including `PreventWinUpdate`, and verifies the settings file DDU actually loads before cleanup starts.
+- Removes resolved `install.log`, `GPU Activity.log`, and `GPU Last Error.json` after a verified driver installation finishes without warnings and its temporary Windows Update state is restored.
+- Preserves warnings, unresolved failures, rollback records, pending recovery evidence, and files that cannot be safely inspected. Standalone profile Apply preserves the shared installation log.
+- Keeps the supplied **617.42 NVIDIA Profile Inspector profile** across driver setup and GPU Studio, **Application-controlled** Preferred refresh rate, and **Disable MPO** unchecked in newly prepared NVCleanstall packages.
+- Keeps GPU hardware and package compatibility checks, the previous-driver record, supported monitor setup, and existing OpenGL GPU fallback behavior.
+
+The DDU repair does not permanently disable Windows Update. Updating the Suite does not reinstall a GPU driver.
+
+### Complete Suite retained
+
+All eight workspaces remain included: Optimization Suite, Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials. This release retains the six saved interface languages, the original navigation layout, VALORANT Checker & Repair, Power Plan V2, standalone Full System Cleanup, game-configuration fixes, and supported PC Health sensors.
+
+**Installing or opening this update does not apply Personal Settings.** There is no need to rerun that profile merely to update the app. Apply it only when you want the selected profile's settings, including the changes described above, and restart when requested. Existing settings are not automatically reversed by updating.
+
+### Validation
+
+- Verified the complete protected executable and all eight native screens without applying maintenance actions.
+- Confirmed that the newer 13.0.19 Windows settings source is preserved exactly and the earlier public GPU fixes are included.
+- Passed 2,994 updater assertions across 122 cases, including startup and manual update eligibility for 45 older customer versions, exact-version behavior, signature checks, and blocking unintended downgrades.
+- Passed the packaged language and Personal Settings regression checks, including both normal and VALORANT paths using isolated fixtures.
+- Checked the standalone downloader against malformed/tampered release information and a real signed download; it retains verification while accepting the approved version-specific download link.
+
+### Download integrity
+
+- App/release/file/runtime/updater: **13.0.19.1**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **202127728 bytes**
+- SHA-256: `B1AF836A3C4DE829207A25F954A7507C429E577B68E978C25E45D8E748C64662`
+
+[Download the complete V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1). `manifest-v2.json` is the signed metadata used by the app updater.
+
 ## V3 13.0.16 - October 9, 2026; updated October 11, 2026
 
 This release adds a saved language selector to the complete TaC9 Suite while preserving the original navigation and card layout.
