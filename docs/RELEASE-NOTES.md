@@ -4,9 +4,19 @@
 
 This release adds a saved language selector to the complete TaC9 Suite while preserving the original navigation and card layout.
 
+### October 11 header and update-check maintenance - file 13.0.16.2
+
+The top-left header now shows the full running build beside **PC OPTIMIZATIONS | V3**, so you can confirm which maintenance update is installed. This build is **13.0.16.2** under the existing **13.0.16** release.
+
+- **Visible build number:** the header reads the version from the running app, including the final maintenance digit. It keeps the existing header layout and remains readable when changing language.
+- **Fresh update checks:** startup and manual checks request fresh release metadata with a unique query and no-cache headers. A temporary metadata-fetch failure gets one retry; signed-manifest and download-integrity checks remain in place.
+- **A small support record:** each check replaces one `LastUpdateCheck.json` file with the latest check's result. These records do not accumulate into a history of logs.
+
+These changes improve update-check resilience and make the outcome easier to investigate; they do not establish why a previous startup check missed an update. Use **Check for Updates** once if your existing copy has not picked up this build. The changes to update checks take effect after it is installed. **You do not need to rerun Personal Settings.**
+
 ### October 11 maintenance update - file 13.0.16.1
 
-This updates the existing **13.0.16** release with a GPU setup fix and cleanup of resolved GPU diagnostic logs. The app and release still display **13.0.16**; Windows file properties and the signed updater use **13.0.16.1**, so the previous public **13.0.16.0** build can detect the update.
+The first maintenance update added a GPU setup fix and cleanup of resolved GPU diagnostic logs. It used file/updater version **13.0.16.1** under the existing **13.0.16** release. Those changes remain included in **13.0.16.2**.
 
 - **DDU configuration repair:** fixes GPU setup stopping with `DDU is not configured for the required NVIDIA cleanup options: PreventWinUpdate`. Before cleanup starts, the Suite repairs missing or stale values for its six required DDU options, preserves unrelated options, and reads the saved settings back to verify them.
 - **Checks the settings DDU actually loads:** uses an existing shared DDU settings file when present, otherwise the selected DDU tool's portable settings file. A malformed, inaccessible, or unwritable configuration still stops the operation with a clear message before cleanup starts.
@@ -26,7 +36,7 @@ The GPU maintenance changes were checked with isolated settings and log fixtures
 - **Original layout retained:** the sidebar stays on the left and cards and window controls keep their familiar positions in every language. Arabic text receives its own font and text direction without mirroring the whole application.
 - **Better fit for longer text:** adjusted header controls, card spacing, and compact-window wrapping prevent translated content from overlapping neighboring controls.
 - **Readable fallback:** text without a matching translation remains in English. Hardware names, paths, commands, registry identifiers, and original technical output are preserved. Selecting a language changes interface text; it does not apply PC settings.
-- **Aligned release and update versions:** the app and release display **13.0.16**, with Windows file/runtime and signed updater version **13.0.16.1**. The previous public **13.0.16.0** build can detect this maintenance update.
+- **Aligned release and update versions:** the release remains **13.0.16**. The running build shown in the header, Windows file/runtime version, and signed updater version are **13.0.16.2**. Both previous public **13.0.16.0** and **13.0.16.1** builds can detect this maintenance update.
 
 ### Complete Suite included
 
@@ -37,16 +47,18 @@ The V3 download includes all eight workspaces: Optimization Suite, Windows Repai
 ### Validation
 
 - Validated the real packaged language catalogs and interface behavior, including saved selection, Arabic layout, translated confirmations, and PC Health Center.
-- Checked the full production executable through all eight native screens without executing maintenance actions.
-- Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public 13.0.16.0 version.
+- Checked the full production executable through all eight native screens without executing maintenance actions, including the header receiving the actual full native version.
+- Verified header visibility in 12 language/window-size combinations, including Arabic and the smallest supported window.
+- Exercised update routing, same-release version detection, fresh requests, retry limits, invalid-download rejection, and the single status record using isolated fixtures.
+- Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public 13.0.16.0 and 13.0.16.1 versions.
 
 ### Download integrity
 
 - App/release: **13.0.16**
-- File/runtime/updater: **13.0.16.1**
+- File/runtime/updater: **13.0.16.2**
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: **202150848 bytes**
-- SHA-256: `C04687D0DA71A2532B968D581EADD2017790F44C35CC28BFD51CE845CBF9D9C5`
+- Size: **202154784 bytes**
+- SHA-256: `77059E0378A5D347EC340F9A4082ED570065F02EEDF1EE5B4D74B7DCC5C19792`
 
 Download the V3 executable to use the Suite. `manifest-v2.json` is the signed metadata used by the app updater.
 
