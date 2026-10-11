@@ -1,8 +1,23 @@
 # Release Notes
 
-## V3 13.0.16 - October 9, 2026
+## V3 13.0.16 - October 9, 2026; updated October 11, 2026
 
 This release adds a saved language selector to the complete TaC9 Suite while preserving the original navigation and card layout.
+
+### October 11 maintenance update - file 13.0.16.1
+
+This updates the existing **13.0.16** release with a GPU setup fix and cleanup of resolved GPU diagnostic logs. The app and release still display **13.0.16**; Windows file properties and the signed updater use **13.0.16.1**, so the previous public **13.0.16.0** build can detect the update.
+
+- **DDU configuration repair:** fixes GPU setup stopping with `DDU is not configured for the required NVIDIA cleanup options: PreventWinUpdate`. Before cleanup starts, the Suite repairs missing or stale values for its six required DDU options, preserves unrelated options, and reads the saved settings back to verify them.
+- **Checks the settings DDU actually loads:** uses an existing shared DDU settings file when present, otherwise the selected DDU tool's portable settings file. A malformed, inaccessible, or unwritable configuration still stops the operation with a clear message before cleanup starts.
+- **Accurate progress:** DDU configuration preparation is reported before cleanup begins. The reported `PreventWinUpdate` error stopped the affected run before DDU removed the installed driver; the clean driver package had been prepared, but driver removal and installation had not started.
+- **Resolved GPU logs are cleaned up:** after a verified installation finishes without warnings and the temporary Windows Update state is restored, the Suite removes its resolved `install.log`, `GPU Activity.log`, and `GPU Last Error.json`. Successful GPU actions also stop adding routine entries to the support activity log.
+- **Diagnostics that still need attention are kept:** warning/error runs, unresolved failures from other GPU actions, pending recovery work, and files that cannot be safely inspected remain available for support. Driver rollback records and recovery backups are preserved.
+- **Standalone profile Apply keeps installation history:** a clean NVIDIA profile Apply can clear resolved profile diagnostics, but it does not discard the shared `install.log`, because a profile Apply does not establish that an earlier driver installation issue was resolved.
+
+The DDU XML repair does not disable Windows Update permanently. GPU setup continues to use the Suite's separate temporary update protection and restoration. Updating the Suite alone does not reinstall a driver or apply PC settings. **Personal Settings does not need to be run again for this maintenance update.**
+
+The GPU maintenance changes were checked with isolated settings and log fixtures, including stale/missing DDU options, shared/portable configuration selection, failed writes, retained warnings and recovery files, and successful cleanup. **No live driver reinstall was performed during these tests.**
 
 ### What changed
 
@@ -11,7 +26,7 @@ This release adds a saved language selector to the complete TaC9 Suite while pre
 - **Original layout retained:** the sidebar stays on the left and cards and window controls keep their familiar positions in every language. Arabic text receives its own font and text direction without mirroring the whole application.
 - **Better fit for longer text:** adjusted header controls, card spacing, and compact-window wrapping prevent translated content from overlapping neighboring controls.
 - **Readable fallback:** text without a matching translation remains in English. Hardware names, paths, commands, registry identifiers, and original technical output are preserved. Selecting a language changes interface text; it does not apply PC settings.
-- **Aligned release and update versions:** the app and release display **13.0.16**, with Windows file/runtime and signed updater version **13.0.16.0**. Both the previous public build and the local language test build can detect this update.
+- **Aligned release and update versions:** the app and release display **13.0.16**, with Windows file/runtime and signed updater version **13.0.16.1**. The previous public **13.0.16.0** build can detect this maintenance update.
 
 ### Complete Suite included
 
@@ -23,15 +38,15 @@ The V3 download includes all eight workspaces: Optimization Suite, Windows Repai
 
 - Validated the real packaged language catalogs and interface behavior, including saved selection, Arabic layout, translated confirmations, and PC Health Center.
 - Checked the full production executable through all eight native screens without executing maintenance actions.
-- Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public and local test versions.
+- Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public 13.0.16.0 version.
 
 ### Download integrity
 
 - App/release: **13.0.16**
-- File/runtime/updater: **13.0.16.0**
+- File/runtime/updater: **13.0.16.1**
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: **202128096 bytes** (approximately **192.8 MiB**)
-- SHA-256: `A48CB26F0D13526EAD1EC4BCD003D37E02750F2DA3334A3E8A9FA6FEED997B4A`
+- Size: **202150848 bytes**
+- SHA-256: `C04687D0DA71A2532B968D581EADD2017790F44C35CC28BFD51CE845CBF9D9C5`
 
 Download the V3 executable to use the Suite. `manifest-v2.json` is the signed metadata used by the app updater.
 
