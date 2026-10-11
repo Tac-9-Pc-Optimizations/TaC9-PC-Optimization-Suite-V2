@@ -4,19 +4,29 @@
 
 This release adds a saved language selector to the complete TaC9 Suite while preserving the original navigation and card layout.
 
+### October 11 startup updater fix - file 13.0.16.4
+
+Fixes a confirmed failure where the Suite found and downloaded an update but could not finish checking the file because `Get-FileHash` was unavailable inside the app. The complete Suite is now build **13.0.16.4**, shown in the top-left header, under the existing **13.0.16** release.
+
+- **Reliable SHA-256 checks inside the app:** the updater and its file-replacement helper calculate SHA-256 directly, without depending on a PowerShell command module. Supported tool-update hash checks use the same approach.
+- **Verification stays required:** signed release metadata, downloaded-file checksums, and protected-package verification remain in place. Files are not accepted merely because a download completed.
+- **Earlier improvements included:** the full header build number, fresh requests through GitHub redirects, limited fetch retry, single update-status record, DDU repair, and resolved GPU log cleanup remain included.
+
+**If an older copy downloads an update but does not install it, close the Suite and download the current V3 executable once.** The older updater cannot repair itself before it reaches file replacement. After the fixed copy is installed, subsequent launches use the repaired startup updater. **You do not need to rerun Personal Settings.**
+
 ### October 11 header and update-check maintenance - file 13.0.16.3
 
-The top-left header now shows the full running build beside **PC OPTIMIZATIONS | V3**, so you can confirm which maintenance update is installed. This build is **13.0.16.3** under the existing **13.0.16** release.
+Build **13.0.16.3** added the full running build beside **PC OPTIMIZATIONS | V3** in the top-left header and refreshed update-check behavior. These changes remain included in **13.0.16.4**.
 
 - **Visible build number:** the header reads the version from the running app, including the final maintenance digit. It keeps the existing header layout and remains readable when changing language.
 - **Fresh update checks:** startup and manual checks request fresh release metadata with a unique query and no-cache headers, preserving the fresh request through GitHub release redirects. A temporary metadata-fetch failure gets one retry. The signed update feed uses a version-specific installer link to avoid stale installer redirects; signed-manifest and download-integrity checks remain in place.
 - **A small support record:** each check replaces one `LastUpdateCheck.json` file with the latest check's result. These records do not accumulate into a history of logs.
 
-These changes improve update-check resilience and make the outcome easier to investigate; they do not establish why a previous startup check missed an update. Use **Check for Updates** once if your existing copy has not picked up this build. The changes to update checks take effect after it is installed. **You do not need to rerun Personal Settings.**
+The header and fresh-request changes improve update visibility and troubleshooting. The separate file-checking failure is addressed by **13.0.16.4**, described above.
 
 ### October 11 maintenance update - file 13.0.16.1
 
-The first maintenance update added a GPU setup fix and cleanup of resolved GPU diagnostic logs. It used file/updater version **13.0.16.1** under the existing **13.0.16** release. Those changes remain included in **13.0.16.3**.
+The first maintenance update added a GPU setup fix and cleanup of resolved GPU diagnostic logs. It used file/updater version **13.0.16.1** under the existing **13.0.16** release. Those changes remain included in **13.0.16.4**.
 
 - **DDU configuration repair:** fixes GPU setup stopping with `DDU is not configured for the required NVIDIA cleanup options: PreventWinUpdate`. Before cleanup starts, the Suite repairs missing or stale values for its six required DDU options, preserves unrelated options, and reads the saved settings back to verify them.
 - **Checks the settings DDU actually loads:** uses an existing shared DDU settings file when present, otherwise the selected DDU tool's portable settings file. A malformed, inaccessible, or unwritable configuration still stops the operation with a clear message before cleanup starts.
@@ -36,13 +46,13 @@ The GPU maintenance changes were checked with isolated settings and log fixtures
 - **Original layout retained:** the sidebar stays on the left and cards and window controls keep their familiar positions in every language. Arabic text receives its own font and text direction without mirroring the whole application.
 - **Better fit for longer text:** adjusted header controls, card spacing, and compact-window wrapping prevent translated content from overlapping neighboring controls.
 - **Readable fallback:** text without a matching translation remains in English. Hardware names, paths, commands, registry identifiers, and original technical output are preserved. Selecting a language changes interface text; it does not apply PC settings.
-- **Aligned release and update versions:** the release remains **13.0.16**. The running build shown in the header, Windows file/runtime version, and signed updater version are **13.0.16.3**. Both previous public **13.0.16.0** and **13.0.16.1** builds can detect this maintenance update.
+- **Aligned release and update versions:** the release remains **13.0.16**. The running build shown in the header, Windows file/runtime version, and signed updater version are **13.0.16.4**. Older public builds can detect the newer version, but an affected updater may require the one-time fresh download described above.
 
 ### Complete Suite included
 
 The V3 download includes all eight workspaces: Optimization Suite, Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials. It retains the existing NVIDIA 617.42 profile, Application-controlled Preferred refresh rate, MPO defaults, VALORANT Checker & Repair, Personal Settings, Power Plan V2, Full System Cleanup, and prior fixes.
 
-**You do not need to rerun TaC9 Personal Settings for this language update.** Close an older Suite before opening the new download, or use **Check for Updates** in the app. Choose your preferred language in the top bar after updating.
+**You do not need to rerun TaC9 Personal Settings for this update.** Close an older Suite before opening the new download, or use **Check for Updates** in the app. Choose your preferred language in the top bar after updating.
 
 ### Validation
 
@@ -50,15 +60,17 @@ The V3 download includes all eight workspaces: Optimization Suite, Windows Repai
 - Checked the full production executable through all eight native screens without executing maintenance actions, including the header receiving the actual full native version.
 - Verified header visibility in 12 language/window-size combinations, including Arabic and the smallest supported window.
 - Exercised update routing, same-release version detection, fresh requests, retry limits, invalid-download rejection, and the single status record using isolated fixtures.
+- Reproduced the missing-command failure inside the actual compiled host and verified all three replacement hash functions with module loading disabled.
+- Tested the repaired updater through a complete normal-startup update on a separate protected test copy: it downloaded the actual signed 13.0.16.3 public package, verified it, replaced itself, and restarted successfully without a manual update click.
 - Verified protected package integrity, extraction, the signed update manifest, and upgrade detection from the previous public 13.0.16.0 and 13.0.16.1 versions.
 
 ### Download integrity
 
 - App/release: **13.0.16**
-- File/runtime/updater: **13.0.16.3**
+- File/runtime/updater: **13.0.16.4**
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: **202156704 bytes**
-- SHA-256: `DD84F3E7D8F6C891293B8879A2DE53033471448B60BE40429F792B64BA18E119`
+- Size: **202157744 bytes**
+- SHA-256: `564B6D5C6DD73EA7E5662D9E2B3A6CE62D3E20006A4D5E08C870813F45A478A5`
 
 Download the V3 executable to use the Suite. `manifest-v2.json` is the signed metadata used by the app updater.
 
