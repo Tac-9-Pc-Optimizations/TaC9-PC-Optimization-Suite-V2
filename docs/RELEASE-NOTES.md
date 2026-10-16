@@ -1,27 +1,32 @@
 # Release Notes
 
-## V3 13.0.21 - October 15, 2026
+## V3 13.0.22 - October 15, 2026
 
-Startup compatibility maintenance update, published under the existing **13.0.20 release page**. The app/runtime/file/signed-feed version is **13.0.21.0** so existing online 13.0.20 installations detect a newer build during startup.
+Startup compatibility maintenance update, published under the existing **13.0.20 release page**. The app/runtime/file/signed-feed version is **13.0.22.0** so existing online 13.0.20 and 13.0.21 installations detect a newer build during startup.
 
 - Retains the approved blue/gold honey globe, animated lettering, matching emblem, and prepared-workspace fade.
 - Plays the opening as a **1080p, 60-fps animation**, avoiding the full live 3D scene during startup.
+- Replaces the frozen wait frame with a matching, continuously spinning segment while native startup checks finish. It resumes the ending without replaying the full opening.
 - Switches to the still emblem if playback is missing or stops advancing. Fallback still waits for normal preparation; it does not bypass licensing or action permissions.
 - Defers workspace 3D icons until startup finishes and retains still artwork in fallback mode.
 - Preserves all eight workspaces, six interface languages, saved settings, and existing maintenance workflows.
 
-Verified normal playback, deliberate playback stalls, simple-splash mode, all eight native workspaces, protected-package integrity/extraction, and 18,111 language checks locally. Results are not a guarantee for every PC or graphics-driver combination. Updating the application does not apply Personal Settings, change Windows settings, or update an ISO.
+Verified normal playback, deliberately delayed native preparation with continued globe motion, missing/stalled main and waiting media, simple-splash mode, all eight native workspaces, protected-package integrity/extraction, and 18,111 language checks locally. Results are not a guarantee for every PC or graphics-driver combination. Updating the application does not apply Personal Settings, change Windows settings, or update an ISO.
 
 ### Download Integrity
 
-- Current app build: **13.0.21**
-- Runtime/file/signed update feed: **13.0.21.0**
+- Current app build: **13.0.22**
+- Runtime/file/signed update feed: **13.0.22.0**
 - Existing GitHub release tag: **v13.0.20**
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: **203872720 bytes**
-- SHA-256: `045FBBE9CBB335B491B18211AC021425328F68AA18E87047C26E2A9A6E218595`
+- Size: **207531904 bytes**
+- SHA-256: `A468F6FE240857E1EDB5C2B7B3AF1E16F419638EBD53C279B90E48E2DBDF3848`
 
-[Download the current V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.21.0). Online copies check the signed feed when opened; Windows may request administrator approval for replacement. If an older copy cannot finish its updater, use this download once. The executable is not Windows Authenticode-signed.
+[Download the current V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.22.0). Online copies check the signed feed when opened; Windows may request administrator approval for replacement. If an older copy cannot finish its updater, use this download once. The executable is not Windows Authenticode-signed.
+
+## V3 13.0.21 - October 15, 2026
+
+Introduced compatible video startup and bounded playback recovery. Superseded by 13.0.22.0 in the same release to remove the frozen wait frame while startup checks finish.
 
 ## V3 13.0.20 - October 15, 2026
 
@@ -57,7 +62,7 @@ Verified protected-package integrity and extraction, the native Windows startup/
 - Size: **190526176 bytes**
 - SHA-256: `D0454DF0B6C1C87DA604B89468C4DAFC9E93D45FEE8EB8ED32A47A16B3C7BF95`
 
-The original 13.0.20 executable above has been superseded within the same GitHub release by build 13.0.21.0. Its original size and checksum are retained here as historical information, not as the checksum for the current download. `manifest-v2.json` is signed metadata used by the app updater, not a second app.
+The original 13.0.20 executable above has been superseded within the same GitHub release by build 13.0.22.0. Its original size and checksum are retained here as historical information, not as the checksum for the current download. `manifest-v2.json` is signed metadata used by the app updater, not a second app.
 
 ## V3 13.0.19.1 - October 11, 2026
 
