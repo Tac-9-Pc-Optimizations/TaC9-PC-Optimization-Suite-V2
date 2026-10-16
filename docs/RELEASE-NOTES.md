@@ -1,5 +1,41 @@
 # Release Notes
 
+## V3 13.0.20 - October 15, 2026
+
+New blue/gold honey startup branding for the complete eight-workspace Suite. Release version **13.0.20** uses runtime/file/signed update-feed version **13.0.20.0**.
+
+### Startup and Branding
+
+- Replaces the chamber/lightning splash with the animated honey/globe sequence, including flowing honey, the connected pull-in, and the outward burst.
+- Adds honey-coated **TAC9 SYSTEM PREPARATION** lettering, the matching Suite emblem, and a new launcher icon.
+- Paints the prepared workspace beneath the splash before a short **0.85-second crossfade**. The ending no longer pushes the camera through the emblem's metallic face.
+- Plays once, waits for startup preparation, and releases the renderer after handoff. A still-emblem fallback allows startup to continue when a required visual asset or graphics renderer is unavailable.
+- Removes obsolete splash files and redundant embedded artwork copies. The executable is **190526176 bytes**, down from **202127728 bytes** in 13.0.19.1.
+
+![TaC9 honey splash and preparation lettering](screenshots/honey-splash.png)
+
+### Existing Tools and Settings
+
+All eight workspaces and six saved interface languages remain included, along with the current Personal Settings profile, VALORANT Checker & Repair, GPU workflows, game-configuration tools, PC Health Center, license checks, and signed updater.
+
+**Updating or opening the Suite does not apply Personal Settings or change the selected Windows profile.** Existing settings are not automatically reversed. This is an application update, not an update to Windows or an ISO.
+
+Use **Check for Updates**, reopen the Suite for its startup check, or use the complete executable below. Older copies affected by the previous update-installation bug may require one manual download of the current executable.
+
+### Validation
+
+Verified protected-package integrity and extraction, the native Windows startup/fade and all eight sections, desktop/compact/portrait rendering, delayed-startup handoff, visual-asset fallback, and existing interface-language checks. No optimization, driver cleanup, repair, or app-removal actions were executed by the UI verification. Loading time, smoothness, and available graphics support depend on the PC; this is not a universal hardware-compatibility guarantee.
+
+### Download Integrity
+
+- Release: **13.0.20**
+- Runtime/file/signed update feed: **13.0.20.0**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **190526176 bytes**
+- SHA-256: `D0454DF0B6C1C87DA604B89468C4DAFC9E93D45FEE8EB8ED32A47A16B3C7BF95`
+
+[Download the complete V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.20.0). `manifest-v2.json` is signed metadata used by the app updater, not a second app. The executable is not Windows Authenticode-signed.
+
 ## V3 13.0.19.1 - October 11, 2026
 
 This release brings the newer TaC9 Personal Settings profile together with the full build number in the header, the repaired startup updater, DDU configuration repair, and cleanup of resolved GPU logs. The complete eight-workspace Suite is included. The app, file, runtime, signed update feed, and release all use **13.0.19.1**.

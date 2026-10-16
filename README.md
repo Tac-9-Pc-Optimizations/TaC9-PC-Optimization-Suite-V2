@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.20:** New animated blue/gold honey splash, honey-coated preparation lettering, and matching Suite emblem and launcher icon. The prepared workspace now fades in smoothly beneath the splash, with no deep zoom through the emblem. Obsolete splash assets and embedded artwork copies have been removed. All eight workspaces and six interface languages remain included. [See the new splash](docs/screenshots/honey-splash.png).
+
 - **13.0.19.1:** Publishes the newer Personal Settings profile with System Responsiveness, queued-present, I/O latency, and physical-adapter TCP settings. The normal profile also disables Windows Hypervisor/VBS/Memory Integrity on eligible systems; the VALORANT profile skips those disable changes. Includes the full header version, repaired startup updater, DDU repair, and resolved GPU log cleanup. [Review profile behavior and all changes](docs/RELEASE-NOTES.md).
 
 - **13.0.16, file 13.0.16.4:** Fixes an updater failure that could find and download the update but stop while checking the file. SHA-256 checks now run directly inside the app and replacement helper, preserving download verification. Includes the full build number next to **PC OPTIMIZATIONS | V3**, fresh update requests, DDU repair, and cleanup of resolved GPU logs. An affected older updater may need a one-time fresh download. No need to rerun Personal Settings. [Read the maintenance update notes](docs/RELEASE-NOTES.md).
@@ -40,7 +42,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 - **13.0.6:** Roll Back Driver reinstalls the saved previous NVIDIA driver through NVCleanstall and DDU. Installs save a small previous-driver record, and the GPU progress window can be closed and reopened. [GPU installation and rollback guide](docs/GPU-ROLLBACK.md).
 
-- A full-screen animated startup with the rotating TaC9 emblem, assembling silver chassis, upgraded blue/gold lighting, and a smoother transition into the suite.
+- A full-screen animated startup with the rotating honey-coated TaC9 globe, continuously flowing blue/gold honey, and a short crossfade into the prepared Suite.
 - Larger, clearer text and content-aware scrolling throughout the suite, including the 1080p and scaled-window layout fixes.
 - Expanded PC Health Center sensor tables with **Current, Min, Max, Average, Source, and State**, plus device and reading-type filters.
 - CPU, GPU, RAM, motherboard, and storage monitoring where supported, including temperatures, voltages, wattages, clocks, utilization, cooling, current, transfer rates, and memory activity.
@@ -52,13 +54,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current release: V3 13.0.19.1 - app and file version 13.0.19.1**
+**Current release: V3 13.0.20 - runtime and file version 13.0.20.0**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.20.0)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.19.1 is 202127728 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.20 is 190526176 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -81,13 +83,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.19.1 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.20 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.20.0'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'B1AF836A3C4DE829207A25F954A7507C429E577B68E978C25E45D8E748C64662') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'D0454DF0B6C1C87DA604B89468C4DAFC9E93D45FEE8EB8ED32A47A16B3C7BF95') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
