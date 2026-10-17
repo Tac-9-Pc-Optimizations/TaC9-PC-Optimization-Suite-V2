@@ -1,5 +1,27 @@
 # Release Notes
 
+## V3 13.0.24 - October 16, 2026
+
+Adds the current **MW4 config** to COD Config Installer for **Battle.net, Steam, and Xbox App**.
+
+- Applies the supplied `s.1.0.cod26.txt` preset while preserving each PC's existing display, GPU, and audio-device details. The existing automatic CPU worker selection also applies to MW4.
+- Saves the original MW4 config in a separate backup and supports **Restore Original**.
+- Validates the selected launcher's `cod26\shadercache` before cleanup. If the cache is missing or cannot be detected, config installation continues and reports cleanup as skipped.
+- Removes the **MW4 Beta** button. The game selector now shows **BOPS7** and **MW4**.
+
+Launch MW4 once and close it, then open **COD Config Installer → MW4 → your launcher** to apply the config. Updating the Suite alone does not apply it.
+
+### Download Integrity
+
+- App/release: **13.0.24**
+- Runtime/file/signed update feed: **13.0.24.0**
+- GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263578208 bytes**
+- SHA-256: `B7E3ADC0B6E84B137D69CAA663AC21857D992F816C5CF39ECCAFF76DA09BB32D`
+
+[Download V3 13.0.24](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.0), or use **Check for Updates** in the Suite.
+
 ## V3 13.0.23 - October 15, 2026
 
 Startup compatibility maintenance update, published under the existing **13.0.20 release page**. The app/runtime/file/signed-feed version is **13.0.23.0** so supported existing online installations detect a newer build during startup.

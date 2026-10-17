@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.24 MW4 config update:** Adds the current MW4 config for Battle.net, Steam, and Xbox App, with per-PC display/device preservation, original-file restore, and validated MW4 shader-cache cleanup. The game selector now shows BOPS7 and MW4. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.23 startup compatibility update:** Keeps the honey/globe opening as high-quality 1080p, 60-fps animation without building the full 3D scene at startup. The globe rotates slowly while preparation finishes; readiness then triggers acceleration, honey pull-in, the burst, and the workspace fade. Missing or stalled playback has a bounded fallback; verification and licensing remain intact. Published under the existing 13.0.20 release page, with automatic checks when supported existing copies are opened. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.20:** New animated blue/gold honey splash, honey-coated preparation lettering, and matching Suite emblem and launcher icon. The prepared workspace now fades in smoothly beneath the splash, with no deep zoom through the emblem. Obsolete splash assets and embedded artwork copies have been removed. All eight workspaces and six interface languages remain included. [See the new splash](docs/screenshots/honey-splash.png).
@@ -56,13 +58,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current app build: V3 13.0.23 - runtime and file version 13.0.23.0, published under the existing 13.0.20 release page.**
+**Current app and release: V3 13.0.24 - runtime, file, and signed update-feed version 13.0.24.0.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.23.0)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.0)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.23 is 214481776 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24 is 263578208 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -85,13 +87,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.23 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.24 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.20/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.23.0'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.0'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '8F37E082473FDF0F3DA1CAFE08583E31667F8F228F539294F9F4AB532A23F92C') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'B7E3ADC0B6E84B137D69CAA663AC21857D992F816C5CF39ECCAFF76DA09BB32D') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -184,14 +186,14 @@ Rollback installs the previous driver with the Suite's settings. It does not res
 
 **Install the supplied TaC9 Call of Duty player configuration with game-specific paths and original-file recovery.**
 
-The installer provides separate **BOPS7** and **MW4 Beta** modes with **Battle.net** and **Xbox App** platform selection, plus **Steam** support for BOPS7. It checks the selected installation, shows the player-configuration state, preserves the original matching files, and applies only the configuration intended for that mode.
+The installer provides separate **BOPS7** and **MW4** modes, both with **Battle.net**, **Steam**, and **Xbox App** selection. MW4 applies the current `s.1.0.cod26.txt` preset while preserving the existing config's display, hardware, and audio-device details. Launch MW4 once and close it before applying so its player config exists.
 
 - Detects and validates the selected game and platform paths before making changes.
 - **Open Config Folder** opens the selected game's player folder.
 - Sets `RendererWorkerCount` from physical CPU cores. Hybrid Intel processors use performance cores minus one. Supported AMD dual-CCD processors use 7 for 16 cores, 5 for 12 cores, or 4 for 10 cores. Other supported processors use physical cores minus one, within the config's supported range. Logical threads are not counted as extra cores.
 - Preserves first-seen originals so installing again does not replace the original backup with an already-modified configuration.
-- Supports **Restore Original** for the files managed by the installer.
-- Removes only the validated shader-cache folder for the selected installation. BO7 Battle.net recognizes `Call of Duty\_retail_\cod25\shadercache` and corrects missing older paths within the same game installation. Missing folders and deletion failures are reported separately from successful removal.
+- Supports **Restore Original** for the files managed by the installer. The current MW4 config uses its own backup, separate from BOPS7 and older MW4 Beta backups.
+- Removes only the validated shader-cache folder for the selected installation. MW4 targets that launcher's `cod26\shadercache`; when the cache is missing or undetected, config installation continues and reports the cleanup as skipped. BO7 Battle.net recognizes `Call of Duty\_retail_\cod25\shadercache` and corrects missing older paths within the same game installation. Deletion failures are reported separately from successful removal.
 - Leaves unrelated player files alone and refuses paths that do not match the selected mode.
 
 Close the game before installing or restoring its configuration. Clearing shader cache may cause shaders to rebuild on the next launch. The tool manages configuration and cache files; it does not provide an anti-cheat bypass, unlock paid content, or modify the game executable. Game updates can change file formats and supported paths.
