@@ -1,5 +1,24 @@
 # Release Notes
 
+## V3 13.0.24.1 - October 16, 2026
+
+Revises the supplied **MW4 config** under the existing **13.0.24 release**, for Battle.net, Steam, and Xbox App.
+
+- Sets `DisplayMode` and `PreferredDisplayMode` to **Fullscreen**, replacing Fullscreen borderless window.
+- Sets `DLSSPerfModeMP` to **Maximum Performance**, replacing Ultra Performance.
+
+Update the Suite, close MW4, then use **COD Config Installer → MW4 → your launcher → Install Configuration** to apply the revised preset. Updating the Suite alone does not change the installed game config.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.1**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263578224 bytes**
+- SHA-256: `988F62780EC6E95415BD7C94F275D0F4414A2EA3682EB6F650A11E378E74BE0F`
+
+[Download V3 13.0.24.1](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.1), or use **Check for Updates** in the Suite.
+
 ## V3 13.0.24 - October 16, 2026
 
 Adds the current **MW4 config** to COD Config Installer for **Battle.net, Steam, and Xbox App**.
@@ -20,7 +39,7 @@ Launch MW4 once and close it, then open **COD Config Installer → MW4 → your 
 - Size: **263578208 bytes**
 - SHA-256: `B7E3ADC0B6E84B137D69CAA663AC21857D992F816C5CF39ECCAFF76DA09BB32D`
 
-[Download V3 13.0.24](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.0), or use **Check for Updates** in the Suite.
+The original 13.0.24 executable above has been superseded within the same GitHub release by build **13.0.24.1**. Its original size and checksum are retained here as historical information. Use the current download at the top of this page.
 
 ## V3 13.0.23 - October 15, 2026
 
