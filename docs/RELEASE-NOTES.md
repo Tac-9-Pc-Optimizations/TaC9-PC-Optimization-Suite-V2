@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.24.3 - October 18, 2026
+
+Updates the shared **MW4 config for Xbox, Battle.net, and Steam** under the existing **13.0.24 release**.
+
+- Disables depth of field (`DofEnable = Off`).
+- Disables world depth of field (`DofWorldDisable = true`).
+
+Existing per-PC hardware and window settings are preserved during installation.
+
+Update the Suite, close MW4, then open **COD Config Installer → MW4 → your launcher → Install Configuration** to apply the new preset. Updating the Suite alone does not change the installed game config.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.3**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263594800 bytes**
+- SHA-256: `79E3CDE4CD6E95FF2F01F071A0AB47F2B76957A10043C6FC95A4FB1413297B85`
+
+[Download V3 13.0.24.3](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.3).
+
 ## V3 13.0.24.2 - October 17, 2026
 
 Improves automatic updates under the existing **13.0.24 release**.
@@ -21,7 +42,7 @@ Open the Suite to check automatically, or use **Check for Updates**. A much olde
 - Size: **263595472 bytes**
 - SHA-256: `CB9833325F272B179D9A8BA25BF484EA5996A42B36225A27244677E1ACB8B71A`
 
-[Download V3 13.0.24.2](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.2).
+The 13.0.24.2 executable has been superseded within the same release by **13.0.24.3**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.1 - October 16, 2026
 
