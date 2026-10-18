@@ -1,5 +1,28 @@
 # Release Notes
 
+## V3 13.0.24.2 - October 17, 2026
+
+Improves automatic updates under the existing **13.0.24 release**.
+
+- Retries interrupted update downloads up to three times within a shared 15-minute limit; partial downloads cannot be installed.
+- Retries temporary startup failures after the workspace opens, with two deferred attempts that wait for active maintenance to finish.
+- Keeps an incomplete update check visible, with **Check for updates** and **Download latest** buttons.
+- Records verified installation and restart outcomes separately from the update check; a failed replacement restores the previous app when possible.
+
+All download signature, checksum, and package-authentication checks remain required. The complete Suite includes the revised MW4 preset from 13.0.24.1. Updating the Suite alone does not apply game configs or Windows settings.
+
+Open the Suite to check automatically, or use **Check for Updates**. A much older copy with a broken embedded updater needs the current EXE opened once; no PowerShell commands or diagnostic log collection are required to install this version. Saved license and settings are retained.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.2**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263595472 bytes**
+- SHA-256: `CB9833325F272B179D9A8BA25BF484EA5996A42B36225A27244677E1ACB8B71A`
+
+[Download V3 13.0.24.2](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.2).
+
 ## V3 13.0.24.1 - October 16, 2026
 
 Revises the supplied **MW4 config** under the existing **13.0.24 release**, for Battle.net, Steam, and Xbox App.
@@ -17,7 +40,7 @@ Update the Suite, close MW4, then use **COD Config Installer → MW4 → your la
 - Size: **263578224 bytes**
 - SHA-256: `988F62780EC6E95415BD7C94F275D0F4414A2EA3682EB6F650A11E378E74BE0F`
 
-[Download V3 13.0.24.1](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.1), or use **Check for Updates** in the Suite.
+The 13.0.24.1 executable has been superseded within the same release by **13.0.24.2**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24 - October 16, 2026
 

@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.24.2 automatic update reliability:** Retries interrupted downloads and temporary startup failures, keeps update recovery visible in the app, and records verified installation/restart outcomes. Available under the same 13.0.24 release. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.24.1 MW4 config revision:** Sets both MW4 display-mode preferences to Fullscreen and changes DLSS from Ultra Performance to Maximum Performance. Available under the same 13.0.24 release. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24 MW4 config update:** Adds the current MW4 config for Battle.net, Steam, and Xbox App, with per-PC display/device preservation, original-file restore, and validated MW4 shader-cache cleanup. The game selector now shows BOPS7 and MW4. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -60,13 +62,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.24.1, published under the existing 13.0.24 release.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.24.2, published under the existing 13.0.24 release.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.1)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.2)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.1 is 263578224 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.2 is 263595472 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -89,13 +91,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.24.1 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.24.2 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.1'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.2'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '988F62780EC6E95415BD7C94F275D0F4414A2EA3682EB6F650A11E378E74BE0F') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'CB9833325F272B179D9A8BA25BF484EA5996A42B36225A27244677E1ACB8B71A') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
