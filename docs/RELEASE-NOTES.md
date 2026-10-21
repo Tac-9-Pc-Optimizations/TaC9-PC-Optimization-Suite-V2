@@ -6,7 +6,6 @@ Fixes the NVIDIA Control Panel preview-mode setting under the existing **13.0.24
 
 - Automatic NVIDIA driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings** and apply the change.
 - Reopens NVIDIA Control Panel in a separate session to verify the selection was saved. If it cannot confirm the setting, the Suite shows a completion note with the manual steps and continues the remaining profile settings.
-- Keeps **Preferred refresh rate** set to **Application-controlled** after Control Panel closes.
 
 **If you updated before this fix:** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. **No NVIDIA driver reinstall is needed.** Updating the Suite alone does not change this setting.
 

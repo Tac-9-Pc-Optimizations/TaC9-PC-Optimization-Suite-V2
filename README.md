@@ -14,7 +14,7 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
-- **13.0.24.5 NVIDIA Control Panel fix:** Automatic driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. Preferred refresh rate remains **Application-controlled**. [Read the update notes](docs/RELEASE-NOTES.md).
+- **13.0.24.5 NVIDIA Control Panel fix:** Automatic driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. [Read the update notes](docs/RELEASE-NOTES.md).
 
 **Already updated before this fix?** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. You do not need to reinstall your NVIDIA driver.
 
