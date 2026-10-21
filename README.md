@@ -14,6 +14,10 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.24.5 NVIDIA Control Panel fix:** Automatic driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. Preferred refresh rate remains **Application-controlled**. [Read the update notes](docs/RELEASE-NOTES.md).
+
+**Already updated before this fix?** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. You do not need to reinstall your NVIDIA driver.
+
 - **13.0.24.3 MW4 config revision:** Turns depth of field off in the shared MW4 preset for Xbox, Battle.net, and Steam. Existing per-PC hardware and window settings are preserved. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24.2 automatic update reliability:** Retries interrupted downloads and temporary startup failures, keeps update recovery visible in the app, and records verified installation/restart outcomes. Available under the same 13.0.24 release. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -64,13 +68,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.24.3, published under the existing 13.0.24 release.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.24.5, published under the existing 13.0.24 release.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.3)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.5)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.3 is 263594800 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.5 is 263617648 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -93,13 +97,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.24.3 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.24.5 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.3'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.5'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '79E3CDE4CD6E95FF2F01F071A0AB47F2B76957A10043C6FC95A4FB1413297B85') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '99BB9E67C483FCFB451E44A0AB2F5880B18305EE660D3B10E6033AF0DF568DD8') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 

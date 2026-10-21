@@ -1,5 +1,25 @@
 # Release Notes
 
+## V3 13.0.24.5 - October 21, 2026
+
+Fixes the NVIDIA Control Panel preview-mode setting under the existing **13.0.24 release**.
+
+- Automatic NVIDIA driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings** and apply the change.
+- Reopens NVIDIA Control Panel in a separate session to verify the selection was saved. If it cannot confirm the setting, the Suite shows a completion note with the manual steps and continues the remaining profile settings.
+- Keeps **Preferred refresh rate** set to **Application-controlled** after Control Panel closes.
+
+**If you updated before this fix:** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. **No NVIDIA driver reinstall is needed.** Updating the Suite alone does not change this setting.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.5**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263617648 bytes**
+- SHA-256: `99BB9E67C483FCFB451E44A0AB2F5880B18305EE660D3B10E6033AF0DF568DD8`
+
+[Download V3 13.0.24.5](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.5).
+
 ## V3 13.0.24.3 - October 18, 2026
 
 Updates the shared **MW4 config for Xbox, Battle.net, and Steam** under the existing **13.0.24 release**.
@@ -19,7 +39,7 @@ Update the Suite, close MW4, then open **COD Config Installer → MW4 → your l
 - Size: **263594800 bytes**
 - SHA-256: `79E3CDE4CD6E95FF2F01F071A0AB47F2B76957A10043C6FC95A4FB1413297B85`
 
-[Download V3 13.0.24.3](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.3).
+The 13.0.24.3 executable has been superseded within the same release by **13.0.24.5**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.2 - October 17, 2026
 
