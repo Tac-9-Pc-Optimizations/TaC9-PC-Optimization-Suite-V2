@@ -1,6 +1,6 @@
 # GPU installation and rollback
 
-GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**. All three use the Suite's clean NVIDIA installation process. Roll Back Driver selects the version saved before your last normal Suite installation.
+GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**. All three use the Suite's clean NVIDIA installation process. Roll Back Driver selects the saved previous version when it differs from the currently installed driver.
 
 ![GPU Studio](screenshots/gpu.png)
 
@@ -8,8 +8,8 @@ GPU Studio offers **Auto Install**, **Choose Driver**, and **Roll Back Driver**.
 
 1. Save your work, close games, and open **GPU Studio** with administrator access.
 2. Select **Auto Install** for the newest compatible WHQL Game Ready driver available to the workflow, or **Choose Driver** to select a supported version.
-3. If an NVIDIA driver is already installed, the Suite saves and verifies its version and GPU identity before cleanup. If the NVIDIA GPU is using Microsoft Basic Display Adapter or has no driver installed, the Suite verifies the hardware and continues without creating a previous-driver record.
-4. The Suite prepares and checks the clean driver package with NVCleanstall, runs DDU, installs the prepared package, initializes NVIDIA Control Panel in the background, and applies the supplied TaC9 profile and display settings.
+3. The Suite checks the installed driver and GPU identity, then prepares and verifies the selected clean driver package with NVCleanstall. The earlier driver record stays unchanged during package preparation.
+4. Before DDU, the Suite saves and verifies the installed NVIDIA version when changing versions. Reinstalling the same version keeps an existing verified previous-driver record. A first install from Microsoft Basic Display Adapter or no driver continues without saving Microsoft's version. DDU then removes the current driver; the Suite installs the prepared package, initializes NVIDIA Control Panel in the background, and applies the supplied TaC9 profile and display settings.
 5. Let the installation finish, then restart Windows normally when convenient. Driver and profile checks run during installation.
 
 The screen can flicker or briefly go black during driver removal and installation. Keep the Suite open while it is working. Do not start a second driver installer at the same time.
@@ -28,23 +28,27 @@ For an existing driver, use **GPU Studio > Apply NVIDIA Profile Inspector** to a
 
 ## Return to the previous driver
 
-1. Open **GPU Studio** and select **Roll Back Driver**.
-2. Review the saved previous version and confirm the operation.
+1. Open **GPU Studio** and review **Roll Back Driver**. It shows the saved previous version only when rollback is available.
+2. Select **Roll Back Driver**, review the version, and confirm the operation.
 3. The Suite verifies the saved driver record and matching GPU, then prepares that previous version with NVCleanstall before starting DDU.
 4. DDU removes the current driver. The Suite installs the prepared previous driver and applies its normal profile and display settings.
 5. Let the installation finish, then restart Windows normally when convenient.
 
 Rollback uses the version recorded in the backup, not whichever driver is newest at the time. If the backup, GPU identity, or required driver package cannot be verified, the Suite stops before cleanup.
 
+**Already installed** means the saved record matches the driver currently installed, so Roll Back is disabled. **No backup** means no previous version is saved. **Unavailable** means the record or current driver state could not pass verification. Updating the Suite cannot recreate an older version that was not retained.
+
 ## One previous driver at a time
 
 The Suite keeps one small record containing the previous NVIDIA driver version, GPU identity, and Windows ownership information. It does not copy driver files, NVIDIA applications, old profiles, or monitor settings for this record. The matching driver package is prepared when rollback is requested, so internet access and an available supported package are required.
 
-A new normal install saves the currently installed version, verifies the new record, and then deletes the old managed backup. A failed save keeps the previous record. Rollback preserves it. Older full backups are retired when a new normal install successfully saves its replacement.
+When installing a different version, the Suite waits for a verified package, saves the currently installed version, verifies the new record, and then deletes the old managed backup. Canceling or failing during package preparation leaves the earlier record unchanged. A failed save also keeps the previous record. Reinstalling the same version keeps an existing verified record, and rollback preserves it. Older full backups are retired only when a replacement record is successfully saved.
 
 When no NVIDIA driver is installed, there is no new previous version to save. Auto Install and Choose Driver can still run. A valid existing record is kept, and unusable old records are left untouched. Roll Back remains unavailable without a verified previous NVIDIA version; Microsoft Basic Display is never used as the rollback driver.
 
-For example, installing B while A is installed saves A. Roll Back then selects A. Starting a later normal install while B is installed replaces the record with B. Only one previous version is retained.
+For example, installing B while A is installed saves A. Reinstalling B keeps A available for rollback. Preparing a later install of C also keeps A until C's package is verified; just before cleanup, the Suite saves B as the new previous version. Only one previous version is retained.
+
+The record must pass file-integrity, PC/user ownership, and GPU-identity checks before the Suite offers rollback. The installed driver is compared with the saved version so different Windows and NVIDIA version formats do not create a false rollback option.
 
 Saving the version is a small local step. Downloading and preparing the selected package, running DDU, and installing it take longer. Progress reports each stage separately.
 
@@ -86,6 +90,6 @@ An old unfinished-install message does not require clearing a checkpoint. Update
 
 ## Background profile setup
 
-GPU setup initializes NVIDIA Control Panel in the background, then opens Profile Inspector in the background to apply the saved profile and closes both tools. The old Control Panel preview-page automation is removed. You can still use the separate Control Panel and Profile Inspector buttons to open either tool manually.
+GPU setup initializes NVIDIA Control Panel in the background, then opens Profile Inspector in the background to apply the saved profile and closes both tools. Since 13.0.24.5, it also selects **Use the advanced 3D image settings**, applies it, and reopens Control Panel to verify it was saved. If that selection cannot be confirmed, the Suite gives the manual steps and continues the remaining profile settings. You can still use the separate Control Panel and Profile Inspector buttons to open either tool manually.
 
 For **Black Ops 7**, the Suite saves ReBAR as enabled and then saves it as disabled, matching the reapply sequence used for that game's profile. It reads back the final Black Ops 7 setting as Disabled. This refresh leaves global ReBAR unchanged. Keep the game closed during profile setup, then launch it after the installation and any requested restart.

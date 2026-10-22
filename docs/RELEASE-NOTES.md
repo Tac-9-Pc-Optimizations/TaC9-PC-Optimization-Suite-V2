@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.24.7 - October 21, 2026
+
+Fixes **GPU Studio's Roll Back Driver** under the existing **13.0.24 release**.
+
+- Reinstalling the same NVIDIA driver keeps the earlier verified driver record instead of replacing it with the version already installed.
+- Waits until the selected driver package is verified before saving a replacement record. Canceling or failing during package preparation leaves the earlier record unchanged.
+- Shows **Already installed** and disables rollback when the saved driver matches the current driver, instead of presenting it as a different previous version.
+- Checks the saved record's integrity, PC ownership, and GPU identity before offering rollback.
+
+Open the Suite to check for the update automatically, or select **Check for Updates**. Updating alone does not reinstall a driver. If the only saved driver is already installed, this update cannot recreate an earlier version that was not retained.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.7**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263191184 bytes**
+- SHA-256: `696E2BC4D682BC8C90188AB56782A08CD8583A027D60179CE56C657132AF38B4`
+
+[Download V3 13.0.24.7](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7).
+
 ## V3 13.0.24.6 - October 21, 2026
 
 Fixes the Suite's **DISM and SFC repair flow** under the existing **13.0.24 release**.
@@ -19,7 +40,7 @@ Open the Suite to check for the update automatically, or select **Check for Upda
 - Size: **263628864 bytes**
 - SHA-256: `6AE71392F998077001A30E71C6732EDCA2AE9486A469C1EDBDC49DD8A9E18C9D`
 
-[Download V3 13.0.24.6](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.6).
+The 13.0.24.6 executable has been superseded within the same release by **13.0.24.7**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.5 - October 21, 2026
 

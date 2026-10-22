@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.24.7 GPU rollback fix:** Keeps the earlier saved driver when reinstalling the same version, waits for a verified driver package before replacing the record, and marks rollback **Already installed** when the saved version is the one currently running. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.24.6 DISM/SFC repair update:** Refreshes older or damaged cached repair scripts, preserves Windows error codes and missing-repair-file guidance, and corrects failed or incomplete repair reporting. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24.5 NVIDIA Control Panel fix:** Automatic driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -70,13 +72,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.24.6, published under the existing 13.0.24 release.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.24.7, published under the existing 13.0.24 release.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.6)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.6 is 263628864 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.7 is 263191184 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -99,13 +101,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.24.6 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.24.7 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.6'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '6AE71392F998077001A30E71C6732EDCA2AE9486A469C1EDBDC49DD8A9E18C9D') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '696E2BC4D682BC8C90188AB56782A08CD8583A027D60179CE56C657132AF38B4') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -174,11 +176,11 @@ Keep the app open during a repair. Some DISM failures require a matching Windows
 
 - **Auto Install:** prepare the newest compatible WHQL Game Ready driver available to the workflow.
 - **Choose Driver:** select a supported driver version for the same clean installation process.
-- **Roll Back Driver:** reinstall the version saved before your last normal Suite installation.
+- **Roll Back Driver:** reinstall the saved previous version when it differs from the currently installed driver.
 
-Normal installations save and verify the installed driver version and GPU identity before cleanup. The Suite prepares the driver with NVCleanstall, runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. Required driver and profile checks run during installation. Restart Windows normally when the installation finishes; there is no saved install checkpoint or Continue step.
+Normal installations check the installed driver and GPU identity, then prepare and verify the selected driver package before saving a replacement previous-driver record. The Suite runs DDU, installs the clean package, checks NVIDIA Control Panel, and applies the supplied Profile Inspector profile and display settings. Required driver and profile checks run during installation. Restart Windows normally when the installation finishes; there is no saved install checkpoint or Continue step.
 
-The Suite keeps one small driver record, without copying old settings or driver files. A new normal install replaces it only after the replacement passes verification; rollback preserves the existing record. Old unfinished-install status does not block a new run. When an NVIDIA driver is already installed, its record must verify before cleanup starts. Required package checks apply to every installation.
+The Suite keeps one small driver record, without copying old settings or driver files. Installing a different version replaces the record only after the package and replacement record pass verification. Reinstalling the same version keeps an existing verified record, and canceled or failed package preparation leaves it unchanged. Rollback also preserves the record. If the saved version is already installed, **Roll Back Driver** shows **Already installed** and is unavailable. Saved records must pass file-integrity, ownership, and GPU-identity checks before rollback is offered. Old unfinished-install status does not block a new run.
 
 **Installing on a fresh Windows setup:** Auto Install and Choose Driver also work when an NVIDIA GPU is using Microsoft Basic Display Adapter or has no driver installed. The Suite checks the NVIDIA hardware and continues without creating a previous-driver record. Microsoft’s driver version is never saved for rollback. Monitor settings are detected after NVIDIA installs, so the basic display’s fallback mode is not saved as a custom resolution.
 
