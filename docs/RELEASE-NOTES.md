@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.24.6 - October 21, 2026
+
+Fixes the Suite's **DISM and SFC repair flow** under the existing **13.0.24 release**.
+
+- Updates the bundled repair scripts and verifies cached repair files so older or damaged copies are refreshed.
+- Keeps the Windows error code visible in the final result, with guidance when Windows cannot find its repair files.
+- Corrects repair status reporting: failed or incomplete repairs show an error or warning, and reaching 100% does not by itself count as a successful repair.
+- Preserves restart requirements after a successful repair.
+
+Open the Suite to check for the update automatically, or select **Check for Updates**. Updating the Suite does not run Windows repairs. If Windows reports missing repair content, Windows Update access or a matching Windows repair source may still be needed.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.6**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263628864 bytes**
+- SHA-256: `6AE71392F998077001A30E71C6732EDCA2AE9486A469C1EDBDC49DD8A9E18C9D`
+
+[Download V3 13.0.24.6](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.6).
+
 ## V3 13.0.24.5 - October 21, 2026
 
 Fixes the NVIDIA Control Panel preview-mode setting under the existing **13.0.24 release**.
@@ -17,7 +38,7 @@ Fixes the NVIDIA Control Panel preview-mode setting under the existing **13.0.24
 - Size: **263617648 bytes**
 - SHA-256: `99BB9E67C483FCFB451E44A0AB2F5880B18305EE660D3B10E6033AF0DF568DD8`
 
-[Download V3 13.0.24.5](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.5).
+The 13.0.24.5 executable has been superseded within the same release by **13.0.24.6**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.3 - October 18, 2026
 
