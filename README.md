@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.24.8 NVIDIA profile update:** Uses the new **617.21.txt** profile throughout driver setup, GPU Studio apply, Desktop Inspector, and cached defaults, with per-PC OpenGL handling. To apply it to an existing driver, update the Suite and run **GPU Studio → Apply NVIDIA Profile Inspector Profile**. [Read the update notes](docs/RELEASE-NOTES.md).
+
 - **13.0.24.7 GPU rollback fix:** Keeps the earlier saved driver when reinstalling the same version, waits for a verified driver package before replacing the record, and marks rollback **Already installed** when the saved version is the one currently running. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24.6 DISM/SFC repair update:** Refreshes older or damaged cached repair scripts, preserves Windows error codes and missing-repair-file guidance, and corrects failed or incomplete repair reporting. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -72,13 +74,13 @@ The eight existing workspaces remain together. The repository keeps its original
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.24.7, published under the existing 13.0.24 release.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.24.8, published under the existing 13.0.24 release.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.8)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.7 is 263191184 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.8 is 263195824 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -101,13 +103,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.24.7 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.24.8 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.8'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '696E2BC4D682BC8C90188AB56782A08CD8583A027D60179CE56C657132AF38B4') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '1BD56D7CE27D2DA347EF7D0F786B0AC6E72E56DDBA2FCB00AEA3CC92807E31FE') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 

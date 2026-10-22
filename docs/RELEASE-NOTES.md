@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.24.8 - October 21, 2026
+
+Updates the default **NVIDIA Profile Inspector profile** under the same **13.0.24 release**.
+
+- Uses the supplied **617.21.txt** profile for automatic NVIDIA driver setup, GPU Studio profile apply, the Desktop Inspector package, and cached Suite defaults.
+- Prevents the exporting PC's OpenGL GPU selection from carrying over to a different PC. The existing detected-GPU/default handling remains in place.
+- Refreshes old cached profiles and retires the unchanged old Suite export, while preserving customer-modified exports.
+
+To apply the new profile to your existing driver, update the Suite and run **GPU Studio → Apply NVIDIA Profile Inspector Profile**. Updating alone does not apply GPU settings. Preferred refresh rate remains **Application-controlled**. The rollback fixes below are included.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.8**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263195824 bytes**
+- SHA-256: `1BD56D7CE27D2DA347EF7D0F786B0AC6E72E56DDBA2FCB00AEA3CC92807E31FE`
+
+[Download V3 13.0.24.8](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.8).
+
+
 ## V3 13.0.24.7 - October 21, 2026
 
 Fixes **GPU Studio's Roll Back Driver** under the existing **13.0.24 release**.
@@ -19,7 +40,7 @@ Open the Suite to check for the update automatically, or select **Check for Upda
 - Size: **263191184 bytes**
 - SHA-256: `696E2BC4D682BC8C90188AB56782A08CD8583A027D60179CE56C657132AF38B4`
 
-[Download V3 13.0.24.7](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.7).
+The 13.0.24.7 executable has been superseded within the same release by **13.0.24.8**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.6 - October 21, 2026
 
