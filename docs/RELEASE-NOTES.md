@@ -1,5 +1,28 @@
 # Release Notes
 
+## V3 13.0.24.9 - October 22, 2026
+
+Updates the shared **MW4 config for Steam, Battle.net, and Xbox App** under the same **13.0.24 release**.
+
+- Sets both display-mode preferences to **Fullscreen borderless window**.
+- Selects **CNN** for the DLSS model.
+
+**Test Fullscreen Exclusive and Borderless, then use whichever feels better on your system.**
+
+**Apply the config:** Update the Suite, close MW4, then open **COD Config Installer**, choose **MW4** and your launcher, and install the configuration. Updating the Suite alone does not replace your game config.
+
+Use **Check for Updates** or the download below.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.9**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263195808 bytes**
+- SHA-256: `75A5DA11347ACE930CC6C51CA748CF60EB5098671BF72DAEBFF64BD0AB2239D3`
+
+[Download V3 13.0.24.9](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.9).
+
 ## V3 13.0.24.8 - October 21, 2026
 
 Updates the default **NVIDIA Profile Inspector profile** under the same **13.0.24 release**.
@@ -18,7 +41,7 @@ To apply the new profile to your existing driver, update the Suite and run **GPU
 - Size: **263195824 bytes**
 - SHA-256: `1BD56D7CE27D2DA347EF7D0F786B0AC6E72E56DDBA2FCB00AEA3CC92807E31FE`
 
-[Download V3 13.0.24.8](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.8).
+The 13.0.24.8 executable has been superseded within the same release by **13.0.24.9**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 
 ## V3 13.0.24.7 - October 21, 2026
