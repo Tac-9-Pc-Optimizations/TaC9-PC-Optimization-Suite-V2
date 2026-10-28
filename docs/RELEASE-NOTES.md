@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.24.10 - October 27, 2026
+
+Updates the default **NVIDIA Profile Inspector preset to 620.21.txt** throughout GPU Studio under the same **13.0.24 release**.
+
+- Uses the new preset for **Automatic GPU Debloat**, **Choose Driver**, **Roll Back Driver**, and **Apply NVIDIA Profile Inspector Profile**.
+- Refreshes the portable/Desktop Inspector package and cached Suite preset. Retires unchanged older Suite exports while preserving exports you have edited.
+
+**Apply it to your current driver:** Update the Suite, close games, then run **GPU Studio → Apply NVIDIA Profile Inspector Profile**. **You do not need to reinstall your driver.** Updating the Suite alone does not apply the GPU settings.
+
+Use **Check for Updates** or the download below.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.24.10**
+- Existing GitHub release tag: **v13.0.24**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263641648 bytes**
+- SHA-256: `9A986D5041D53963765F44A1582F3CAE40DFA2D53B9E6F7AF3245BB7A91E9F8A`
+
+[Download V3 13.0.24.10](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.10).
+
 ## V3 13.0.24.9 - October 22, 2026
 
 Updates the shared **MW4 config for Steam, Battle.net, and Xbox App** under the same **13.0.24 release**.
@@ -21,7 +42,7 @@ Use **Check for Updates** or the download below.
 - Size: **263195808 bytes**
 - SHA-256: `75A5DA11347ACE930CC6C51CA748CF60EB5098671BF72DAEBFF64BD0AB2239D3`
 
-[Download V3 13.0.24.9](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.9).
+The 13.0.24.9 executable has been superseded within the same release by **13.0.24.10**. Its size and checksum above are historical. Use the current download at the top of this page.
 
 ## V3 13.0.24.8 - October 21, 2026
 
