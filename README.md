@@ -1,18 +1,20 @@
 # TaC9 PC Optimization Suite V3
 
-**Windows optimization, repair, NVIDIA driver setup, game configuration, and PC health in one desktop suite.**
+**Windows optimization, repair, NVIDIA driver setup, game configuration, cleanup, and PC health in one desktop suite.**
 
-TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
+TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, clean selected caches and temporary files, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
 
 **Paid keys are required for protected Suite tools.** Get access through a ticket in the official TaC9 Discord. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
 
 [Download](#download) | [Included Apps](#included-apps) | [Getting Started](#getting-started) | [Support](#support) | [Release Notes](docs/RELEASE-NOTES.md)
 
-![TaC9 Optimization Suite dashboard and eight-app navigation](docs/screenshots/suite.png)
+![Earlier V3 dashboard preview with eight-app navigation](docs/screenshots/suite.png)
 
-> The COD installer screenshot shows the prepared 13.0.10 interface with results from a read-only query on the test PC. Other screenshots show earlier packaged V3 builds; hardware and sensor values come from the test PC, and other maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
+> These screenshots show earlier V3 builds and do not include the new Cleanup workspace or its ninth navigation entry. The COD installer screenshot shows the prepared 13.0.10 interface with results from a read-only query on the test PC. Hardware and sensor values come from the test PC, and other maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
 
 ## New in V3
+
+- **13.0.25.0 Cleanup workspace:** Adds a dedicated category for scanning and selecting temporary files, browser caches, Windows cleanup tasks, and GPU/game shader caches, with clear removal and retained-item results. Recycle Bin runs last and requires confirmation to empty the current account's whole bin across all drives. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24.10 NVIDIA profile update:** Uses **620.21.txt** across GPU Studio driver workflows, profile apply, the portable/Desktop Inspector package, and cached defaults. Apply it to an existing driver with **GPU Studio → Apply NVIDIA Profile Inspector Profile**; no driver reinstall is needed. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -74,17 +76,17 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 - **13.0.1:** CPU access-failure detection and read validation, so failed Ryzen register reads are shown as unavailable instead of misleading live clock, VID, or power values. Reports include provider and hardware-access diagnostics.
 - A GPU preflight fix for the GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
 
-The eight existing workspaces remain together. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
+The complete Suite now has nine workspaces, including the new Cleanup category. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.24.10, published under the existing 13.0.24 release.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.25.0, release tag v13.0.25.0.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.10)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's eight workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.24.10 is 263641648 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.25.0 is 263873920 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -107,13 +109,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.24.10 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.25.0 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.24/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.24.10'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '9A986D5041D53963765F44A1582F3CAE40DFA2D53B9E6F7AF3245BB7A91E9F8A') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'AF027074F3D75ED3BCCEC6336F0DB4F241C9E7D6BBA92EEABC779A4C16B6B300') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -132,6 +134,7 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 | [Debloat Tool](#debloat-tool) | Application discovery, reviewed uninstall selections, and constrained app-owned leftover cleanup. |
 | [ISLC Setup](#islc-setup) | ISLC installation, detected-memory presets, startup configuration, and monitoring setup. |
 | [PC Health Center](#pc-health-center) | Supported live sensors, storage and memory information, Windows reliability evidence, and report export. |
+| [Cleanup](#cleanup) | Scan and select temporary files, browser and shader caches, Windows cleanup tasks, and Recycle Bin, with detailed results. |
 | [TaC9 Socials](#tac9-socials) | Official community, support, and video channels. |
 
 ### Optimization Suite
@@ -142,7 +145,7 @@ The opening dashboard brings processor, graphics, motherboard, memory, BIOS, and
 
 - **TaC9 Personal Settings:** the current profile includes Power Plan V2, selected input, privacy and service settings, supported RSS/TRIM/HAGS, explicit Windows Search and VALORANT choices, and the added System Responsiveness, queued-present, I/O latency, and physical-adapter TCP settings. The normal profile also disables Windows Hypervisor/VBS/Memory Integrity on eligible systems; VALORANT mode skips those disable changes. Review the [profile differences](docs/RELEASE-NOTES.md) before applying. The selected printing services disable printing. Disabling Recall can delete its saved snapshots.
 - **VALORANT Checker & Repair:** review a 19-item checklist showing each current state and next step without applying Personal Settings, repair eligible Windows settings with a separate backup, and identify restart, BIOS, driver, or installation requirements. Recheck after restarting; only launching VALORANT verifies game access.
-- **Full System Cleanup:** a separate review-and-run tool for supported caches and temporary files, Store cache reset, Recycle Bin and Disk Cleanup. It replaces the old cleanup card and is not part of the Personal Settings profile. Deleted files cannot be restored by the Suite.
+- **Cleanup:** open the dedicated [Cleanup workspace](#cleanup) to scan and select caches, temporary files, Windows cleanup tasks, and Recycle Bin. It is separate from the Personal Settings profile. Deleted files cannot be restored by the Suite.
 - **Windows Optimization Cards:** grouped controls for gaming, privacy and telemetry, power, networking, storage, input, graphics, and Windows behavior, with live state and restore controls where supported.
 - **View settings:** open a card to see each tracked setting's current value, TaC9 target, and live state. Apply a supported setting on its own or restore its saved first-seen value. Settings managed by the whole card are identified, and unavailable settings stay unavailable.
 - **TaC-_-9 Power Plan V2:** sets the CPU idle promotion threshold to 60% and demotion threshold to 40% on AC power. To upgrade an existing TaC9 plan, update the Suite, open **View settings** on the power-plan card, and select **Apply whole card** once. The Suite updates the existing plan, checks both values, and activates it. Battery idle thresholds stay as they were.
@@ -281,6 +284,23 @@ Individual CPU, motherboard, firmware, and driver combinations determine sensor 
 
 ![PC Health Center with component evidence, findings, sensor controls, and a live trend view](docs/screenshots/health.png)
 
+### Cleanup
+
+**Scan and select temporary files, caches, and Windows cleanup tasks in a dedicated workspace.**
+
+Open **Cleanup → Scan**, review category sizes and availability, then choose **Clean Selected**. Results distinguish removed files and empty folders from retained items, failures, and tasks whose freed space Windows does not measure.
+
+- **Recommended:** user and Windows temporary files and empty folders, Brave/Chrome/Edge/Firefox caches, Delivery Optimization, thumbnails, crash dumps, verified completed-update leftovers, and Recycle Bin.
+- **Choose separately:** NVIDIA/AMD/DirectX shaders, detected Black Ops 7 and MW4 shader caches for Battle.net/Steam/Xbox, archived Windows error reports, and Windows component cleanup.
+- Temp files, browser caches, crash dumps, and archived error reports have **no age cutoff**. File cleanup skips in-use, protected, or changed-after-scan items. Partial scans identify the captured batch; scan again after cleaning to check what remains.
+- **TaC9 setup and recovery files** removes only verified leftovers from completed Suite updates. The installed Suite, rollback copy, and required recovery files are preserved.
+- **Windows component cleanup** runs DISM StartComponentCleanup without ResetBase when servicing is idle. It removes superseded components; it does not run RestoreHealth repair. Delivery Optimization uses Windows' cache cleanup command and preserves pinned content.
+- **Recycle Bin is last in Recommended and runs last.** Its confirmation covers your Windows account's entire Recycle Bin across all drives, including items added after scanning. Windows then reports whether the bin is empty.
+
+File cleanup preserves browser passwords, cookies, history, downloads, game configs, saves, and Suite backups. **This protection does not cover items already in the Recycle Bin when it is selected for emptying.** Deleted files cannot be restored by the Suite. Keep crash dumps unchecked when needed for support; clearing shader caches can cause longer loads or stutter while games rebuild them.
+
+Cleanup is a separate action from TaC9 Personal Settings. Updating or opening the Suite does not run it.
+
 ### TaC9 Socials
 
 **The suite's direct route to the TaC9 community, help, and videos.**
@@ -291,7 +311,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.19.1/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.19.1), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -315,16 +335,16 @@ The V3 layout has been checked at 1920x1080, 1536x864, 1366x768, and 1280x720. T
 
 Starting with 12.2.13, **every normal launch checks for suite and supported tool updates**. A recent launch no longer skips the online check for four hours.
 
-- **Suite and built-in workspaces:** the existing signed GitHub feed now delivers V3 and updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, and Socials.
+- **Suite and built-in workspaces:** the existing signed GitHub feed now delivers V3 and updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, Cleanup, and Socials.
 - **Supported tool packages:** the tool updater checks DDU, NVCleanstall, ISLC, and the approved compatible NVIDIA Profile Inspector release. Profile Inspector intentionally follows the approved version, not any untested upstream release. Bundled TaC9 profile changes are delivered with suite releases.
 - **Verified installation:** newer suite packages must pass the signed manifest, SHA-256, and internal package checks before the update helper replaces the running suite and restarts it. Tool packages use their existing source and integrity checks. Saved license data and settings are retained.
 - **Unavailable sources:** incomplete checks are reported honestly; the installed verified suite can still open, independent tool checks are attempted, and a fresh check runs next launch.
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.19.1** is delivered through the existing signed update feed and is newer than the prior public 13.0.16.4 and local 13.0.19.0 builds. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.25.0** is delivered through the existing signed update feed as a new release, following public version **13.0.24.10**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
 
-Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
+Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, cleanup, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 
 For maintainers, publish only `TaC9-PC-Optimization-Suite-V3.exe` and a matching `manifest-v2.json` as uploaded release assets. The manifest must point directly to the V3 executable, be signed by the existing trusted update key, and belong to the repository's latest release. Put the checksum in the release notes. Keep screenshots in the repository or the Discord post; they do not need separate release assets. A GitHub tag or an EXE uploaded without the signed manifest is not enough for the in-app updater.
 

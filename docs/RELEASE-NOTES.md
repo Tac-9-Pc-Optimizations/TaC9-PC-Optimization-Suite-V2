@@ -1,5 +1,29 @@
 # Release Notes
 
+## V3 13.0.25.0 - November 3, 2026
+
+Adds **Cleanup** as its own workspace in the complete Suite, with a scan, category selection, estimated sizes, and results showing what was removed or retained.
+
+- **Recommended cleanup:** user and Windows temporary files and empty folders; Brave, Chrome, Edge, and Firefox caches; Delivery Optimization; thumbnails; crash dumps; verified leftovers from completed Suite updates; and Recycle Bin.
+- **Separate manual selections:** NVIDIA, AMD, and DirectX shader caches; Black Ops 7 and MW4 shader caches for detected Battle.net, Steam, and Xbox installations; archived Windows error reports; and Windows component cleanup.
+- **No age cutoff** for temporary files, browser caches, crash dumps, or archived error reports. File cleanup skips items that are in use, protected, or changed after scanning, and reports retained items. Large scans show when only a partial batch was captured.
+- **Recycle Bin runs last.** After confirmation, Windows permanently empties your Windows account's entire Recycle Bin across all drives, **including items added since scanning**. The result checks whether Windows reports the bin empty.
+- **Windows component cleanup uses DISM StartComponentCleanup**, with no ResetBase. It removes superseded components; it is separate from RestoreHealth repair. Delivery Optimization uses the supported Windows cache command and preserves pinned content.
+
+**Use it:** Update the Suite, open **Cleanup → Scan**, review the selections, then choose **Clean Selected**. Updating alone does not delete files.
+
+File cleanup preserves browser passwords, cookies, history, downloads, game configs, saves, and required Suite recovery files. **Those protections do not apply to items already in the Recycle Bin when you choose to empty it.** Keep crash dumps unchecked if they are needed for an unresolved support case. Shader caches rebuild after removal and may temporarily increase loading time or stutter.
+
+### Download Integrity
+
+- App/runtime/file/signed update feed: **13.0.25.0**
+- GitHub release tag: **v13.0.25.0**
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263873920 bytes**
+- SHA-256: `AF027074F3D75ED3BCCEC6336F0DB4F241C9E7D6BBA92EEABC779A4C16B6B300`
+
+[Download V3 13.0.25.0](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.25.0)
+
 ## V3 13.0.24.10 - October 27, 2026
 
 Updates the default **NVIDIA Profile Inspector preset to 620.21.txt** throughout GPU Studio under the same **13.0.24 release**.
