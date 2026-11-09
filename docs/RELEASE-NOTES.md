@@ -1,5 +1,27 @@
 # Release Notes
 
+## V3 13.0.26.1 - November 8, 2026
+
+- **Corrected MW4 config for Steam, Battle.net, and Xbox:** uses the newly supplied `s.1.0.cod26.txt` with the custom FPS limiter **disabled**. This corrects the enabled limiter in 13.0.26.0. The stored gameplay, menu, and background limit values remain 300, but the custom limiter is off. The DLSS model is **Transformer**. Stored multi-frame preferences are Fixed with a 300 target; frame generation itself remains off.
+- **NVIDIA Profile Inspector preset `621.14.txt` throughout GPU Studio:** included in Automatic GPU Debloat, Choose Driver, Roll Back Driver, and Apply NVIDIA Profile Inspector Profile.
+- **Intel P-core worker selection for MW4 and BO7:** detected P-cores with active Hyper-Threading use P-core count minus one; detected P-cores without active Hyper-Threading use half the P-core count. **8 P-cores with HT = 7 workers; 8 P-cores without HT = 4 workers.**
+
+**Apply the MW4 config:** Update the Suite, close the game, open **COD Config Installer → MW4**, select your launcher, then click **Install configuration**. This also selects the CPU worker count. If you installed the MW4 config from **13.0.26.0**, install it again from **13.0.26.1** to apply the corrected FPS-limiter setting.
+
+**Apply the NVIDIA preset to your current driver:** Close games, then open **GPU Studio → Apply NVIDIA Profile Inspector Profile**. A driver reinstall is not required.
+
+Updating the Suite alone does not apply either preset. Use **Check for Updates** or download the complete Suite below. Version **13.0.26.1** is newer than 13.0.26.0 so existing installations can receive the correction.
+
+App, file, runtime, GitHub release, and signed update-feed version: **13.0.26.1**.
+
+### Download Integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263875200 bytes**
+- SHA-256: `5C12E69AFFB0F5A361870C5110CE3D997F09AFD2F7EAA872009C8846665E63FD`
+
+[Download V3 13.0.26.1](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.1/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.26.1)
+
 ## V3 13.0.26.0 - November 8, 2026
 
 - **MW4 config updated for Steam, Battle.net, and Xbox:** includes the new supplied `s.1.0.cod26.txt`, enables custom FPS limits with gameplay, menu, and background limits at **300 FPS**, and changes the DLSS model to **Transformer**. Stored multi-frame preferences change to Fixed with a 300 target; frame generation itself remains off.
