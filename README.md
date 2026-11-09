@@ -14,6 +14,8 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ## New in V3
 
+- **13.0.26.0 MW4 and NVIDIA presets:** Updates the shared MW4 config for Steam, Battle.net, and Xbox with 300 FPS limits and the DLSS Transformer model. Uses **621.14.txt** throughout GPU Studio. Intel P-core worker selection now accounts for active Hyper-Threading: eight P cores with HT select seven workers; eight without HT select four. [Apply instructions and release notes](docs/RELEASE-NOTES.md).
+
 - **13.0.25.0 Cleanup workspace:** Adds a dedicated category for scanning and selecting temporary files, browser caches, Windows cleanup tasks, and GPU/game shader caches, with clear removal and retained-item results. Recycle Bin runs last and requires confirmation to empty the current account's whole bin across all drives. [Read the update notes](docs/RELEASE-NOTES.md).
 
 - **13.0.24.10 NVIDIA profile update:** Uses **620.21.txt** across GPU Studio driver workflows, profile apply, the portable/Desktop Inspector package, and cached defaults. Apply it to an existing driver with **GPU Studio → Apply NVIDIA Profile Inspector Profile**; no driver reinstall is needed. [Read the update notes](docs/RELEASE-NOTES.md).
@@ -80,13 +82,13 @@ The complete Suite now has nine workspaces, including the new Cleanup category. 
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.25.0, release tag v13.0.25.0.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.26.0, release tag v13.0.26.0.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.0/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.25.0 is 263873920 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.26.0 is 263875232 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -109,13 +111,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.25.0 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.26.0 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.0/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne 'AF027074F3D75ED3BCCEC6336F0DB4F241C9E7D6BBA92EEABC779A4C16B6B300') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '0398B24C9C430F87E3ECB4D4C43344859A02DA24D1316137800C4477E909E53F') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -213,7 +215,7 @@ The installer provides separate **BOPS7** and **MW4** modes, both with **Battle.
 
 - Detects and validates the selected game and platform paths before making changes.
 - **Open Config Folder** opens the selected game's player folder.
-- Sets `RendererWorkerCount` from physical CPU cores. Hybrid Intel processors use performance cores minus one. Supported AMD dual-CCD processors use 7 for 16 cores, 5 for 12 cores, or 4 for 10 cores. Other supported processors use physical cores minus one, within the config's supported range. Logical threads are not counted as extra cores.
+- Sets `RendererWorkerCount` from physical CPU cores. Hybrid Intel processors with active P-core Hyper-Threading use performance cores minus one; those with no active P-core Hyper-Threading use half the performance-core count (rounded down, minimum one). Eight P cores select seven workers with HT or four without HT. Supported AMD dual-CCD processors use 7 for 16 cores, 5 for 12 cores, or 4 for 10 cores. Other supported processors use physical cores minus one, within the config's supported range. Logical threads are not counted as extra cores.
 - Preserves first-seen originals so installing again does not replace the original backup with an already-modified configuration.
 - Supports **Restore Original** for the files managed by the installer. The current MW4 config uses its own backup, separate from BOPS7 and older MW4 Beta backups.
 - Removes only the validated shader-cache folder for the selected installation. MW4 targets that launcher's `cod26\shadercache`; when the cache is missing or undetected, config installation continues and reports the cleanup as skipped. BO7 Battle.net recognizes `Call of Duty\_retail_\cod25\shadercache` and corrects missing older paths within the same game installation. Deletion failures are reported separately from successful removal.
@@ -311,7 +313,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.25.0/TaC9-PC-Optimization-Suite-V3.exe?tac9_build=13.0.25.0), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.0/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -342,7 +344,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.25.0** is delivered through the existing signed update feed as a new release, following public version **13.0.24.10**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.26.0** is delivered through the existing signed update feed as a new release, following public version **13.0.25.0**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, cleanup, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

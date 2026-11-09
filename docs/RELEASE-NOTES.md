@@ -1,5 +1,27 @@
 # Release Notes
 
+## V3 13.0.26.0 - November 8, 2026
+
+- **MW4 config updated for Steam, Battle.net, and Xbox:** includes the new supplied `s.1.0.cod26.txt`, enables custom FPS limits with gameplay, menu, and background limits at **300 FPS**, and changes the DLSS model to **Transformer**. Stored multi-frame preferences change to Fixed with a 300 target; frame generation itself remains off.
+- **NVIDIA Profile Inspector preset updated to `621.14.txt` throughout GPU Studio:** Automatic GPU Debloat, Choose Driver, Roll Back Driver, and Apply NVIDIA Profile Inspector Profile all use the new preset.
+- **Intel P-core worker selection updated for MW4 and BO7:** detected P-cores with active Hyper-Threading use P-core count minus one; detected P-cores without active Hyper-Threading use half the P-core count. **8 P-cores with HT = 7 workers; 8 P-cores without HT = 4 workers.**
+
+**Apply the MW4 config:** Close the game, open **COD Config Installer**, select **MW4** and your launcher, then install the config.
+
+**Apply the NVIDIA preset to your current driver:** Close games, open **GPU Studio → Apply NVIDIA Profile Inspector Profile**. A driver reinstall is not required.
+
+Updating the Suite alone does not apply either preset. Use **Check for Updates** or download the complete Suite below.
+
+App, file, runtime, GitHub release, and signed update-feed version: **13.0.26.0**.
+
+### Download Integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263875232 bytes**
+- SHA-256: `0398B24C9C430F87E3ECB4D4C43344859A02DA24D1316137800C4477E909E53F`
+
+[Download V3 13.0.26.0](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.0/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.26.0)
+
 ## V3 13.0.25.0 - November 3, 2026
 
 Adds **Cleanup** as its own workspace in the complete Suite, with a scan, category selection, estimated sizes, and results showing what was removed or retained.
