@@ -16,15 +16,21 @@ The screen can flicker or briefly go black during driver removal and installatio
 
 Version **13.0.11** fixes the false **“The detected GPU changed during driver selection”** stop at 11%. The Suite now matches the NVIDIA hardware identity instead of relying on its display name, which can differ while Windows is using Microsoft Basic Display Adapter. It also waits for NVCleanstall's compatible driver list to finish loading before making the selection. A real hardware mismatch or incompatible package still stops the workflow before DDU.
 
-## Current NVIDIA defaults - 13.0.15
+## Apply the NVIDIA profile without a license key
 
-The approved `617.42.txt` profile is used throughout driver setup and GPU Studio's **Apply NVIDIA Profile Inspector** action. The desktop Inspector package and cached default use the same file. Modified user exports are preserved when exact old Suite exports are replaced.
+**Apply NVIDIA Profile Inspector Profile requires no TaC9 license key as of 13.0.27.0.** Update the Suite, close games, then open **GPU Studio → Apply NVIDIA Profile Inspector Profile**. If a License dialog appears at startup, close it to use this action. An installed, supported NVIDIA driver and administrator access are still required.
 
-NVCleanstall's **Disable Multiplane Overlay (MPO)** option is unchecked when preparing a new driver package. Updating the Suite or applying the profile alone does not remove a previous MPO override.
+Standalone Apply imports and saves the exact bundled **621.14.txt** preset. It applies the settings contained in that profile and does not run extra Control Panel installation or initialization, select **Use the advanced 3D image settings**, force refresh-rate/OpenGL choices, or perform a separate Black Ops 7 ReBAR refresh. It does not copy an Inspector package to the Desktop. A driver reinstall is not required; updating alone does not apply settings.
 
-**Preferred refresh rate** in Manage 3D settings is explicitly saved as **Application-controlled** after Inspector finishes applying. The Suite verifies the base and active global settings through a fresh NVIDIA session and checks again after monitor setup, including resumed installs. A failed save or readback reports an error. Desktop monitor Hz and custom-resolution preservation are separate from this setting.
+## NVIDIA driver installation defaults
 
-For an existing driver, use **GPU Studio > Apply NVIDIA Profile Inspector** to apply the profile and refresh preference without reinstalling. Updating alone does not apply settings. File 13.0.15.1 adds an automatic MPO/fullscreen-disable override reset whenever the newer Personal Settings profile is applied. Run that profile and restart Windows when requested to use the reset; GPU Studio profile Apply does not perform it. [All profile changes and release details](RELEASE-NOTES.md).
+Automatic driver installation and rollback use the approved **621.14.txt** profile with their existing Control Panel and display setup steps. Their license requirements are unchanged.
+
+NVCleanstall's **Disable Multiplane Overlay (MPO)** option is unchecked when preparing a new driver package. Updating the Suite or applying the NVIDIA profile alone does not remove a previous MPO override.
+
+During driver installation, **Preferred refresh rate** in Manage 3D settings is explicitly saved as **Application-controlled** after Inspector finishes applying. The Suite verifies the base and active global settings through a fresh NVIDIA session and checks again after monitor setup. A failed save or readback reports an error. Desktop monitor Hz and custom-resolution preservation are separate from this setting. Standalone profile Apply does not run this additional override.
+
+The newer Personal Settings profile removes older MPO/fullscreen-disable overrides when applied. Run that profile and restart Windows when requested to use the reset; GPU Studio profile Apply does not perform it. [Release details](RELEASE-NOTES.md).
 
 ## Return to the previous driver
 
@@ -88,8 +94,8 @@ If display settings need attention, a successful driver installation finishes at
 
 An old unfinished-install message does not require clearing a checkpoint. Update the Suite, close any driver tools still running, then choose the installation you want to run.
 
-## Background profile setup
+## Background profile setup during driver installation
 
-GPU setup initializes NVIDIA Control Panel in the background, then opens Profile Inspector in the background to apply the saved profile and closes both tools. Since 13.0.24.5, it also selects **Use the advanced 3D image settings**, applies it, and reopens Control Panel to verify it was saved. If that selection cannot be confirmed, the Suite gives the manual steps and continues the remaining profile settings. You can still use the separate Control Panel and Profile Inspector buttons to open either tool manually.
+Automatic driver installation and rollback initialize NVIDIA Control Panel in the background, then open Profile Inspector in the background to apply the saved profile and close both tools. Since 13.0.24.5, these workflows also select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. If that selection cannot be confirmed, the Suite gives the manual steps and continues the remaining profile settings. You can still use the separate Control Panel and Profile Inspector buttons to open either tool manually.
 
-For **Black Ops 7**, the Suite saves ReBAR as enabled and then saves it as disabled, matching the reapply sequence used for that game's profile. It reads back the final Black Ops 7 setting as Disabled. This refresh leaves global ReBAR unchanged. Keep the game closed during profile setup, then launch it after the installation and any requested restart.
+During driver installation, for **Black Ops 7**, the Suite saves ReBAR as enabled and then saves it as disabled, matching the reapply sequence used for that game's profile. It reads back the final Black Ops 7 setting as Disabled. This refresh leaves global ReBAR unchanged. Keep the game closed during profile setup, then launch it after the installation and any requested restart.

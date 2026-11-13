@@ -4,7 +4,7 @@
 
 TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, clean selected caches and temporary files, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
 
-**Paid keys are required for protected Suite tools.** Get access through a ticket in the official TaC9 Discord. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
+**Apply NVIDIA Profile Inspector Profile, COD Config Installer, and Socials do not require a license key. Paid keys are required for protected Suite tools.** Get access through a ticket in the official TaC9 Discord. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
 
 [Download](#download) | [Included Apps](#included-apps) | [Getting Started](#getting-started) | [Support](#support) | [Release Notes](docs/RELEASE-NOTES.md)
 
@@ -13,6 +13,10 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 > These screenshots show earlier V3 builds and do not include the new Cleanup workspace or its ninth navigation entry. The COD installer screenshot shows the prepared 13.0.10 interface with results from a read-only query on the test PC. Hardware and sensor values come from the test PC, and other maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
 
 ## New in V3
+
+- **13.0.27.0 NVIDIA profile Apply:** **No license key required.** The standalone action imports and saves the bundled **621.14.txt** profile only, without additional Control Panel, advanced 3D, refresh-rate, OpenGL, or ReBAR adjustments outside the profile. [How to apply and release notes](docs/RELEASE-NOTES.md).
+
+The entries below describe earlier releases. Current standalone profile Apply behavior is described above and in [GPU Studio](#gpu-studio).
 
 - **13.0.26.1 corrected MW4 preset:** Disables the custom FPS limiter in the supplied replacement config for Steam, Battle.net, and Xbox. Retains the DLSS Transformer model, NVIDIA **621.14.txt** preset, and Intel HT-aware worker selection. If you applied the MW4 config from 13.0.26.0, install it again from 13.0.26.1. [Apply instructions and release notes](docs/RELEASE-NOTES.md).
 
@@ -30,9 +34,9 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 - **13.0.24.6 DISM/SFC repair update:** Refreshes older or damaged cached repair scripts, preserves Windows error codes and missing-repair-file guidance, and corrects failed or incomplete repair reporting. [Read the update notes](docs/RELEASE-NOTES.md).
 
-- **13.0.24.5 NVIDIA Control Panel fix:** Automatic driver setup and GPU Studio's **Apply NVIDIA Profile Inspector Profile** now select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. [Read the update notes](docs/RELEASE-NOTES.md).
+- **13.0.24.5 NVIDIA Control Panel fix:** That release made automatic driver setup and standalone profile Apply select **Use the advanced 3D image settings**, apply it, and reopen Control Panel to verify it was saved. Standalone Apply no longer performs this extra step as of 13.0.27.0. [Read the update notes](docs/RELEASE-NOTES.md).
 
-**Already updated before this fix?** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. You do not need to reinstall your NVIDIA driver.
+**For installations completed before the 13.0.24.5 fix:** Open **NVIDIA Control Panel → Adjust image settings with preview → Use the advanced 3D image settings**, then click **Apply**. You do not need to reinstall your NVIDIA driver.
 
 - **13.0.24.3 MW4 config revision:** Turns depth of field off in the shared MW4 preset for Xbox, Battle.net, and Steam. Existing per-PC hardware and window settings are preserved. [Read the update notes](docs/RELEASE-NOTES.md).
 
@@ -84,13 +88,13 @@ The complete Suite now has nine workspaces, including the new Cleanup category. 
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.26.1, release tag v13.0.26.1.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.27.0, release tag v13.0.27.0.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.1/TaC9-PC-Optimization-Suite-V3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.27.0/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.26.1 is 263875200 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.27.0 is 263878544 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -113,19 +117,19 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.26.1 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.27.0 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.1/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.27.0/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '5C12E69AFFB0F5A361870C5110CE3D997F09AFD2F7EAA872009C8846665E63FD') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '40A2D83C513AAF365226F083B6FE8F2AAD8588F8E51F40DE09E3E9CAF1ACF239') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
 </details>
 
-Open the downloaded executable when you are ready, then follow [Getting Started](#getting-started) to obtain and save your license key. Administrator permission is required for system-changing actions; downloading the file alone does not require elevation.
+Open the downloaded executable when you are ready, then follow [Getting Started](#getting-started). Obtain and save a license key only if you want to use the protected tools. Administrator permission is required for system-changing actions; downloading the file alone does not require elevation.
 
 ## Included Apps
 
@@ -202,6 +206,8 @@ Version 13.0.11 fixes the false “GPU changed” stop during driver selection. 
 When an NVIDIA driver is already installed, the Suite also reads each monitor's resolution and refresh rate before DDU starts. Custom modes keep their selected resolution and Hz, use Full-screen scaling, and leave the scaling override unchecked. Exact NVIDIA custom timings can be recreated if cleanup removes them. This small display record stays in memory for the current run; it does not add a saved install checkpoint. Unsupported or ambiguous display settings leave a note while the completed driver installation finishes.
 
 Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
+
+**Apply NVIDIA Profile Inspector Profile requires no license key.** Close games, then select **GPU Studio → Apply NVIDIA Profile Inspector Profile**. This standalone action imports and saves the exact bundled **621.14.txt** profile. Settings contained in the profile apply; it does not run extra Control Panel installation or initialization, select the advanced 3D option, force refresh-rate/OpenGL choices, or perform a separate ReBAR refresh. Updating the Suite alone does not apply the profile. Automatic driver installation and rollback retain their existing setup steps and license requirements.
 
 **[Read the installation and rollback guide](docs/GPU-ROLLBACK.md)** for the steps, backup behavior, and recovery instructions.
 
@@ -315,14 +321,14 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.26.1/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
-2. **[Join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** The TaC9 team will help you obtain the key for the protected tools.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.27.0/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+2. **For protected tools, [join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** Skip this step for standalone NVIDIA profile Apply, COD Config Installer, and Socials.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
-5. Open **License**, enter the key provided through your Discord ticket, and select **Save & unlock**. Keep your key private; do not post it in a public channel or GitHub issue.
+5. If using protected tools, open **License**, enter the key provided through your Discord ticket, and select **Save & unlock**. Keep your key private; do not post it in a public channel or GitHub issue.
 6. Review the detected hardware, choose a workspace, read the operation details, and confirm the intended settings. Keep the suite open until the final result is displayed.
 
-**No key is needed for the Socials tab or its official links.** You can use Socials to reach Discord before activating the protected tools. The COD Config Installer also does not require a license key. If the license dialog appears when the full suite starts, close it to use these key-free workspaces.
+**No key is needed for Apply NVIDIA Profile Inspector Profile, COD Config Installer, or Socials.** If the license dialog appears when the full suite starts, close it to use these actions. You can use Socials to reach Discord before activating the protected tools. Other GPU Studio actions and protected Suite tools still require their existing license access.
 
 ### Requirements and Compatibility
 
@@ -346,7 +352,7 @@ Starting with 12.2.13, **every normal launch checks for suite and supported tool
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.26.1** is delivered through the existing signed update feed as a new release, following public version **13.0.26.0**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.27.0** is delivered through the existing signed update feed as a new release, following public version **13.0.26.1**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
 
 Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, cleanup, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
 

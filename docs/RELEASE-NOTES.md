@@ -1,5 +1,24 @@
 # Release Notes
 
+## V3 13.0.27.0 - November 12, 2026
+
+- **Apply NVIDIA Profile Inspector Profile now requires no license key.** Use the standalone Apply action in GPU Studio without activating a paid Suite license.
+- **Standalone Apply imports and saves only the bundled NVIDIA profile.** It uses the existing approved **621.14.txt** preset directly. Settings contained in that profile still apply; the action no longer performs extra Control Panel installation or initialization, advanced 3D selection, forced refresh-rate/OpenGL choices, or a separate ReBAR refresh.
+
+**How to apply:** Update the Suite to **13.0.27.0**, close games, then open **GPU Studio → Apply NVIDIA Profile Inspector Profile → Confirm**. If the License dialog appears at startup, close it to use this key-free action. A driver reinstall is not required. Updating the Suite alone does not apply the profile.
+
+Automatic driver installation, rollback, and other protected tools retain their existing setup steps and license requirements.
+
+App, file, runtime, GitHub release, and signed update-feed version: **13.0.27.0**.
+
+### Download Integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263878544 bytes**
+- SHA-256: `40A2D83C513AAF365226F083B6FE8F2AAD8588F8E51F40DE09E3E9CAF1ACF239`
+
+[Download V3 13.0.27.0](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.27.0/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.27.0)
+
 ## V3 13.0.26.1 - November 8, 2026
 
 - **Corrected MW4 config for Steam, Battle.net, and Xbox:** uses the newly supplied `s.1.0.cod26.txt` with the custom FPS limiter **disabled**. This corrects the enabled limiter in 13.0.26.0. The stored gameplay, menu, and background limit values remain 300, but the custom limiter is off. The DLSS model is **Transformer**. Stored multi-frame preferences are Fixed with a 300 target; frame generation itself remains off.
