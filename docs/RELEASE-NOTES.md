@@ -1,5 +1,26 @@
 # Release Notes
 
+## V3 13.0.28.0 - November 15, 2026
+
+- **Readable license details:** The License window shows your saved customer/Discord name, saved key with Show/Copy controls, last saved date on this PC, and last successful online verification. You can save or change the display name without replacing your key. Issued and expiry dates appear only when provided by the license service; otherwise they show **Not provided**.
+- **Readable license file:** Adds **License Details.txt** beside the protected `license.tac9` in your Desktop **TaC-_-9s Opti Folder → License** folder. The text file includes the full saved key and recorded details. The encrypted file continues to handle activation.
+- **NVIDIA Control Panel startup fix:** GPU Studio now follows a verified Control Panel replacement process during first-launch setup and allows one limited initialization retry if its process exits. It still checks that Control Panel is responsive and ready before continuing. Failure logs now include process-exit and retry details.
+
+**View your license:** Update to **13.0.28.0**, open **License**, enter your customer/Discord name if needed, and choose **Save name**. Use **Open details file** for the readable copy. Choose **Check access** to check your saved access. Verification details update after a successful online check; cached access checks do not change that date. Keep the details file private because it contains your key.
+
+The Control Panel fix is used by GPU Studio's driver setup flows. Updating the Suite does not reinstall a driver or reapply settings.
+
+App, file, runtime, GitHub release, and signed update-feed version: **13.0.28.0**.
+
+### Download Integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **263459504 bytes**
+- SHA-256: `6EB78B0B03336D533840812E95EC63A3F5A673693F33462E8814A69258E0CFE1`
+
+[Download V3 13.0.28.0](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.28.0/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.28.0)
+
+
 ## V3 13.0.27.0 - November 12, 2026
 
 - **Apply NVIDIA Profile Inspector Profile now requires no license key.** Use the standalone Apply action in GPU Studio without activating a paid Suite license.
