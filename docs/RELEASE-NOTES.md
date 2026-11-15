@@ -15,8 +15,8 @@ App, file, runtime, GitHub release, and signed update-feed version: **13.0.28.0*
 ### Download Integrity
 
 - File: `TaC9-PC-Optimization-Suite-V3.exe`
-- Size: **263459504 bytes**
-- SHA-256: `6EB78B0B03336D533840812E95EC63A3F5A673693F33462E8814A69258E0CFE1`
+- Size: **263460560 bytes**
+- SHA-256: `5F14FBD9DCD17413279462240DE191554F2774456F85F0C3AF700D015C681837`
 
 [Download V3 13.0.28.0](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.28.0/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.28.0)
 
