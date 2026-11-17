@@ -1,8 +1,8 @@
 # TaC9 PC Optimization Suite V3
 
-**Windows optimization, repair, NVIDIA driver setup, game configuration, cleanup, and PC health in one desktop suite.**
+**Windows optimization, repair, NVIDIA driver setup, game configuration, app updates, cleanup, and PC health in one desktop suite.**
 
-TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, clean selected caches and temporary files, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
+TaC9 brings the everyday work of setting up and maintaining a gaming PC into one coordinated Windows interface. Review system information, choose Windows settings, perform a clean NVIDIA driver setup, install the TaC9 Call of Duty configuration, remove unwanted apps, review supported app updates, clean selected caches and temporary files, configure ISLC, and investigate hardware or Windows reliability issues without searching through separate tool folders.
 
 **Apply NVIDIA Profile Inspector Profile, COD Config Installer, and Socials do not require a license key. Paid keys are required for protected Suite tools.** Get access through a ticket in the official TaC9 Discord. This repository provides official downloads, documentation, screenshots, and release notes. Protected application source and private access data are not published here.
 
@@ -10,15 +10,17 @@ TaC9 brings the everyday work of setting up and maintaining a gaming PC into one
 
 ![Earlier V3 dashboard preview with eight-app navigation](docs/screenshots/suite.png)
 
-> These screenshots show earlier V3 builds and do not include the new Cleanup workspace or its ninth navigation entry. The COD installer screenshot shows the prepared 13.0.10 interface with results from a read-only query on the test PC. Hardware and sensor values come from the test PC, and other maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
+> These screenshots show earlier V3 builds and do not include the newer Cleanup and App Updater workspaces. The current Suite has ten navigation entries. The COD installer screenshot shows the prepared 13.0.10 interface with results from a read-only query on the test PC. Hardware and sensor values come from the test PC, and other maintenance states use the UI test harness. No driver cleanup, repair, or app removal was performed for these screenshots. Available readings depend on your PC.
 
 ## New in V3
+
+- **13.0.29.2 App Updater and NVIDIA preset:** Adds the tenth workspace for selected app updates, available-update search, installer prompts, and installed-version verification. Uses the supplied **621.24.txt** NVIDIA profile throughout GPU Studio. **Create Request** now includes the saved license key. [How to use these changes](docs/RELEASE-NOTES.md).
 
 - **13.0.28.0 license details and NVIDIA startup:** Adds a readable name/key/date view and **License Details.txt**, plus verified Control Panel process-handoff handling and one limited initialization retry in GPU Studio driver setup. [Use the new license view and read the fixes](docs/RELEASE-NOTES.md).
 
 - **13.0.27.0 NVIDIA profile Apply:** **No license key required.** The standalone action imports and saves the bundled **621.14.txt** profile only, without additional Control Panel, advanced 3D, refresh-rate, OpenGL, or ReBAR adjustments outside the profile. [How to apply and release notes](docs/RELEASE-NOTES.md).
 
-The entries below describe earlier releases. Current standalone profile Apply behavior is described above and in [GPU Studio](#gpu-studio).
+Release entries retain their historical preset versions. Current standalone profile Apply behavior and the bundled preset are described in [GPU Studio](#gpu-studio).
 
 - **13.0.26.1 corrected MW4 preset:** Disables the custom FPS limiter in the supplied replacement config for Steam, Battle.net, and Xbox. Retains the DLSS Transformer model, NVIDIA **621.14.txt** preset, and Intel HT-aware worker selection. If you applied the MW4 config from 13.0.26.0, install it again from 13.0.26.1. [Apply instructions and release notes](docs/RELEASE-NOTES.md).
 
@@ -86,17 +88,17 @@ The entries below describe earlier releases. Current standalone profile Apply be
 - **13.0.1:** CPU access-failure detection and read validation, so failed Ryzen register reads are shown as unavailable instead of misleading live clock, VID, or power values. Reports include provider and hardware-access diagnostics.
 - A GPU preflight fix for the GPU-Z/HWiNFO `Add` error, corrected status reporting, and no false 100% completion on failed operations.
 
-The complete Suite now has nine workspaces, including the new Cleanup category. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
+The complete Suite now has ten workspaces, including Cleanup and App Updater. The repository keeps its original `TaC9-PC-Optimization-Suite-V2` address so established links and update feeds continue to work; **the current application is V3**.
 
 ## Download
 
-**Current app, runtime, file, and signed update-feed version: V3 13.0.28.0, release tag v13.0.28.0.**
+**Current app, runtime, file, and signed update-feed version: V3 13.0.29.2, release tag v13.0.29.2.**
 
-**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.28.0/TaC9-PC-Optimization-Suite-V3.exe)**
+**[Download TaC9 V3 for Windows](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.29.2/TaC9-PC-Optimization-Suite-V3.exe)**
 
 [All releases and release notes](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases) | [SHA-256 checksum](docs/RELEASE-NOTES.md#download-integrity)
 
-One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's nine workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.28.0 is 263460560 bytes. Blender and Node.js are not required to run the suite.
+One complete Windows executable, `TaC9-PC-Optimization-Suite-V3.exe`, includes the suite's ten workspaces. The COD Config Installer is included inside the suite, not offered here as a separate executable. Version 13.0.29.2 is 274902032 bytes. Blender and Node.js are not required to run the suite.
 
 **V3 is the only app download in the current release.** Use the download above or **Check for Updates** in the Suite. The small `manifest-v2.json` file is used automatically by the updater; you do not need to download it yourself. Older release downloads remain available, including the genuine previous V2 in the [12.2.13 release](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v12.2.13).
 
@@ -119,13 +121,13 @@ Only the same-named Desktop executable is replaced after successful verification
 The script does **not** launch the app, request administrator access, change execution policy, or disable Windows security protections. The short command executes a downloaded script, so use only this official URL and review [win.ps1](win.ps1) before running it. Download verification is not a Windows Authenticode publisher signature.
 
 <details>
-<summary>Manual download of V3 13.0.28.0 without running a hosted script</summary>
+<summary>Manual download of V3 13.0.29.2 without running a hosted script</summary>
 
 ```powershell
-$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.28.0/TaC9-PC-Optimization-Suite-V3.exe'
+$url = 'https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.29.2/TaC9-PC-Optimization-Suite-V3.exe'
 $file = Join-Path ([Environment]::GetFolderPath('Desktop')) 'TaC9-PC-Optimization-Suite-V3.exe'
 Invoke-WebRequest -Uri $url -OutFile $file -UseBasicParsing
-if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '5F14FBD9DCD17413279462240DE191554F2774456F85F0C3AF700D015C681837') { throw 'Download checksum mismatch. Do not run this file.' }
+if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne '5D16C7F13C09DFF84E876413CEBD9E139C4E1BFF6BB5CDBEA8125A4D474DBAC5') { throw 'Download checksum mismatch. Do not run this file.' }
 Write-Host "Download verified: $file"
 ```
 
@@ -145,6 +147,7 @@ Open the downloaded executable when you are ready, then follow [Getting Started]
 | [ISLC Setup](#islc-setup) | ISLC installation, detected-memory presets, startup configuration, and monitoring setup. |
 | [PC Health Center](#pc-health-center) | Supported live sensors, storage and memory information, Windows reliability evidence, and report export. |
 | [Cleanup](#cleanup) | Scan and select temporary files, browser and shader caches, Windows cleanup tasks, and Recycle Bin, with detailed results. |
+| [App Updater](#app-updater) | Scan supported app updates, search available versions, review selected installers, preserve exclusions, and verify per-app outcomes. |
 | [TaC9 Socials](#tac9-socials) | Official community, support, and video channels. |
 
 ### Optimization Suite
@@ -209,7 +212,7 @@ When an NVIDIA driver is already installed, the Suite also reads each monitor's 
 
 Rollback installs the previous driver with the Suite's settings. It does not restore every old custom setting or a Windows image. You can also apply the supplied profile without reinstalling, open NVIDIA Control Panel, or open Profile Inspector.
 
-**Apply NVIDIA Profile Inspector Profile requires no license key.** Close games, then select **GPU Studio → Apply NVIDIA Profile Inspector Profile**. This standalone action imports and saves the exact bundled **621.14.txt** profile. Settings contained in the profile apply; it does not run extra Control Panel installation or initialization, select the advanced 3D option, force refresh-rate/OpenGL choices, or perform a separate ReBAR refresh. Updating the Suite alone does not apply the profile. Automatic driver installation and rollback retain their existing setup steps and license requirements.
+**Apply NVIDIA Profile Inspector Profile requires no license key.** Close games, then select **GPU Studio → Apply NVIDIA Profile Inspector Profile**. This standalone action imports and saves the exact bundled **621.24.txt** profile. Settings contained in the profile apply; it does not run extra Control Panel installation or initialization, select the advanced 3D option, force refresh-rate/OpenGL choices, or perform a separate ReBAR refresh. Updating the Suite alone does not apply the profile. Automatic driver installation and rollback retain their existing setup steps and license requirements.
 
 **[Read the installation and rollback guide](docs/GPU-ROLLBACK.md)** for the steps, backup behavior, and recovery instructions.
 
@@ -313,6 +316,22 @@ File cleanup preserves browser passwords, cookies, history, downloads, game conf
 
 Cleanup is a separate action from TaC9 Personal Settings. Updating or opening the Suite does not run it.
 
+### App Updater
+
+**Review and install selected updates for supported applications through Microsoft WinGet.**
+
+Open **App Updater → Scan Apps**. Use **Search available updates** to search the scanned list by app name or package ID. Select the apps you want, choose **Review selected updates**, save your work and close those apps yourself, then confirm **Install selected updates**.
+
+- Shows known available updates rather than current apps or unmatched entries. Existing package pins are respected, and unknown installed versions are skipped. Excluded apps with an available target remain accessible so their exclusion can be undone.
+- Saves per-app exclusions on this PC. Nothing is selected or installed automatically, and there is no background update schedule.
+- Rechecks the exact selected app and version before installation. Only reviewed packages are requested; publisher installers may show prompts you need to complete. Detected installer windows are brought forward when Windows allows it.
+- Verifies the installed version after an attempt. Results distinguish the **before**, **target**, and **installed after attempt** versions. An unchanged or unverified result shows **Update not confirmed**; failures and restart requirements remain visible. Use **Open update logs** for troubleshooting.
+- Checks WinGet readiness first. If setup is needed and supported, **Review WinGet setup** presents a separate plan using validated official Microsoft App Installer packages and required dependencies. It does not restore the Microsoft Store interface.
+
+Catalog coverage is not universal: unmatched, Store-only, paid, and unsupported packages may not be available here. The scan reports the Windows account it used. A scan with no available updates does not prove every installed app is current. WinGet can operate without the Store interface when its required components are present; this release has not been validated on every custom Windows image.
+
+Windows updates, drivers, firmware, shared runtime setup, and TaC9 Suite itself keep their existing update workflows. App Updater does not change Windows update-blocking settings, security controls, or services to force an installation. It does not forcibly close apps or restart Windows. Keep the Suite open and complete any publisher installer prompts before reviewing the results.
+
 ### TaC9 Socials
 
 **The suite's direct route to the TaC9 community, help, and videos.**
@@ -323,7 +342,7 @@ Open the official Discord for support and announcements, visit the TaC9 YouTube 
 
 ## Getting Started
 
-1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.28.0/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
+1. [Download the full-suite V3 executable](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.29.2/TaC9-PC-Optimization-Suite-V3.exe), or use the [PowerShell download](#powershell-download) above. Compare its SHA-256 checksum with the release information.
 2. **For protected tools, [join the official TaC9 Discord](https://discord.gg/3nrUffpVzt) and open a support ticket to request your license key.** Skip this step for standalone NVIDIA profile Apply, COD Config Installer, and Socials.
 3. Save your work. Back up important files and create a Windows restore point before making substantial system changes.
 4. Launch the suite with administrator rights when required for system operations. The interface uses Microsoft Edge WebView2; the launcher can attempt runtime setup when it is missing.
@@ -347,16 +366,16 @@ The V3 layout has been checked at 1920x1080, 1536x864, 1366x768, and 1280x720. T
 
 Starting with 12.2.13, **every normal launch checks for suite and supported tool updates**. A recent launch no longer skips the online check for four hours.
 
-- **Suite and built-in workspaces:** the existing signed GitHub feed now delivers V3 and updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, Cleanup, and Socials.
+- **Suite and built-in workspaces:** the existing signed GitHub feed now delivers V3 and updates the complete suite together, including Windows Repair, GPU Studio, COD Config Installer, Debloat Tool, ISLC Setup, PC Health Center, Cleanup, App Updater, and Socials.
 - **Supported tool packages:** the tool updater checks DDU, NVCleanstall, ISLC, and the approved compatible NVIDIA Profile Inspector release. Profile Inspector intentionally follows the approved version, not any untested upstream release. Bundled TaC9 profile changes are delivered with suite releases.
 - **Verified installation:** newer suite packages must pass the signed manifest, SHA-256, and internal package checks before the update helper replaces the running suite and restarts it. Tool packages use their existing source and integrity checks. Saved license data and settings are retained.
 - **Unavailable sources:** incomplete checks are reported honestly; the installed verified suite can still open, independent tool checks are attempted, and a fresh check runs next launch.
 
 The **Check for Updates** button also runs these checks on demand. When moving from 12.2.12, use that button once to bypass its old four-hour startup cache, or close the suite and use the short PowerShell downloader.
 
-An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.28.0** is delivered through the existing signed update feed as a new release, following public version **13.0.27.0**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
+An in-app upgrade replaces the executable at its existing location, so an older `V2.exe` filename may remain even though the app and its version are V3. The current short downloader creates the V3-named Desktop file and leaves differently named old suites alone. Version **13.0.29.2** is delivered through the existing signed update feed as a new release, following public version **13.0.28.0**. If an older copy downloads the update but does not install it, close the Suite and download the current V3 executable once; later launches then use the repaired startup updater.
 
-Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, cleanup, or game-configuration actions. Those workflows remain actions you choose inside the suite. This is not a general updater for every application installed on Windows.
+Startup package updates do not run GPU driver removal or installation, Windows repair, app debloating, cleanup, game-configuration actions, or App Updater installations. Those workflows remain actions you choose inside the Suite. Use the separate App Updater workspace to review supported installed-app updates.
 
 For maintainers, publish only `TaC9-PC-Optimization-Suite-V3.exe` and a matching `manifest-v2.json` as uploaded release assets. The manifest must point directly to the V3 executable, be signed by the existing trusted update key, and belong to the repository's latest release. Put the checksum in the release notes. Keep screenshots in the repository or the Discord post; they do not need separate release assets. A GitHub tag or an EXE uploaded without the signed manifest is not enough for the in-app updater.
 

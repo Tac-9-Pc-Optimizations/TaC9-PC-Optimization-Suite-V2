@@ -1,5 +1,32 @@
 # Release Notes
 
+## V3 13.0.29.2 - November 17, 2026
+
+### What changed
+
+- Added **App Updater**, a separate workspace for scanning supported installed apps, selecting available updates, reviewing the exact apps and versions, and running their installers through WinGet.
+- Scan results hide current apps and entries without an available update. **Search available updates** filters the scanned list by app name or package ID. Saved exclusions and package pins are respected.
+- Active App Updater installer windows and new dialogs are brought forward when Windows allows it, including restoring minimized installer windows.
+- Update results verify the installed version afterward and show the before, target, and detected versions. An unchanged or unverified version is reported as **Update not confirmed**; installer failures and required restarts remain visible.
+- Replaced the bundled NVIDIA Profile Inspector settings with the supplied **621.24.txt** throughout GPU Studio's profile-application paths, including standalone profile application and the driver-install workflows that apply the bundled profile.
+- **Create Request** now includes the saved license key in the license-support request file, rather than only saying a key is present. Share that request file privately in a support ticket.
+
+### How to use
+
+**App updates:** Open **App Updater → Scan Apps**, search if needed, select the desired updates, then choose **Review selected updates**. Save your work and close the selected apps yourself before confirming **Install selected updates**. Scanning and searching do not install apps. If WinGet setup is needed, the Suite offers it as a separate reviewed action.
+
+**NVIDIA profile:** Open **GPU Studio → Apply NVIDIA Profile Inspector Profile** to apply the new **621.24** settings. This standalone action requires no license key and applies only the Inspector profile. Existing driver-install flows use the same new bundled profile when their profile step runs. Updating the Suite alone does not apply GPU settings or reinstall a driver.
+
+**Get this version:** Use **Check for Updates** in the Suite or download the full EXE from this release. The app version and signed update manifest both identify **13.0.29.2**.
+
+### Download Integrity
+
+- File: `TaC9-PC-Optimization-Suite-V3.exe`
+- Size: **274902032 bytes**
+- SHA-256: `5D16C7F13C09DFF84E876413CEBD9E139C4E1BFF6BB5CDBEA8125A4D474DBAC5`
+
+[Download V3 13.0.29.2](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/download/v13.0.29.2/TaC9-PC-Optimization-Suite-V3.exe) | [Release page](https://github.com/Tac-9-Pc-Optimizations/TaC9-PC-Optimization-Suite-V2/releases/tag/v13.0.29.2)
+
 ## V3 13.0.28.0 - November 15, 2026
 
 - **Readable license details:** The License window shows your saved customer/Discord name, saved key with Show/Copy controls, last saved date on this PC, and last successful online verification. You can save or change the display name without replacing your key. Issued and expiry dates appear only when provided by the license service; otherwise they show **Not provided**.
